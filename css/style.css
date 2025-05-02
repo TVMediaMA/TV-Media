@@ -501,8 +501,9 @@ nav ul li a:hover {
 }
 
 /* Alternating background colors */
-.service-section:nth-of-type(even) {
-  background-color: #f7f7f7;
+.service-section:nth-of-type(odd) {
+  background-color: #ff6600;
+  ;
 }
 
 /* Headings */

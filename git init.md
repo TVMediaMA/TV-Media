@@ -15,3 +15,8 @@ git remote add origin https://github.com/TVMediaMA/TV-Media.git
 
 # Push your changes to GitHub
 git push -u origin main
+
+git add .
+git commit -m "Make logo clickable and add hover effect"
+git pull origin main --allow-unrelated-histories
+git push origin main
