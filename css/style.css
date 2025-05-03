@@ -677,3 +677,398 @@ nav ul li a:hover {
     display: block;
   }
 }
+ /* Portfolio Styles */
+
+body {
+  margin: 0;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  background-color: #fafafa;
+  color: #333;
+}
+
+.portfolio-header {
+  text-align: center;
+  padding: 3rem 1rem 1rem;
+  background-color: #f4f4f4;
+  border-bottom: 1px solid #ddd;
+}
+
+.portfolio-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.portfolio-header p {
+  font-size: 1.1rem;
+  color: #666;
+}
+
+.project-preview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.project-card {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+}
+
+.project-card h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.project-card .project-tags {
+  font-size: 0.9rem;
+  color: #999;
+  margin-bottom: 1rem;
+}
+
+.project-card .project-description {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1.2rem;
+}
+
+.project-link {
+  font-weight: bold;
+  color: #0066cc;
+  text-decoration: none;
+}
+
+.project-link:hover {
+  text-decoration: underline;
+}
+
+/* Project Page Styles */
+
+.project-page {
+  font-family: 'Helvetica Neue', sans-serif;
+  color: #222;
+  line-height: 1.6;
+}
+
+.container {
+  padding: 3rem 1.5rem;
+  max-width: 1200px;
+  margin: auto;
+}
+.project-overview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: #ff4500;
+  padding: 2rem;
+  border-radius: 12px;
+  margin-top: 2rem;
+}
+.project-overview h2 {
+  text-align: center;
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.project-overview p {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #fff;
+}
+.text-block p {
+  margin-bottom: 1rem;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.gallery-grid img {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.project-social-plan img {
+  max-width: 100%;
+  margin-top: 1rem;
+  border-radius: 8px;
+}
+
+/* Timeline Wrapper */
+.timeline-wrapper {
+  background-color: #ff4500;
+  width: 100%;
+}
+
+/* Timeline Section */
+.timeline-section {
+  padding: 2rem;
+  overflow-x: hidden;
+  color: #fff;
+}
+
+.timeline-section h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  max-width: 100%;
+  word-wrap: break-word;
+}
+
+/* Timeline Flex Container */
+.timeline {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1rem 0;
+  max-width: 100%;
+  box-sizing: border-box;
+  background-color: transparent;
+}
+
+/* Animation Keyframes */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Timeline Items */
+.timeline-item {
+  flex: 0 0 225px;
+  background: #fff;
+  color: #333;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+  box-sizing: border-box;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Animate when in view */
+.timeline-item.animate {
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+/* Hover effect */
+.timeline-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.timeline-item h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+
+/* Content Pillars Section */
+
+.pillars-section {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 12px;
+  margin-top: 2rem;
+}
+.pillars-section h1 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+/* General Container */
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+/* Pillars Grid */
+.pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* always 2 columns */
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+@media (max-width: 600px) {
+  .pillars-grid {
+    grid-template-columns: 1fr; /* stack on small screens */
+  }
+}
+
+
+.pillar {
+  aspect-ratio: 1 / 1;
+  max-width: 240px;
+  background: #f4f4f4;
+  border-radius: 16px;
+  padding: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: transform 0.3s ease;
+  margin: 0 auto;
+}
+
+.pillar:hover {
+  transform: translateY(-4px);
+}
+
+.pillar img {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 1rem;
+}
+
+/* Media Matters */
+
+.media-matters-section {
+  background-color: #ff4500;
+  padding: 2rem;
+  border-radius: 12px;
+  margin-top: 2rem;
+}
+
+.media-matters-section h2 {
+  text-align: center;
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.media-matters-section p {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #fff;
+}
+
+
+/* Back Button */
+
+.back-button {
+  margin: 2rem 0;
+}
+
+.btn-back {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background-color: #333;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+  font-weight: 500;
+}
+
+.btn-back:hover {
+  background-color: #555;
+}
+
+/* Calendar Section */
+
+.calendar-container {
+  padding: 2rem;
+  max-width: 800px;
+  margin: auto;
+  font-family: sans-serif;
+}
+
+.calendar-container h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.5rem;
+  position: relative;
+}
+
+.day-label {
+  font-weight: bold;
+  text-align: center;
+  padding: 0.5rem 0;
+  background: #ff4500;
+}
+
+.calendar-day {
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 0.5rem;
+  height: 100px;
+  position: relative;
+  overflow: hidden;
+  font-size: 0.9rem;
+  color: #555;
+  opacity: 0.6; /* muted by default */
+}
+
+/* Week 1 visible style */
+.calendar-day.visible {
+  opacity: 1;
+  background: #fefefe;
+  border: 2px solid #333;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  color: #000;
+  font-weight: 500;
+}
+
+/* Highlighted day number */
+.calendar-day.visible strong {
+  font-size: 1.1rem;
+  color: #ff4500;
+}
+
+
+.locked-section {
+  position: relative;
+  display: contents; /* so it flows like the grid children */
+}
+
+.locked-section .calendar-day {
+  filter: blur(4px);
+  pointer-events: none;
+}
+
+.locked-overlay {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.9);
+  color: #000;
+  font-size: 1.2rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1rem;
+  z-index: 1;
+}
