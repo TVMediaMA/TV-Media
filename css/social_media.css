@@ -1,0 +1,178 @@
+/* Reset and base */
+* {
+    box-sizing: border-box;
+  }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0; padding: 2rem;
+    background: #fff;
+    color: #222;
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 0.5rem;
+    color: #ff6600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 900;
+  }
+
+  p.lead {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 3rem;
+    font-size: 1.15rem;
+    color: #444;
+  }
+
+  /* Container for tiers */
+  .tier-container {
+    display: flex;
+    gap: 1.8rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* Each tier card */
+  .tier {
+    background: #f9fafb;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgb(0 0 0 / 0.08);
+    flex: 1 1 300px;
+    max-width: 350px;
+    padding: 2.4rem 2rem 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    cursor: default;
+  }
+  .tier:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 30px rgb(255 102 0 / 0.3);
+  }
+
+  /* Header & price */
+  .tier-header {
+    font-weight: 900;
+    font-size: 1.7rem;
+    color: #009688;
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+    letter-spacing: 1.1px;
+  }
+  .tier-price {
+    font-weight: 800;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #ff6600;
+  }
+  .one-time {
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: #666;
+    margin-bottom: 1.6rem;
+  }
+
+  /* Feature list */
+  ul.features {
+    list-style: none;
+    padding-left: 0;
+    margin: 0 0 2.4rem 0;
+    color: #444;
+  }
+  ul.features li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.9rem;
+    font-weight: 600;
+    font-size: 1rem;
+  }
+  ul.features li::before {
+    content: '✔';
+    position: absolute;
+    left: 0;
+    color: #ff6600;
+    font-weight: 900;
+  }
+
+  /* CTA button */
+  .btn-example {
+    align-self: center;
+    background-color: #009688;
+    color: white;
+    padding: 0.85rem 2.4rem;
+    border: none;
+    border-radius: 28px;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 6px 16px rgb(0 150 136 / 0.4);
+    user-select: none;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+  }
+  .btn-example:hover,
+  .btn-example:focus {
+    background-color: #ff6600;
+    box-shadow: 0 10px 24px rgb(255 102 0 / 0.5);
+    outline: none;
+  }
+
+  /* Responsive */
+  @media (max-width: 960px) {
+    .tier-container {
+      flex-direction: column;
+      max-width: 100%;
+      gap: 2.4rem;
+    }
+    .tier {
+      max-width: 100%;
+    }
+  }
+  .back-arrow {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  border-left: 3px solid #ff6600;  /* Orange color */
+  border-bottom: 3px solid #ff6600; /* Orange color */
+  transform: rotate(45deg);
+  margin-right: 12px;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+.back-arrow:hover,
+.back-arrow:focus {
+  border-color: #e65c00; /* Darker orange on hover/focus */
+  outline: none;
+}
+.setup-cta {
+    text-align: center;
+    margin: 2rem 0 3rem;
+  }
+  
+  .btn-link {
+    display: inline-block;
+    color: #ff6600; /* your orange */
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.3s ease, color 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .btn-link:hover {
+    color: #008080; /* teal */
+    border-color: #008080;
+  }
+  

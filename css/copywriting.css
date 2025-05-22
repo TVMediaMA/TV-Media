@@ -1,0 +1,172 @@
+:root {
+  --primary-color: #00796b;
+  --secondary-color: #004d40;
+  --accent-color: #ff7043;
+  --background-light: #e0f2f1;
+  --text-dark: #263238;
+  --border-radius: 10px;
+  --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  background-color: #f9fafb;
+  color: var(--text-dark);
+}
+
+.container {
+  max-width: 960px;
+  margin: 3rem auto 4rem;
+  padding: 0 1rem;
+}
+
+/* Back button */
+.back-btn {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+  user-select: none;
+}
+.back-btn:hover {
+  background-color: var(--secondary-color);
+}
+
+header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  color: var(--primary-color);
+}
+
+header svg {
+  width: 36px;
+  height: 36px;
+  stroke: var(--primary-color);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+
+header h1 {
+  font-size: 2.7rem;
+  font-weight: 900;
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.tier-card {
+  background: white;
+  padding: 2rem 1.8rem;
+  border-radius: var(--border-radius);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.3s ease;
+}
+
+.tier-card:hover {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+.tier-card h2 {
+  color: var(--accent-color);
+  font-size: 1.6rem;
+  font-weight: 900;
+  margin-bottom: 1rem;
+  letter-spacing: 0.5px;
+}
+
+.price {
+  font-weight: 900;
+  font-size: 1.4rem;
+  color: var(--primary-color);
+}
+
+ul.features {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  color: #555;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+ul.features li {
+  margin-bottom: 0.6rem;
+}
+
+.addons-section {
+  max-width: 560px;
+  margin: 0 auto;
+  background: var(--background-light);
+  padding: 1.8rem 2rem;
+  border-radius: var(--border-radius);
+  box-shadow: 0 3px 12px rgba(0, 121, 107, 0.15);
+}
+
+.addons-section h3 {
+  margin-top: 0;
+  margin-bottom: 1.2rem;
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: var(--primary-color);
+  border-bottom: 3px solid var(--accent-color);
+  padding-bottom: 0.3rem;
+  letter-spacing: 0.5px;
+  text-align: center;
+}
+
+.addons-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  font-weight: 600;
+  color: #444;
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+/* Fix price alignment */
+.addons-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.addons-list li span {
+  color: var(--accent-color);
+  font-weight: 700;
+  min-width: 60px;
+  text-align: right;
+}
+
+@media (max-width: 480px) {
+  header {
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .addons-list {
+    font-size: 0.95rem;
+  }
+}
