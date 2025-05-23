@@ -1,7 +1,6 @@
 /* === Intro / Hero Section === */
 #intro {
-  background: linear-gradient(to right, #ff6600, #ff8533);
-  color: white;
+  background: linear-gradient(to top left, #1B264D 50%, #ff6600 50%);
   padding: 6rem 2rem;
   position: relative;
   text-align: center;
@@ -19,12 +18,14 @@
   font-size: 3rem;
   margin: 0.5rem 0;
   font-weight: bold;
+  color: #D6D4A0;
 }
 
 #intro p {
   font-size: 1.15rem;
   margin: 1rem 0;
   line-height: 1.6;
+  color: #fff;
 }
 
 #intro .btn {
@@ -45,14 +46,14 @@
 
 /* === Services Preview Section === */
 #product-preview {
-  background: #f9f9f9;
+  background: linear-gradient(to bottom left, #1B264D 50%, #ff6600 50%);
   padding: 4rem 2rem;
   text-align: center;
 }
 
 #product-preview h2 {
   font-size: 2.5rem;
-  color: #008080;
+  color: #D6D4A0;
   margin-bottom: 3rem;
 }
 
@@ -66,7 +67,9 @@
 .product-image {
   background: #ffffff;
   width: 260px;
-  padding: 2rem;
+  padding: 1rem;
+  border: 3px solid #D6D4A0;
+  box-sizing: border-box;
   border-radius: 12px;
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
   text-decoration: none;
@@ -77,6 +80,7 @@
 .product-image:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+  border-color: #CA054D
 }
 
 .product-image img {
@@ -86,7 +90,7 @@
 }
 
 .product-image h3 {
-  color: #008080;
+  color: #148888;
   font-size: 1.25rem;
   margin-bottom: 0.5rem;
 }
@@ -107,7 +111,7 @@
 #home-contact h2 {
   font-size: 2rem;
   margin-bottom: 1rem;
-  color: #008080;
+  color: #148888;
 }
 
 #home-contact a {
