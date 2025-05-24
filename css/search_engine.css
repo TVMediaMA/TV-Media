@@ -1,147 +1,220 @@
 :root {
-    --blue: #1e90ff;
-    --teal: #008080;
-    --orange: #ff6600;
-    --gray: #f7f7f7;
-    --text: #222;
-    --radius: 12px;
-    --shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  --primary: #ff6600;
+  --secondary: #1B264D;
+  --accent: #CA054D;
+  --heading: #D4D4A0;
+  --support: #148888;
+  --text_dark: #000;
+  --text_light: #fff;
+  --radius: 12px;
+  --shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 2rem;
+  background: radial-gradient(circle at 50% 50%, #ff6600, #CA054D);
+  font-family: system-ui, sans-serif;
+}
+
+/* Header */
+.main-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.header-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.back-arrow {
+  width: 28px;
+  height: 28px;
+  border-left: 4px solid var(--primary);
+  border-bottom: 4px solid var(--primary);
+  transform: rotate(45deg);
+  margin-left: 1rem;
+  margin-top: 2rem;
+  cursor: pointer;
+  background: transparent;
+}
+
+.back-arrow:hover {
+  border-color: var(--secondary);
+}
+
+.btn-header-example {
+  margin-right: 1rem;
+  margin-top: 2rem;
+  background-color: var(--primary);
+  color: var(--text_light);
+  padding: 0.6rem 1.5rem;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: background-color 0.3s ease;
+}
+
+.btn-header-example:hover {
+  background-color: var(--secondary);
+}
+
+.header-text h1 {
+  font-weight: 900;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.header-icon {
+  width: 36px;
+  height: 36px;
+  stroke: var(--heading);
+}
+
+.subheader {
+  margin-top: 0.5rem;
+  color: var(--text_light);
+}
+
+/* Tier Cards */
+.tier-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.8rem;
+}
+
+.tier {
+  background: var(--text_light);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  max-width: 350px;
+  flex: 1 1 300px;
+  padding: 2.4rem 2rem 3rem;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.tier:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 30px rgba(255 102 0 / 0.3);
+}
+
+.tier-header {
+  font-size: 1.6rem;
+  font-weight: 900;
+  margin-bottom: 0.4rem;
+}
+
+.tier-price {
+  font-size: 1.5rem;
+  color: var(--primary);
+  font-weight: 800;
+  margin-bottom: 0.4rem;
+}
+
+.one-time {
+  font-size: 0.95rem;
+  margin-bottom: 1.4rem;
+}
+
+/* Features */
+.features {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 2rem;
+}
+
+.features li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.9rem;
+  font-weight: 600;
+}
+
+.features li::before {
+  content: '✔';
+  position: absolute;
+  left: 0;
+  color: var(--primary);
+  font-weight: 900;
+}
+
+/* Addons */
+.addons {
+  max-width: 1200px;
+  margin: 4rem auto;
+  text-align: center;
+  padding: 0 1rem;
+}
+
+.addons h1 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.addons-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.addon-card {
+  background: var(--text_light);
+  border-radius: var(--radius);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  text-align: left;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  font-weight: 600;
+}
+
+.addon-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* CTA */
+.setup-cta {
+  text-align: center;
+  margin: 2rem 0 3rem;
+}
+
+.btn-link {
+  color: var(--heading);
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-link:hover {
+  color: var(--secondary);
+  border-color: var(--support);
+}
+
+/* Responsive */
+@media (max-width: 960px) {
+  .tier-container {
+    flex-direction: column;
+    gap: 2.4rem;
   }
-  
-  body {
-    font-family: system-ui, sans-serif;
-    color: var(--text);
-    background: #fff;
-    padding: 1rem;
+}
+
+@media (max-width: 600px) {
+  .addons-grid {
+    grid-template-columns: 1fr;
   }
-  
-  .page-header {
-    text-align: center;
-    margin-bottom: 2rem;
-    position: relative;
-    padding-bottom: 1rem;
-    border-bottom: 3px solid var(--teal);
-  }
-  
-  .back-arrow {
-    position: absolute;
-    left: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 2rem;
-    color: var(--teal);
-    text-decoration: none;
-  }
-  
-  .header-title {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0.6rem;
-  }
-  
-  .page-header h1 {
-    font-size: 2.2rem;
-    font-weight: 900;
-    margin: 0;
-    color: var(--teal);
-  }
-  
-  .icon {
-    stroke: var(--teal);
-  }
-  
-  .tagline {
-    font-size: 1.2rem;
-    margin-top: 0.5rem;
-    color: #555;
-  }
-  
-  .seo-columns {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-  }
-  
-  .seo-column {
-    background: var(--gray);
-    border-radius: var(--radius);
-    padding: 1.5rem;
-    box-shadow: var(--shadow);
-    border-top: 6px solid var(--teal);
-    transition: transform 0.2s ease;
-  }
-  
-  .seo-column:hover {
-    transform: translateY(-4px);
-  }
-  
-  .highlight {
-    border-top-color: var(--orange);
-    background: #fff8f4;
-  }
-  
-  .seo-column h2 {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-  }
-  
-  .price {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #444;
-    margin-bottom: 1rem;
-  }
-  
-  .seo-column ul {
-    padding-left: 1.2rem;
-    list-style: disc;
-  }
-  
-  .seo-addons {
-    margin-top: 3rem;
-  }
-  
-  .seo-addons h2 {
-    text-align: center;
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
-    color: var(--teal);
-  }
-  
-  .addon-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 1rem;
-  }
-  
-  .addon-item {
-    background: var(--gray);
-    padding: 1rem;
-    border-left: 4px solid var(--orange);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    font-weight: 500;
-    color: #333;
-  }
-  
-  .cta-bottom {
-    text-align: center;
-    margin-top: 2rem;
-  }
-  
-  .btn-link {
-    font-weight: bold;
-    color: var(--teal);
-    font-size: 1.1rem;
-    text-decoration: none;
-    border-bottom: 2px solid transparent;
-    transition: all 0.3s ease;
-  }
-  
-  .btn-link:hover {
-    border-color: var(--orange);
-    color: var(--orange);
-  }
-  
+}

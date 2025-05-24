@@ -1,68 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/trainings.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Interactive training workshops to level up your digital skills, in-person or virtual." />
+  <link rel="stylesheet" href="css/trainings.css" />
+  <link rel="stylesheet" href="css/fonts.css" />
+  <title>Trainings & Workshops | TV Media</title>
 </head>
 <body>
-<section class="training-section">
-    <header class="page-header">
-      <div class="header-title">
-        <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-          <path d="M12 14l9-5-9-5-9 5 9 5zM12 14l6.16-3.422a12.083 12.083 0 010 6.844L12 14zM12 14L5.84 16.578a12.083 12.083 0 010-6.844L12 14z" />
-        </svg>
-        <h1>Training & Workshops</h1>
-      </div>
-    </header>
-  
-    <div class="training-pricing">
-      <div class="training-tier">
-        <h2>Standard Workshop: <span class="price">$300</span></h2>
-        <ul>
-          <li>1-2 Hours</li>
+  <header class="main-header">
+    <nav class="header-nav">
+      <a href="services.html" class="back-arrow" aria-label="Go back"></a>
+      <a href="trainings_examples" class="btn-header-example">Workshop Previews</a>
+    </nav>
+    <div class="header-text">
+      <h1>
+        <img src="images/icons/service_icons/graduation-cap.svg" alt="" class="header-icon" />
+        Trainings & Workshops
+      </h1>
+      <p class="subheader">Practical, interactive sessions to grow your digital skills.</p>
+    </div>
+  </header>
+
+  <main>
+    <section id="packages" class="tier-container" aria-label="Workshop Packages">
+      <article class="tier">
+        <h3 class="tier-header">Standard Workshop</h3>
+        <h2 class="tier-price">$300</h2>
+        <ul class="features">
+          <li>1–2 Hours</li>
           <li>Virtual or In-Person</li>
           <li>Follow-Up Resource</li>
-          <li>Q&A</li>
+          <li>Q&A Session</li>
         </ul>
-      </div>
-  
-      <div class="training-tier">
-        <h2>Half-Day Training: <span class="price">$750</span></h2>
-        <ul>
-          <li>3-4 Hours</li>
-          <li>Virtual or In-Person</li>
+      </article>
+
+      <article class="tier">
+        <h3 class="tier-header">Half-Day Training</h3>
+        <h2 class="tier-price">$750</h2>
+        <ul class="features">
+          <li>3–4 Hours</li>
           <li>Interactive Exercises</li>
-          <li>Resource Pack</li>
-        </ul>
-      </div>
-  
-      <div class="training-tier">
-        <h2>Full-Day Training: <span class="price">$1500</span></h2>
-        <ul>
-          <li>6-7 Hours</li>
           <li>Virtual or In-Person</li>
-          <li>Interactive Workshops</li>
-          <li>Group Activities</li>
-          <li>Custom Training Materials</li>
           <li>Resource Pack</li>
-          <li>Follow-Up Meeting</li>
         </ul>
+      </article>
+
+      <article class="tier">
+        <h3 class="tier-header">Full-Day Training</h3>
+        <h2 class="tier-price">$1500</h2>
+        <ul class="features">
+          <li>6–7 Hours</li>
+          <li>Interactive Workshops</li>
+          <li>Custom Training Materials</li>
+          <li>Group Activities</li>
+          <li>Follow-Up Meeting</li>
+          <li>Resource Pack</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="addons" aria-label="Workshop Add-Ons">
+      <h3>Available Add-Ons</h3>
+      <div class="addons-grid">
+        <article class="addon-card"><strong>Custom Curriculum: </strong>$200</article>
+        <article class="addon-card"><strong>Recording & Editing: </strong>$150</article>
+        <article class="addon-card"><strong>Post-Workshop Consulting: </strong>$100</article>
       </div>
-    </div>
-  
-    <div class="training-addons">
-      <h2>Add-Ons</h2>
-      <ul>
-        <li>Custom Curriculum Development: $200</li>
-        <li>Recording & Editing of Session: $150</li>
-        <li>Post-Workshop Consulting: $100</li>
-      </ul>
-    </div>
-  
-    <!-- Carousel Section -->
-    <section class="carousel-section" aria-label="PowerPoint cover carousel">
-      <h2>Workshop Previews</h2>
+    </section>
+
+    <section class="carousel-section" aria-label="Workshop Previews">
+      <h3>Workshop Previews</h3>
       <div class="carousel-container">
         <button class="carousel-btn prev" aria-label="Previous">&#10094;</button>
         <div class="carousel-track-wrapper">
@@ -84,7 +93,11 @@
         <button class="carousel-btn next" aria-label="Next">&#10095;</button>
       </div>
     </section>
-  </section>
+
+    <section class="setup-cta">
+      <a href="contact.html" class="btn-link">Get in touch about a training or workshop! →</a>
+    </section>
+  </main>
   <script src="java/script.js"></script>
 </body>
-</html>  
+</html>
