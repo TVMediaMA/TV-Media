@@ -167,14 +167,12 @@
   font-size: 0.8rem;
 }
 
-.footer-links,
 .footer-contact {
   min-width: 90px;
 }
 
-.footer-links h4,
 .footer-contact h4 {
-  font-size: 0.55rem;
+  font-size: 1rem;
   margin-bottom: 0.4rem;
 }
 
@@ -187,26 +185,9 @@
   margin: 0.2rem 0;
 }
 
-.footer-links a,
-.footer-contact a {
-  text-decoration: none;
-  transition: color 0.3s;
-  font-size: 0.45rem;
-}
-
 .footer-links a:hover,
 .footer-contact a:hover {
   color: #FF6600;
-}
-
-/* Footer bottom copyright */
-.footer-bottom {
-  border-top: 1px solid #444444;
-  margin-top: 1rem;
-  padding-top: 0.5rem;
-  text-align: center;
-  color: #AAAAAA;
-  font-size: 0.425rem;
 }
 
 /* Social icon style */
@@ -220,4 +201,51 @@
 
 .footer-social-icon:hover {
   filter: brightness(0) invert(0.6);
+}
+/* === Footer Styles === */
+#site-footer {
+  background: #222222;
+  color: #FFFFFF; /* Ensures general text is white */
+  padding: 1.5rem 1rem 1rem;
+}
+
+/* Fixes text color for branding paragraph */
+.footer-branding p {
+  color: #FFFFFF;
+  line-height: 1.3;
+  font-size: 0.8rem;
+}
+
+/* Fixes horizontal nav and link colors */
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+  display: flex; /* Makes the list horizontal */
+  gap: 1rem;     /* Adds space between links */
+  font-size: 0.8rem; /* Increases font size for better visibility */
+}
+
+.footer-links a {
+  text-decoration: none;
+  color: #FFFFFF; /* Forces link text to white */
+  transition: color 0.3s;
+}
+
+.footer-links a:hover {
+  color: #FF6600;
+}
+
+.footer-links h4 {
+  font-size: 1rem;
+  margin-bottom: 0.4rem;
+}
+
+/* Fixes footer bottom copyright color */
+.footer-bottom {
+  border-top: 1px solid #444444;
+  margin-top: 1rem;
+  padding-top: 0.5rem;
+  text-align: center;
+  color: #ffffff; /* Set to white */
+  font-size: 0.8rem;
 }
