@@ -2,17 +2,42 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Digital marketing services for small businesses. Strategy-driven campaigns to grow your brand and audience." />
-  <link rel="stylesheet" href="css/marketing.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Digital marketing services in Boxborough, MA by TV Media—campaign strategy, email marketing, paid advertising, and comprehensive digital audits." />
+  <title>Digital Marketing Services | TV Media — Boxborough, MA</title>
   <link rel="stylesheet" href="css/fonts.css" />
-  <title>Digital Marketing | TV Media</title>
+  <link rel="stylesheet" href="css/header_nav.css" />
+  <link rel="stylesheet" href="css/marketing.css" />
 </head>
 <body>
+  <!-- Global Header -->
+  <header class="site-header">
+    <div class="logo">
+      <a href="index.html">
+        <img src="images/logo.png" alt="TV Media Logo" />
+        <div class="logo-text">
+          <span class="logo-brand">TV Media</span>
+          <span class="logo-location">Boxborough, MA</span>
+        </div>
+      </a>
+    </div>
+
+    <button type="button" class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+
+    <nav aria-label="Primary Navigation">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html" class="active">Services</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
   <header class="main-header">
-    <nav class="header-nav">
-      <a href="javascript:history.back()" class="back-arrow" aria-label="Go back"></a>
-      <a href="marketing_learn_more.html" class="btn-header-example">Learn More</a>
+    <nav class="header-nav" aria-label="Service Navigation">
+      <a href="services.html" class="back-arrow" aria-label="Back to all services">All Services</a>
+      <a href="contact.html" class="btn-header-example">Get a Quote</a>
     </nav>
     <div class="header-text">
       <h1>
@@ -26,16 +51,18 @@
   <main>
     <section id="packages" aria-label="Digital Marketing Packages">
       <div class="tier-container top-row">
-        <article class="tier">
-          <h3 class="tier-header">Campaign Strategy &amp; Launch Plan</h3>
-          <h2 class="tier-price">$500</h2>
-          <p class="one-time">Build a high-impact digital campaign with a full launch plan, audience insights, KPIs, and a tailored ad strategy.</p>
+        <article class="tier" tabindex="0">
+          <header>
+            <h2 class="tier-header">Campaign Strategy &amp; Launch Plan</h2>
+            <p class="tier-price">$500</p>
+            <p class="one-time">Build a high-impact digital campaign with a full launch plan, audience insights, KPIs, and a tailored ad strategy.</p>
+          </header>
           <ul class="features check-list">
             <li>Strategy Meeting</li>
             <li>Goal Setting</li>
             <li>KPI Definition</li>
             <li>Target Audience Persona</li>
-            <li>2 Week Campaign Plan</li>
+            <li>2-Week Campaign Plan</li>
             <li>Ad Strategy Overview</li>
             <li>Creative Brief</li>
             <li>PDF Strategy Deck</li>
@@ -44,10 +71,12 @@
           </ul>
         </article>
 
-        <article class="tier">
-          <h3 class="tier-header">Email Marketing Campaign</h3>
-          <h2 class="tier-price">$350</h2>
-          <p class="one-time">Engage your audience with targeted email campaigns, custom templates, and automation sequences that drive conversions.</p>
+        <article class="tier" tabindex="0">
+          <header>
+            <h2 class="tier-header">Email Marketing Campaign</h2>
+            <p class="tier-price">$350</p>
+            <p class="one-time">Engage your audience with targeted email campaigns, custom templates, and automation sequences that drive conversions.</p>
+          </header>
           <ul class="features check-list">
             <li>Email Platform Set Up</li>
             <li>1 Custom Template</li>
@@ -60,16 +89,18 @@
           </ul>
         </article>
 
-        <article class="tier">
-          <h3 class="tier-header">Ad Campaign</h3>
-          <h2 class="tier-price">$400</h2>
-          <p class="one-time">Set up and launch performance-driven ad campaigns with A/B testing, compelling copy, and precise audience targeting.</p>
+        <article class="tier" tabindex="0">
+          <header>
+            <h2 class="tier-header">Ad Campaign</h2>
+            <p class="tier-price">$400</p>
+            <p class="one-time">Set up and launch performance-driven ad campaigns with A/B testing, compelling copy, and precise audience targeting.</p>
+          </header>
           <ul class="features check-list">
             <li>Platform Set Up</li>
             <li>Tracking Set Up</li>
             <li>3 Ad Sets</li>
-            <li>Copywriting Headlines/Captions</li>
-            <li>Graphic or Video Assets (existing materials)</li>
+            <li>Copywriting Headlines &amp; Captions</li>
+            <li>Graphic or Video Assets (Existing Materials)</li>
             <li>A/B Testing Plan (2 Variants)</li>
             <li>Target Audience Buildout</li>
             <li>Launch Support</li>
@@ -79,10 +110,12 @@
       </div>
 
       <div class="tier-container bottom-row">
-        <article class="tier">
-          <h3 class="tier-header">Paid Advertising Management</h3>
-          <h2 class="tier-price">$500</h2>
-          <p class="one-time">Ongoing ad management with weekly optimization, budget strategy, A/B testing, and retargeting to maximize ROI across platforms.</p>
+        <article class="tier" tabindex="0">
+          <header>
+            <h2 class="tier-header">Paid Advertising Management</h2>
+            <p class="tier-price">$500/month</p>
+            <p class="one-time">Ongoing ad management with weekly optimization, budget strategy, A/B testing, and retargeting to maximize ROI across platforms.</p>
+          </header>
           <ul class="features check-list">
             <li>Weekly Performance Monitoring &amp; Adjustments</li>
             <li>Ad Spend Strategy &amp; Budget Scaling</li>
@@ -94,10 +127,12 @@
           </ul>
         </article>
 
-        <article class="tier">
-          <h3 class="tier-header">Digital Audit &amp; Consultation</h3>
-          <h2 class="tier-price">$200</h2>
-          <p class="one-time">Comprehensive digital presence audit covering your website, email list, and social media—with a strategy-packed report.</p>
+        <article class="tier" tabindex="0">
+          <header>
+            <h2 class="tier-header">Digital Audit &amp; Consultation</h2>
+            <p class="tier-price">$200</p>
+            <p class="one-time">Comprehensive digital presence audit covering your website, email list, and social media—with a strategy-packed report.</p>
+          </header>
           <ul class="features check-list">
             <li>Website Review</li>
             <li>Social Media Audit</li>
@@ -105,39 +140,101 @@
             <li>Email List Health Review</li>
             <li>SWOT Analysis</li>
             <li>Debrief Meeting</li>
-            <li>PDF Report with Actionable Insights and Recommendations</li>
+            <li>PDF Report with Actionable Insights &amp; Recommendations</li>
           </ul>
         </article>
       </div>
     </section>
 
-    <section class="addons" aria-label="SEO Add-Ons">
-      <h1>Available Add-Ons</h1>
+    <section class="addons" aria-label="Marketing Add-Ons">
+      <h2 class="section-title">Available Add-Ons</h2>
       <div class="addons-grid">
-        <article class="addon-card">Creative Refresh: $125</article>
-        <article class="addon-card">Additional Platform: $200</article>
-        <article class="addon-card">Mid-Month Strategy Check-In: $75</article>
-        <article class="addon-card">Additional Email: $75</article>
-        <article class="addon-card">Additional Ad Variant: $75</article>
-        <article class="addon-card">Landing Page Design: $350</article>
-        <article class="addon-card">Landing Page Design (Code): $600</article>
-        <article class="addon-card">Branded Short-Form Video: $150</article>
-        <article class="addon-card">Animated Graphic Ad: $125</article>
-        <article class="addon-card">Lead Magnet Design: $200</article>
-        <article class="addon-card">Copywriting: $150 per 750-850 words</article>
-        <article class="addon-card">Custom CTA Buttons/Icons: $75</article>
-        <article class="addon-card">Story/Carousel Templates: $100 (3 slides)</article>
-        <article class="addon-card">Funnel Mapping: $200</article>
-        <article class="addon-card">CRM Integrations: $100</article>
-        <article class="addon-card">Metrics Dashboard: $150</article>
-        <article class="addon-card">Ad Campaign Monitoring &amp; Optimization: $150/week</article>
-        <article class="addon-card">SEO Keyword Starter Pack: $150</article>
-        <article class="addon-card">Hashtag Strategy: $50</article>
-        <article class="addon-card">Audience Re-Targeting Plan: $100</article>
-        <article class="addon-card">Branding Guide: $2000</article>
-        <article class="addon-card">Target Audience Persona: $125</article>
+        <article class="addon-card">
+          <h3>Campaign &amp; Ad Extensions</h3>
+          <ul>
+            <li><strong>Additional Platform:</strong> $200</li>
+            <li><strong>Ad Campaign Monitoring &amp; Optimization:</strong> $150/week</li>
+            <li><strong>Audience Re-Targeting Plan:</strong> $100</li>
+            <li><strong>Additional Ad Variant:</strong> $75</li>
+            <li><strong>Additional Email:</strong> $75</li>
+            <li><strong>Mid-Month Strategy Check-In:</strong> $75</li>
+          </ul>
+        </article>
+
+        <article class="addon-card">
+          <h3>Creative &amp; Content Assets</h3>
+          <ul>
+            <li><strong>Branded Short-Form Video:</strong> $150</li>
+            <li><strong>Copywriting (750–850 Words):</strong> $150</li>
+            <li><strong>Creative Refresh:</strong> $125</li>
+            <li><strong>Animated Graphic Ad:</strong> $125</li>
+            <li><strong>Story/Carousel Templates (3 Slides):</strong> $100</li>
+            <li><strong>Custom CTA Buttons/Icons:</strong> $75</li>
+          </ul>
+        </article>
+
+        <article class="addon-card">
+          <h3>Landing Pages &amp; Funnels</h3>
+          <ul>
+            <li><strong>Landing Page Design + Code:</strong> $600</li>
+            <li><strong>Landing Page Design Only:</strong> $350</li>
+            <li><strong>Lead Magnet Design:</strong> $200</li>
+            <li><strong>Funnel Mapping:</strong> $200</li>
+            <li><strong>CRM Integrations:</strong> $100</li>
+          </ul>
+        </article>
+
+        <article class="addon-card">
+          <h3>Strategy, Analytics &amp; Brand</h3>
+          <ul>
+            <li><strong>Complete Branding Guide:</strong> $2,000</li>
+            <li><strong>Metrics Dashboard:</strong> $150</li>
+            <li><strong>SEO Keyword Starter Pack:</strong> $150</li>
+            <li><strong>Target Audience Persona:</strong> $125</li>
+            <li><strong>Hashtag Strategy:</strong> $50</li>
+          </ul>
+        </article>
       </div>
     </section>
+
+    <section class="setup-cta">
+      <a href="contact.html" class="btn-link">Ready to launch your next campaign? Request a custom quote →</a>
+    </section>
   </main>
+
+  <!-- Global Footer -->
+  <footer id="site-footer">
+    <div class="footer-container">
+      <div class="footer-branding">
+        <img src="images/logo.png" alt="TV Media Logo" />
+        <p>Creating purpose-driven digital media that connects local brands with their communities.</p>
+        <p class="footer-location">📍 Boxborough, MA · Serving MetroWest &amp; Central MA</p>
+      </div>
+      <div class="footer-links">
+        <h4>Explore</h4>
+        <ul class="footer-nav-horizontal">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h4>Connect</h4>
+        <p>📱 <a href="tel:+19785013526">978-501-3526</a></p>
+        <p>📧 <a href="mailto:tvmediama@gmail.com">tvmediama@gmail.com</a></p>
+        <div class="footer-social-links">
+          <a href="https://www.facebook.com/tvmediama" target="_blank" rel="noopener" aria-label="Follow TV Media on Facebook">
+            <img src="images/icons/social_icons/facebook.svg" alt="Facebook" class="footer-social-icon" />
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 TV Media · Boxborough, Massachusetts. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="java/script.js"></script>
 </body>
 </html>

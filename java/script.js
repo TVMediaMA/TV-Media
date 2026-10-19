@@ -1,75 +1,222 @@
-// Mobile menu toggle
-const menuToggle = document.getElementById('mobile-menu');
-const nav = document.querySelector('nav');
+// 1. Mobile Navigation Menu Toggle (Null-safe & Accessible)
+(() => {
+  const menuToggle = document.getElementById('mobile-menu');
+  const nav = document.querySelector('header.site-header nav, header nav');
 
-menuToggle.addEventListener('click', () => {
-  nav.classList.toggle('active');
-});
+  if (!menuToggle || !nav) return;
 
-// Intersection Observer for timeline items
-const items = document.querySelectorAll('.timeline-item');
+  function setMenuState(isOpen) {
+    nav.classList.toggle('active', isOpen);
+    menuToggle.classList.toggle('open', isOpen);
+    menuToggle.setAttribute('aria-expanded', String(isOpen));
+    menuToggle.innerHTML = isOpen ? '&#10005;' : '&#9776;';
+  }
 
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('animate');
-    } else {
-      entry.target.classList.remove('animate'); // repeat on scroll back
+  menuToggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = !nav.classList.contains('active');
+    setMenuState(isOpen);
+  });
+
+  document.addEventListener('click', (e) => {
+    if (nav.classList.contains('active') && !nav.contains(e.target) && !menuToggle.contains(e.target)) {
+      setMenuState(false);
     }
   });
-}, {
-  threshold: 0.2
-});
 
-items.forEach(item => observer.observe(item));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && nav.classList.contains('active')) {
+      setMenuState(false);
+      menuToggle.focus();
+    }
+  });
+})();
 
+// 2. Intersection Observer for Timeline / Reveal Items (Null-safe)
+(() => {
+  const items = document.querySelectorAll('.timeline-item');
+  if (items.length === 0 || !('IntersectionObserver' in window)) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      entry.target.classList.toggle('animate', entry.isIntersecting);
+    });
+  }, {
+    threshold: 0.2
+  });
+
+  items.forEach((item) => observer.observe(item));
+})();
+
+// 3. Workshop Previews Carousel & Lightbox Modal (Null-safe)
 (() => {
   const track = document.querySelector('.carousel-track');
-  const slides = Array.from(track.children);
+  const wrapper = document.querySelector('.carousel-track-wrapper');
   const prevBtn = document.querySelector('.carousel-btn.prev');
   const nextBtn = document.querySelector('.carousel-btn.next');
 
-  let currentIndex = 1; // Start with second slide centered
+  if (!track || !wrapper || !prevBtn || !nextBtn) return;
 
-  function updateCarousel() {
-    const slideWidth = slides[0].getBoundingClientRect().width;
-    const offset = -((currentIndex - 1) * (slideWidth * 0.8));
+  const slides = Array.from(track.children);
+  if (slides.length === 0) return;
+
+  let currentIndex = 0;
+
+  function updateCarousel(shouldFocus = false) {
+    const slideRect = slides[0].getBoundingClientRect();
+    const slideWidth = slideRect.width;
+    const trackStyle = window.getComputedStyle(track);
+    const gap = parseFloat(trackStyle.gap || trackStyle.columnGap) || 16;
+    const wrapperWidth = wrapper.getBoundingClientRect().width;
+
+    const centerOffset = Math.max(0, (wrapperWidth - slideWidth) / 2);
+    const offset = centerOffset - (currentIndex * (slideWidth + gap));
     track.style.transform = `translateX(${offset}px)`;
 
     slides.forEach((slide, i) => {
-      slide.style.opacity = '0.4';
-      slide.style.transform = 'scale(0.85)';
+      const isActive = i === currentIndex;
+      slide.classList.toggle('is-active', isActive);
+      slide.style.opacity = isActive ? '1' : '0.45';
+      slide.style.transform = isActive ? 'scale(1)' : 'scale(0.88)';
+      slide.setAttribute('aria-current', isActive ? 'true' : 'false');
+      if (isActive && shouldFocus) {
+        slide.focus({ preventScroll: true });
+      }
     });
-
-    if (slides[currentIndex]) {
-      slides[currentIndex].style.opacity = '1';
-      slides[currentIndex].style.transform = 'scale(1)';
-      slides[currentIndex].focus();
-    }
   }
 
-  prevBtn.addEventListener('click', () => {
-    if (currentIndex === 0) currentIndex = slides.length - 1;
-    else currentIndex--;
-    updateCarousel();
-  });
+  function goPrev(shouldFocus = true) {
+    currentIndex = currentIndex === 0 ? slides.length - 1 : currentIndex - 1;
+    updateCarousel(shouldFocus);
+  }
 
-  nextBtn.addEventListener('click', () => {
-    if (currentIndex === slides.length - 1) currentIndex = 0;
-    else currentIndex++;
-    updateCarousel();
-  });
+  function goNext(shouldFocus = true) {
+    currentIndex = currentIndex === slides.length - 1 ? 0 : currentIndex + 1;
+    updateCarousel(shouldFocus);
+  }
 
-  // Click center slide to open preview
+  prevBtn.addEventListener('click', () => goPrev(true));
+  nextBtn.addEventListener('click', () => goNext(true));
+
+  // Click a non-active slide to center it; click the active slide to enlarge in a lightbox
   slides.forEach((slide, i) => {
     slide.addEventListener('click', () => {
-      if (i === currentIndex) {
-        const link = slide.dataset.link;
-        if (link) window.open(link, '_blank');
+      if (i !== currentIndex) {
+        currentIndex = i;
+        updateCarousel(true);
+      } else {
+        const img = slide.querySelector('img');
+        if (img) openLightbox(img.src, img.alt);
+      }
+    });
+
+    slide.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        goPrev(true);
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        goNext(true);
+      } else if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        if (i !== currentIndex) {
+          currentIndex = i;
+          updateCarousel(true);
+        } else {
+          const img = slide.querySelector('img');
+          if (img) openLightbox(img.src, img.alt);
+        }
       }
     });
   });
 
-  // Initialize carousel on page load
-  window.addEventListener('load', updateCarousel);
+  function openLightbox(src, alt) {
+    let modal = document.getElementById('tvmedia-lightbox');
+    if (!modal) {
+      modal = document.createElement('div');
+      modal.id = 'tvmedia-lightbox';
+      modal.setAttribute('role', 'dialog');
+      modal.setAttribute('aria-modal', 'true');
+      modal.setAttribute('aria-label', 'Slide Preview');
+      Object.assign(modal.style, {
+        position: 'fixed',
+        inset: '0',
+        background: 'rgba(15, 22, 46, 0.88)',
+        backdropFilter: 'blur(6px)',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '1.5rem',
+        zIndex: '2000',
+        cursor: 'zoom-out'
+      });
+
+      const closeBtn = document.createElement('button');
+      closeBtn.type = 'button';
+      closeBtn.innerHTML = '&#10005; Close Preview';
+      Object.assign(closeBtn.style, {
+        background: '#ff6600',
+        color: '#000000',
+        border: '2px solid #000000',
+        borderRadius: '999px',
+        padding: '0.55rem 1.35rem',
+        fontWeight: '800',
+        fontSize: '0.95rem',
+        cursor: 'pointer',
+        marginBottom: '1.15rem',
+        boxShadow: '4px 4px 0 #d6d4a0'
+      });
+
+      const previewImg = document.createElement('img');
+      previewImg.id = 'tvmedia-lightbox-img';
+      Object.assign(previewImg.style, {
+        maxWidth: 'min(960px, 92vw)',
+        maxHeight: '78vh',
+        borderRadius: '12px',
+        border: '3px solid #000000',
+        boxShadow: '8px 8px 0 #ff6600',
+        objectFit: 'contain',
+        background: '#ffffff'
+      });
+
+      const caption = document.createElement('p');
+      caption.id = 'tvmedia-lightbox-caption';
+      Object.assign(caption.style, {
+        color: '#d6d4a0',
+        marginTop: '1rem',
+        fontWeight: '700',
+        fontSize: '1rem',
+        textAlign: 'center'
+      });
+
+      closeBtn.addEventListener('click', () => modal.remove());
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) modal.remove();
+      });
+
+      modal.append(closeBtn, previewImg, caption);
+      document.body.appendChild(modal);
+    }
+
+    const imgEl = modal.querySelector('#tvmedia-lightbox-img');
+    const capEl = modal.querySelector('#tvmedia-lightbox-caption');
+    imgEl.src = src;
+    imgEl.alt = alt || 'Workshop Slide Preview';
+    capEl.textContent = alt || '';
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      const modal = document.getElementById('tvmedia-lightbox');
+      if (modal) modal.remove();
+    }
+  });
+
+  window.addEventListener('load', () => updateCarousel(false));
+  window.addEventListener('resize', () => updateCarousel(false));
+  // Run immediately if DOM is already ready
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    requestAnimationFrame(() => updateCarousel(false));
+  }
 })();

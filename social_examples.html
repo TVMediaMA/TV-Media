@@ -3,73 +3,137 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Social Media Examples | TV Media</title>
-  <link rel="stylesheet" href="css/social_examples.css" />
+  <meta name="description" content="Explore TV Media's social media management examples, local event graphics, short-form video reels, and brand photography for Massachusetts small businesses." />
+  <title>Social Media Examples | TV Media — Boxborough, MA</title>
   <link rel="stylesheet" href="css/fonts.css" />
+  <link rel="stylesheet" href="css/header_nav.css" />
+  <link rel="stylesheet" href="css/social_examples.css" />
 </head>
 <body>
-  <header class="examples-header">
-    <div class="header-nav">
-      <a href="social_media.html" class="back-arrow" aria-label="Back to packages"></a>
+  <!-- Global Header -->
+  <header class="site-header">
+    <div class="logo">
+      <a href="index.html">
+        <img src="images/logo.png" alt="TV Media Logo" />
+        <div class="logo-text">
+          <span class="logo-brand">TV Media</span>
+          <span class="logo-location">Boxborough, MA</span>
+        </div>
+      </a>
     </div>
+
+    <button type="button" class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+
+    <nav aria-label="Primary Navigation">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html" class="active">Services</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <header class="examples-header">
+    <nav class="header-nav" aria-label="Breadcrumb Navigation">
+      <a href="social_media.html" class="back-arrow" aria-label="Back to Social Media packages">Back to Packages</a>
+      <a href="contact.html" class="btn-header-example">Get a Quote</a>
+    </nav>
     <h1>
-      <img class="header-icon" src="images/icons/service_icons/message-circle-heart.svg" alt="icon" />
+      <img class="header-icon" src="images/icons/service_icons/message-circle-heart.svg" alt="" />
       Social Media Examples
     </h1>
     <p>Preview what your brand could look like with our packages</p>
   </header>
 
-  <section class="overview-section">
-    <h3>Why Social Media Management Matters</h3>
-    <p>
-      Social media management is more than just posting content—it's about building a loyal audience, increasing brand visibility, and staying top-of-mind. TV Media delivers consistent, professional, and engaging content that’s tailored to your business goals and designed to perform across platforms.
-    </p>
-    <h3>Our Setup Process</h3>
-    <p>
-      Every package starts with a custom setup process that includes platform optimization, brand asset collection, hashtag research, and competitor analysis. 
-      <a href="setup.html">Learn more about what's included →</a>
-    </p>
-  </section>
+  <main>
+    <section class="overview-section">
+      <h3>Why Social Media Management Matters</h3>
+      <p>
+        Social media management is more than just posting content—it's about building a loyal local audience, increasing brand visibility, and staying top-of-mind. TV Media delivers consistent, professional, and engaging content tailored to your business goals and designed to perform across platforms.
+      </p>
+      <h3>Our Setup Process</h3>
+      <p>
+        Every package starts with a custom onboarding process that includes platform optimization, brand asset collection, hashtag research, and competitor analysis.
+        <a href="set_up.html">Learn more about what's included →</a>
+      </p>
+    </section>
 
-  <section class="examples-grid">
-    <div class="example-card">
-      <img class="example-image" src="images/graphic_examples/graphic_example1.png" alt="Social Media Graphic" />
-      <div class="example-title">Sample Weekly Post</div>
-      <div class="example-desc">High-engagement Instagram post using seasonal content and branded graphics.</div>
-    </div>
-    <div class="example-card">
-      <img class="example-image" src="images/graphic_examples/group_flyer.png" alt="Social Media Graphic" />
-      <div class="example-title">Event Promotion Post</div>
-      <div class="example-desc">Custom-designed promotional post for local event engagement and reach.</div>
-    </div>
-    <div class="example-card">
-      <video controls autoplay muted class="example-image" src="images/social_examples/Team_Template/team_template.mp4" alt="Social Media Graphic"></video>
-      <div class="example-title">Brand Awareness Post</div>
-      <div class="example-desc">Static brand graphic optimized for Facebook and LinkedIn audiences.</div>
-    </div>
-  </section>
+    <section class="examples-grid" aria-label="Social Media Post Examples">
+      <article class="example-card">
+        <img class="example-image" src="images/graphic_examples/graphic_example1.png" alt="Citizen Crust DJ Bingo Night Social Media Graphic" />
+        <h3 class="example-title">Local Event Promotion</h3>
+        <p class="example-desc">High-engagement Instagram post combining custom hospitality photography with bold event details.</p>
+      </article>
+      <article class="example-card">
+        <img class="example-image" src="images/graphic_examples/group_flyer.png" alt="Pathways for Change Community Group Promotional Graphic" />
+        <h3 class="example-title">Community Organization Outreach</h3>
+        <p class="example-desc">Custom-designed informational graphic built for local community reach, accessibility, and shareability.</p>
+      </article>
+      <article class="example-card">
+        <video controls muted loop playsinline preload="metadata" class="example-image" src="images/social_examples/Team_Template/team_template.mp4" aria-label="Short-Form Brand Spotlight Video Reel"></video>
+        <h3 class="example-title">Short-Form Video Reel</h3>
+        <p class="example-desc">Animated multi-slide reel optimized for Instagram, Facebook, and LinkedIn audience engagement.</p>
+      </article>
+    </section>
 
-  <section class="strategy-section">
-    <h2>How Strategy Powers Results</h2>
-    <p>
-      We use a data-backed content strategy that combines audience insights, trend tracking, and creative scheduling to ensure every post hits its mark. Our team adjusts tactics monthly to keep your content fresh and effective.
-    </p>
-  </section>
+    <section class="strategy-section">
+      <h2>How Strategy Powers Results</h2>
+      <p>
+        We use a data-backed content strategy that combines audience insights, local trend tracking, and creative scheduling to ensure every post hits its mark. We review analytics monthly to keep your content fresh and effective.
+      </p>
+    </section>
 
-  <section class="photo-grid">
-    <div class="photo-card">
-      <img src="images/photo_examples/photo_example1.png" alt="Client Photography 1" />
-    </div>
-    <div class="photo-card">
-      <img src="images/photo_examples/photo_example2.png" alt="Client Photography 2" />
-    </div>
-    <div class="photo-card">
-      <img src="images/photo_examples/photo_example3.png" alt="Client Photography 3" />
-    </div>
-  </section>
+    <section class="photo-grid" aria-label="Client Brand Photography">
+      <div class="photo-card">
+        <img src="images/photo_examples/photo_example1.png" alt="Local craft beverage product photography" loading="lazy" />
+      </div>
+      <div class="photo-card">
+        <img src="images/photo_examples/photo_example2.png" alt="Citizen Crust team member preparing fresh food" loading="lazy" />
+      </div>
+      <div class="photo-card">
+        <img src="images/photo_examples/photo_example3.png" alt="Artistic restaurant glassware photography" loading="lazy" />
+      </div>
+    </section>
 
-  <section class="examples-cta">
-    <a href="/analytics-sample.html">View a sample analytics report →</a>
-  </section>
+    <section class="examples-cta">
+      <a href="contact.html">Request a custom social media audit &amp; sample report →</a>
+    </section>
+  </main>
+
+  <!-- Global Footer -->
+  <footer id="site-footer">
+    <div class="footer-container">
+      <div class="footer-branding">
+        <img src="images/logo.png" alt="TV Media Logo" />
+        <p>Creating purpose-driven digital media that connects local brands with their communities.</p>
+        <p class="footer-location">📍 Boxborough, MA · Serving MetroWest &amp; Central MA</p>
+      </div>
+      <div class="footer-links">
+        <h4>Explore</h4>
+        <ul class="footer-nav-horizontal">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h4>Connect</h4>
+        <p>📱 <a href="tel:+19785013526">978-501-3526</a></p>
+        <p>📧 <a href="mailto:tvmediama@gmail.com">tvmediama@gmail.com</a></p>
+        <div class="footer-social-links">
+          <a href="https://www.facebook.com/tvmediama" target="_blank" rel="noopener" aria-label="Follow TV Media on Facebook">
+            <img src="images/icons/social_icons/facebook.svg" alt="Facebook" class="footer-social-icon" />
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 TV Media · Boxborough, Massachusetts. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="java/script.js"></script>
 </body>
 </html>

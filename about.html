@@ -1,64 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/header_nav.css"/>
-    <link rel="stylesheet" href="css/about.css"/>
-    <link rel="stylesheet" href="css/fonts.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About TV Media | Local Digital Communications &amp; Event Studio in Boxborough, MA</title>
+  <meta name="description" content="Meet Tyler Valois, founder of TV Media in Boxborough, MA. Learn how our local digital communications and event coordination studio helps Massachusetts small businesses grow." />
+  <link rel="stylesheet" href="css/fonts.css" />
+  <link rel="stylesheet" href="css/header_nav.css" />
+  <link rel="stylesheet" href="css/about.css" />
 </head>
 <body>
-    <!-- Header Section -->
-    <header>
-        <div class="logo">
-          <a href="index.html">
-            <img src="images/logo.png" alt="TV Media Logo" />
-          </a>
+  <!-- Global Header -->
+  <header class="site-header">
+    <div class="logo">
+      <a href="index.html">
+        <img src="images/logo.png" alt="TV Media Logo" />
+        <div class="logo-text">
+          <span class="logo-brand">TV Media</span>
+          <span class="logo-location">Boxborough, MA</span>
         </div>
-        
-        <div class="menu-toggle" id="mobile-menu">&#9776;</div>
-      
-        <nav>
-          <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="contact.html">Contact</a></li>
-          </ul>
-        </nav>
-      </header>
+      </a>
+    </div>
 
+    <button type="button" class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+
+    <nav aria-label="Primary Navigation">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html" class="active">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
     <!-- About Section -->
     <section id="about">
-        <div class="about-content">
-            <div class="about-overlay"></div>
-            <h1>About TV Media</h1>
-            <p>TV Media is a local marketing and events agency focused on helping small businesses grow and support 
-                the communities they serve. We specialize in social media management, digital & traditional marketing strategy, and event coordination.</p>
-
-            <p>We started this company to support local voices and build something lasting right here in Massachusetts.
-                We know that showing up online can feel frustrating or uncertain. Our job is to help cut through the noise and ensure that
-                your voice is heard, your business is seen, and your story is shared. 
-            </p>
-
-            <p>For us, it's not just about content. It's about making media matter.</p>
-            <a href="contact.html" class="btn">Contact Us</a>
-        </div>
+      <div class="about-content">
+        <span class="about-eyebrow">Rooted in Boxborough, Massachusetts</span>
+        <h1>About TV Media</h1>
+        <p>
+          TV Media is an independent digital communications, marketing, and events studio based in Boxborough, MA, focused on helping small businesses grow and support the local communities they serve. We specialize in hands-on social media management, digital &amp; traditional marketing strategy, custom content creation, and event coordination.
+        </p>
+        <p>
+          We started this company to support local voices across Boxborough, Acton, Littleton, MetroWest, and Central Massachusetts. We know that showing up consistently online while running a small business can feel overwhelming. Our job is to cut through the noise and ensure that your voice is heard, your business is seen, and your story is shared with clarity.
+        </p>
+        <p class="about-highlight">For us, it's not just about posting content. It's about making media matter.</p>
+        <a href="contact.html" class="btn">Work With Us</a>
+      </div>
     </section>
 
     <!-- Team Section -->
     <section id="team">
-        <h3>Meet Our Founder</h3>
-        <div class="team-members">
-            <div class="team-member">
-                <img src="images/about/valois-photo.jpeg" alt="Tyler Valois" />
-                <h4>Tyler Valois</h4>
-                <h5>Founder & Social Media Expert</h5>
-                <p>With 10 years of experience in social media and content strategy, I've seen how powerful good storytelling can be. I'm here to help small businesses and local organizations connect with their communities in meaningful ways.</p>
-            </div>
+      <h2>Meet Our Founder</h2>
+      <div class="team-members">
+        <div class="team-member">
+          <img src="images/about/valois-photo.jpeg" alt="Tyler Valois, Founder of TV Media" width="156" height="156" />
+          <h4>Tyler Valois</h4>
+          <h5>Founder &amp; Digital Communications Strategist</h5>
+          <p>
+            With 10 years of experience in social media management, digital communications, and content strategy, I've seen firsthand how powerful authentic storytelling can be. Based right here in Boxborough, MA, I partner directly with small business owners and community organizations to build lasting local connections.
+          </p>
         </div>
+      </div>
     </section>
+  </main>
 
-    <script src="java/script.js"></script>
+  <!-- Global Footer -->
+  <footer id="site-footer">
+    <div class="footer-container">
+      <div class="footer-branding">
+        <img src="images/logo.png" alt="TV Media Logo" />
+        <p>Creating purpose-driven digital media that connects local brands with their communities.</p>
+        <p class="footer-location">📍 Boxborough, MA · Serving MetroWest &amp; Central MA</p>
+      </div>
+      <div class="footer-links">
+        <h4>Explore</h4>
+        <ul class="footer-nav-horizontal">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h4>Connect</h4>
+        <p>📱 <a href="tel:+19785013526">978-501-3526</a></p>
+        <p>📧 <a href="mailto:tvmediama@gmail.com">tvmediama@gmail.com</a></p>
+        <div class="footer-social-links">
+          <a href="https://www.facebook.com/tvmediama" target="_blank" rel="noopener" aria-label="Follow TV Media on Facebook">
+            <img src="images/icons/social_icons/facebook.svg" alt="Facebook" class="footer-social-icon" />
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 TV Media · Boxborough, Massachusetts. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="java/script.js"></script>
 </body>
 </html>

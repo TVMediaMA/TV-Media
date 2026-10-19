@@ -1,13 +1,7 @@
-/* ===== Base Reset & Defaults ===== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+/* ===== About Page Styles — Retro-Digital Studio Design (css/about.css) ===== */
 
 body {
-  line-height: 1.6;
-  background: linear-gradient(to right, #1B264D, #CA054D); /* TV Media gradient */
+  background-color: #1b264d;
 }
 
 img {
@@ -15,79 +9,126 @@ img {
   display: block;
 }
 
-/* ===== About Section ===== */
+/* ===== About Hero Section (#1b264d Broadcast Navy) ===== */
 #about {
   position: relative;
-  background: linear-gradient(to bottom right, #1B264D, #FF6600);
-  color: #FFFFFF;
-  padding: 4rem 2rem;
+  background-color: #1b264d;
+  background-image: radial-gradient(rgba(214, 212, 160, 0.14) 1.5px, transparent 1.5px);
+  background-size: 24px 24px;
+  color: #ffffff;
+  padding: 4rem 1.5rem 4.5rem;
   text-align: center;
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); /* Fixed background peeking */
-  overflow: hidden;
+  border-bottom: 4px solid #000000;
 }
 
 .about-content {
-  max-width: 800px;
+  max-width: 860px;
   margin: 0 auto;
+  background-color: #1b264d;
+  border: 3px solid #000000;
+  border-radius: 16px;
+  box-shadow: 10px 10px 0 #148888;
+  padding: 3rem 2.5rem;
   z-index: 2;
   position: relative;
-}
-
-.about-content h2 {
-  margin-bottom: 1rem;
-  font-weight: bold;
-}
-
-.about-content p {
-  color: #FFFFFF;
-  margin-bottom: 2rem;
-  line-height: 1.8;
-}
-
-.about-content .btn {
-  display: inline-block;
-  padding: 0.75rem 1.75rem;
-  background: #FFFFFF;
-  color: #FF6600;
-  font-weight: bold;
-  border: none;
-  border-radius: 5px;
-  transition: all 0.3s ease;
-  cursor: pointer;
-  text-transform: uppercase;
-  letter-spacing: 0.05rem;
-}
-
-.about-content .btn:hover {
-  background: #E0E0E0;
-  color: #FF6600;
-}
-
-/* ===== Team Section ===== */
-#team {
-  position: relative;
-  padding: 4rem 2rem;
-  text-align: center;
-  background: #FFFFFF;
   overflow: hidden;
-  z-index: 0;
 }
 
-#team::before {
+.about-content::before {
   content: "";
   position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: url('../images/about/about-background.jpg') center/cover no-repeat;
-  opacity: 0.4;
-  z-index: 1;
-  pointer-events: none;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background: linear-gradient(
+    90deg,
+    #ff6600 0% 25%,
+    #ca054d 25% 50%,
+    #148888 50% 75%,
+    #d6d4a0 75% 100%
+  );
+  border-bottom: 2px solid #000000;
 }
 
-#team h3 {
+/* Eyebrow (#000000 on #d6d4a0 = 13.78:1 AAA) */
+.about-eyebrow {
+  display: inline-block;
+  background-color: #d6d4a0;
+  color: #000000;
+  border: 2px solid #000000;
+  box-shadow: 3px 3px 0 #ff6600;
+  padding: 0.35rem 1rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 1.15rem;
+}
+
+/* Heading (#d6d4a0 on #1b264d = 9.63:1 AAA) */
+.about-content h1 {
+  color: #d6d4a0;
+  margin-bottom: 1.25rem;
+}
+
+/* Body Paragraphs (#ffffff on #1b264d = 14.67:1 AAA) */
+.about-content p {
+  color: #ffffff;
+  font-size: 1.1rem;
+  margin-bottom: 1.35rem;
+  line-height: 1.75;
+}
+
+/* Highlight Quote (#d6d4a0 on #1b264d = 9.63:1 AAA) */
+.about-content .about-highlight {
+  font-family: var(--font-display, 'Gambarino', Georgia, serif);
+  font-size: 1.45rem;
+  color: #d6d4a0;
+  margin-top: 1.5rem;
   margin-bottom: 2rem;
-  font-weight: bold;
+}
+
+/* CTA Button (#000000 on #ff6600 = 7.15:1 AAA) */
+.about-content .btn {
+  display: inline-block;
+  padding: 0.85rem 2.1rem;
+  background-color: #ff6600;
+  color: #000000;
+  font-weight: 800;
+  border: 2px solid #000000;
+  border-radius: 999px;
+  box-shadow: 5px 5px 0 #d6d4a0;
+  transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.15s ease;
+  cursor: pointer;
+}
+
+.about-content .btn:hover,
+.about-content .btn:focus {
+  background-color: #d6d4a0;
+  color: #000000;
+  transform: translate(-2px, -2px);
+  box-shadow: 7px 7px 0 #ca054d;
+}
+
+/* ===== Team & Local Roots Section (#d6d4a0 Warm Vintage Cream) ===== */
+#team {
   position: relative;
-  z-index: 2;
+  padding: 4.5rem 2rem 5rem;
+  text-align: center;
+  background-color: #d6d4a0;
+  border-bottom: 4px solid #000000;
+}
+
+/* Heading (#1b264d on #d6d4a0 = 9.63:1 AAA) */
+#team h2,
+#team h3 {
+  font-family: var(--font-display, 'Gambarino', Georgia, serif);
+  font-weight: 400;
+  font-size: clamp(1.95rem, 2.8vw + 0.8rem, 2.6rem);
+  color: #1b264d;
+  margin-bottom: 2.25rem;
 }
 
 .team-members {
@@ -95,62 +136,95 @@ img {
   justify-content: center;
   flex-wrap: wrap;
   gap: 2rem;
-  position: relative;
-  z-index: 2;
 }
 
 .team-member {
-  background: #FFFFFF;
-  padding: 2rem;
-  border-radius: 10px;
-  max-width: 350px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
+  background-color: #ffffff;
+  padding: 2.5rem 2.25rem;
+  border-radius: 14px;
+  max-width: 500px;
+  border: 3px solid #000000;
+  box-shadow: 8px 8px 0 #1b264d;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.team-member::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background: #ca054d;
+  border-bottom: 2px solid #000000;
 }
 
 .team-member:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
-  border-color: #CA054D;
+  transform: translate(-3px, -3px);
+  box-shadow: 11px 11px 0 #ff6600;
 }
 
 .team-member img {
-  border-radius: 50%;
-  margin-bottom: 1rem;
-  width: 150px;
-  height: 150px;
+  border-radius: 14px;
+  margin-bottom: 1.25rem;
+  width: 164px;
+  height: 164px;
   object-fit: cover;
-  border: 4px solid #148888;
-  transition: border-color 0.3s ease;
+  border: 3px solid #000000;
+  box-shadow: 5px 5px 0 #148888;
 }
 
-.team-member:hover img {
-  border-color: #CA054D;
-}
-
+/* Founder Name (#1b264d on #ffffff = 14.67:1 AAA) */
 .team-member h4 {
-  margin-bottom: 0.5rem;
-
-  font-weight: bold;
+  font-family: var(--font-display, 'Gambarino', Georgia, serif);
+  font-weight: 400;
+  font-size: 1.75rem;
+  color: #1b264d;
+  margin-bottom: 0.45rem;
 }
 
+/* Role Badge (#ffffff on #ca054d = 5.77:1 AA) */
+.team-member h5 {
+  font-family: var(--font-sans, 'Work Sans', sans-serif);
+  font-size: 0.85rem;
+  font-weight: 800;
+  background-color: #ca054d;
+  color: #ffffff;
+  border: 2px solid #000000;
+  border-radius: 999px;
+  padding: 0.3rem 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 1.25rem;
+}
+
+/* Founder Bio (#000000 on #ffffff = 21.00:1 AAA) */
 .team-member p {
-  margin-bottom: 0.75rem;
+  color: #000000;
+  font-size: 1rem;
+  line-height: 1.65;
+  margin-bottom: 0;
 }
 
 /* ===== Responsive Design ===== */
 @media (max-width: 768px) {
-  #about, #team {
-    padding: 3rem 1.5rem;
+  #about,
+  #team {
+    padding: 2.75rem 1rem 3.25rem;
   }
 
-  .team-members {
-    flex-direction: column;
-    align-items: center;
+  .about-content {
+    padding: 2.25rem 1.35rem;
+    box-shadow: 6px 6px 0 #148888;
+  }
+
+  .team-member {
+    padding: 2rem 1.4rem;
   }
 }

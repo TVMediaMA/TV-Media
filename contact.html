@@ -3,23 +3,28 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact | TV Media</title>
+  <title>Contact TV Media | Boxborough, MA Digital Communications &amp; Event Studio</title>
+  <meta name="description" content="Contact TV Media in Boxborough, MA for social media management, content creation, event coordination, or a custom digital strategy quote." />
+  <link rel="stylesheet" href="css/fonts.css" />
   <link rel="stylesheet" href="css/header_nav.css" />
   <link rel="stylesheet" href="css/contact.css" />
-  <link rel="stylesheet" href="css/fonts.css" />
 </head>
 <body>
-  <!-- Header -->
-  <header>
+  <!-- Global Header -->
+  <header class="site-header">
     <div class="logo">
       <a href="index.html">
         <img src="images/logo.png" alt="TV Media Logo" />
+        <div class="logo-text">
+          <span class="logo-brand">TV Media</span>
+          <span class="logo-location">Boxborough, MA</span>
+        </div>
       </a>
     </div>
 
-    <div class="menu-toggle" id="mobile-menu">&#9776;</div>
+    <button type="button" class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
 
-    <nav>
+    <nav aria-label="Primary Navigation">
       <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About</a></li>
@@ -29,22 +34,66 @@
     </nav>
   </header>
 
-  <!-- Contact Section -->
-  <section id="contact">
-    <h1>Contact Us</h1>
-    <p>If you have any questions, inquiries, or want to get started with our services, feel free to reach out to us!</p>
+  <main>
+    <!-- Contact Section -->
+    <section id="contact">
+      <h1>Let’s Make Your Media Matter</h1>
+      <p>
+        Based in Boxborough, MA and serving independent businesses across Massachusetts. Have a question about our packages, an upcoming event, or a custom project? Reach out directly or complete the inquiry form below.
+      </p>
 
-    <div class="google-form-container">
-      <iframe src="https://forms.gle/ybyg7N4rs8axQnT19" 
-              width="640" height="720" 
-              frameborder="0" marginheight="0" marginwidth="0" 
-              title="TV Media Contact Form">Loading…</iframe>
+      <div class="contact-direct-bar">
+        <a href="tel:+19785013526" class="contact-pill">📱 978-501-3526</a>
+        <a href="mailto:tvmediama@gmail.com" class="contact-pill">📧 tvmediama@gmail.com</a>
+        <span class="contact-pill">📍 Boxborough, MA</span>
+      </div>
+
+      <div class="google-form-container">
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSc-ybyg7N4rs8axQnT19/viewform?embedded=true"
+                width="640" height="720"
+                loading="lazy"
+                title="TV Media Project Inquiry Form">Loading…</iframe>
+      </div>
+
+      <p>
+        Prefer email? Message Tyler directly at
+        <a href="mailto:tvmediama@gmail.com">tvmediama@gmail.com</a> or call <a href="tel:+19785013526">978-501-3526</a>.
+      </p>
+    </section>
+  </main>
+
+  <!-- Global Footer -->
+  <footer id="site-footer">
+    <div class="footer-container">
+      <div class="footer-branding">
+        <img src="images/logo.png" alt="TV Media Logo" />
+        <p>Creating purpose-driven digital media that connects local brands with their communities.</p>
+        <p class="footer-location">📍 Boxborough, MA · Serving MetroWest &amp; Central MA</p>
+      </div>
+      <div class="footer-links">
+        <h4>Explore</h4>
+        <ul class="footer-nav-horizontal">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h4>Connect</h4>
+        <p>📱 <a href="tel:+19785013526">978-501-3526</a></p>
+        <p>📧 <a href="mailto:tvmediama@gmail.com">tvmediama@gmail.com</a></p>
+        <div class="footer-social-links">
+          <a href="https://www.facebook.com/tvmediama" target="_blank" rel="noopener" aria-label="Follow TV Media on Facebook">
+            <img src="images/icons/social_icons/facebook.svg" alt="Facebook" class="footer-social-icon" />
+          </a>
+        </div>
+      </div>
     </div>
-
-    <p>Alternatively, you can email us directly at 
-      <a href="mailto:tvmediama@gmail.com">tvmediama@gmail.com</a>.
-    </p>
-  </section>
+    <div class="footer-bottom">
+      <p>&copy; 2026 TV Media · Boxborough, Massachusetts. All rights reserved.</p>
+    </div>
+  </footer>
 
   <script src="java/script.js"></script>
 </body>

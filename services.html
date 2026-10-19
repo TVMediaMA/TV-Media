@@ -1,158 +1,199 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/services.css"/>
-    <link rel="stylesheet" href="css/header_nav.css" />
-    <link rel="stylesheet" href="css/fonts.css" />
-    <title>TV Media Services</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Services | TV Media — Boxborough, MA Digital Communications</title>
+  <meta name="description" content="Explore TV Media's digital communications services in Boxborough, MA: social media management, content creation, event coordination, digital marketing, SEO, web design, workshops, and copywriting." />
+  <link rel="stylesheet" href="css/fonts.css" />
+  <link rel="stylesheet" href="css/header_nav.css" />
+  <link rel="stylesheet" href="css/services.css" />
 </head>
 <body>
-    <!-- Header Section -->
-    <header>
-        <div class="logo">
-          <a href="index.html">
-            <img src="images/logo.png" alt="TV Media Logo" />
+  <!-- Global Header -->
+  <header class="site-header">
+    <div class="logo">
+      <a href="index.html">
+        <img src="images/logo.png" alt="TV Media Logo" />
+        <div class="logo-text">
+          <span class="logo-brand">TV Media</span>
+          <span class="logo-location">Boxborough, MA</span>
+        </div>
+      </a>
+    </div>
+
+    <button type="button" class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+
+    <nav aria-label="Primary Navigation">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html" class="active">Services</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Grid Layout -->
+    <section class="services-landing" aria-label="All Digital Communications Services">
+      <h1>Our Services</h1>
+      <p class="services-subtitle">Transparent packages and hands-on digital execution for Massachusetts small businesses.</p>
+      <div class="service-grid">
+        <!-- Service Card -->
+        <article class="service-card">
+          <div class="icon-container">
+            <img src="images/icons/service_icons/message-circle-heart.svg" alt="Social Media Icon" />
+          </div>
+          <h3>Social Media Management</h3>
+          <ul class="hover-list">
+            <li>Weekly Social Media Posts</li>
+            <li>Engagement Campaigns</li>
+            <li>Monthly Analytics Reports</li>
+          </ul>
+          <a href="social_media.html" class="learn-more-btn">View Packages</a>
+        </article>
+        <!-- Service Card -->
+        <article class="service-card">
+          <div class="icon-container">
+            <img src="images/icons/service_icons/image-plus.svg" alt="Content Creation Icon" />
+          </div>
+          <h3>Content Creation</h3>
+          <ul class="hover-list">
+            <li>Engaging Custom Graphics</li>
+            <li>Flyers, Posters &amp; Templates</li>
+            <li>Brand &amp; Event Photography</li>
+          </ul>
+          <a href="content.html" class="learn-more-btn">View Packages</a>
+        </article>
+        <!-- Service Card -->
+        <article class="service-card">
+          <div class="icon-container">
+            <img src="images/icons/service_icons/user-plus.svg" alt="Account Setup Icon" />
+          </div>
+          <h3>Account Set Up</h3>
+          <ul class="hover-list">
+            <li>New Platform Creation</li>
+            <li>Profile &amp; Bio Optimization</li>
+            <li>Brand &amp; Link Alignment</li>
+          </ul>
+          <a href="set_up.html" class="learn-more-btn">View Setup Tiers</a>
+        </article>
+        <!-- Service Card -->
+        <article class="service-card">
+          <div class="icon-container">
+            <img src="images/icons/service_icons/trending-up.svg" alt="Digital Marketing Icon" />
+          </div>
+          <h3>Digital Marketing Services</h3>
+          <ul class="hover-list">
+            <li>Targeted Ad Campaigns</li>
+            <li>Email Marketing &amp; Flows</li>
+            <li>Digital Presence Audits</li>
+          </ul>
+          <a href="marketing.html" class="learn-more-btn">View Packages</a>
+        </article>
+        <!-- Service Card -->
+        <article class="service-card">
+          <div class="icon-container">
+            <img src="images/icons/service_icons/search-check.svg" alt="SEO Icon" />
+          </div>
+          <h3>Search Engine Optimization (SEO)</h3>
+          <ul class="hover-list">
+            <li>Technical &amp; On-Page Audits</li>
+            <li>Keyword Optimization</li>
+            <li>Local Search Ranking</li>
+          </ul>
+          <a href="search_engine.html" class="learn-more-btn">View Packages</a>
+        </article>
+        <!-- Service Card -->
+        <article class="service-card">
+          <div class="icon-container">
+            <img src="images/icons/service_icons/monitor-check.svg" alt="Website Design Icon" />
+          </div>
+          <h3>Website Design &amp; Development</h3>
+          <ul class="hover-list">
+            <li>Custom Multi-Page Builds</li>
+            <li>Quick-Launch Landing Pages</li>
+            <li>Mobile &amp; SEO Optimization</li>
+          </ul>
+          <a href="design_development.html" class="learn-more-btn">View Packages</a>
+        </article>
+        <!-- Service Card -->
+        <article class="service-card">
+          <div class="icon-container">
+            <img src="images/icons/service_icons/calendar-clock.svg" alt="Event Management Icon" />
+          </div>
+          <h3>Event Management &amp; Coordination</h3>
+          <ul class="hover-list">
+            <li>Concept &amp; Run-of-Show</li>
+            <li>Branded Event Promotion</li>
+            <li>Day-Of On-Site Coordination</li>
+          </ul>
+          <a href="events.html" class="learn-more-btn">View Event Services</a>
+        </article>
+        <!-- Service Card -->
+        <article class="service-card">
+          <div class="icon-container">
+            <img src="images/icons/service_icons/graduation-cap.svg" alt="Trainings Icon" />
+          </div>
+          <h3>Trainings &amp; Workshops</h3>
+          <ul class="hover-list">
+            <li>Social Media &amp; SEO Basics</li>
+            <li>Branding &amp; Email Marketing</li>
+            <li>Interactive Team Sessions</li>
+          </ul>
+          <a href="trainings.html" class="learn-more-btn">View Workshops</a>
+        </article>
+        <!-- Service Card -->
+        <article class="service-card">
+          <div class="icon-container">
+            <img src="images/icons/service_icons/notebook-pen.svg" alt="Copywriting Icon" />
+          </div>
+          <h3>Copywriting</h3>
+          <ul class="hover-list">
+            <li>Website &amp; Landing Page Copy</li>
+            <li>Blog Articles &amp; Guides</li>
+            <li>Brand Voice Alignment</li>
+          </ul>
+          <a href="copywriting.html" class="learn-more-btn">View Packages</a>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- Global Footer -->
+  <footer id="site-footer">
+    <div class="footer-container">
+      <div class="footer-branding">
+        <img src="images/logo.png" alt="TV Media Logo" />
+        <p>Creating purpose-driven digital media that connects local brands with their communities.</p>
+        <p class="footer-location">📍 Boxborough, MA · Serving MetroWest &amp; Central MA</p>
+      </div>
+      <div class="footer-links">
+        <h4>Explore</h4>
+        <ul class="footer-nav-horizontal">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h4>Connect</h4>
+        <p>📱 <a href="tel:+19785013526">978-501-3526</a></p>
+        <p>📧 <a href="mailto:tvmediama@gmail.com">tvmediama@gmail.com</a></p>
+        <div class="footer-social-links">
+          <a href="https://www.facebook.com/tvmediama" target="_blank" rel="noopener" aria-label="Follow TV Media on Facebook">
+            <img src="images/icons/social_icons/facebook.svg" alt="Facebook" class="footer-social-icon" />
           </a>
         </div>
-        
-        <div class="menu-toggle" id="mobile-menu">&#9776;</div>
-      
-        <nav>
-          <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="contact.html">Contact</a></li>
-          </ul>
-        </nav>
-    </header>
-      
-    <!-- Grid Layout -->
-    <section class="services-landing">
-        <h1>Our Services</h1>
-        <div class="service-grid">
-            <!-- Service Card -->
-            <div class="service-card">
-                <div class="icon-container">
-                    <img src="images/icons/service_icons/message-circle-heart.svg" alt="Social Media Icon" />
-                </div>
-                <h3>Social Media Management</h3>
-                <ul class="hover-list">
-                    <li>Weekly Social Media Posts</li>
-                    <li>Engagement Campaigns</li>
-                    <li>Monthly Reports</li>
-                </ul>
-                <a href="social_media.html" class="learn-more-btn">Learn More</a>
-            </div>
-             <!-- Service Card -->
-            <div class="service-card">
-                <div class="icon-container">
-                    <img src="images/icons/service_icons/image-plus.svg" alt="Content Creation Icon" />
-                </div>
-                <h3>Content Creation</h3>
-                <ul class="hover-list">
-                    <li>Engaging Graphics</li>
-                    <li>Flyers & Posters</li>
-                    <li>Custom Photography</li>
-                </ul>
-                <a href="content.html" class="learn-more-btn">Learn More</a>
-            </div>
-             <!-- Service Card -->
-            <div class="service-card">
-                <div class="icon-container">
-                    <img src="images/icons/service_icons/user-plus.svg" alt="Account Setup Icon" />
-                </div>
-                <h3>Account Set Up</h3>
-                <ul class="hover-list">
-                    <li>New Platform Creation</li>
-                    <li>Profile Optimization</li>
-                    <li>Brand Alignment</li>
-                </ul>
-                <a href="set_up.html" class="learn-more-btn">Learn More</a>
-            </div>
-             <!-- Service Card -->
-            <div class="service-card">
-                <div class="icon-container">
-                    <img src="images/icons/service_icons/trending-up.svg" alt="Digital Marketing Icon" />
-                </div>
-                <h3>Digital Marketing Services</h3>
-                <ul class="hover-list">
-                    <li>Ad Campaigns</li>
-                    <li>Email Marketing</li>
-                    <li>Analytics Reports</li>
-                </ul>
-                <a href="marketing.html" class="learn-more-btn">Learn More</a>
-            </div>
-            <!-- Service Card -->
-            <div class="service-card">
-                <div class="icon-container">
-                    <img src="images/icons/service_icons/search-check.svg" alt="SEO Icon" />
-                </div>
-                <h3>Search Engine Optimization (SEO)</h3>
-                <ul class="hover-list">
-                    <li>SEO Audits</li>
-                    <li>Keyword Optimization</li>
-                    <li>Local Search Ranking</li>
-                </ul>
-                <a href="search_engine.html" class="learn-more-btn">Learn More</a>
-            </div>
-            <!-- Service Card -->
-            <div class="service-card">
-                <div class="icon-container">
-                    <img src="images/icons/service_icons/monitor-check.svg" alt="Website Design Icon" />
-                </div>
-                <h3>Website Design & Development</h3>
-                <ul class="hover-list">
-                    <li>Full Site Builds</li>
-                    <li>Landing Pages</li>
-                    <li>E-Commerce Integration</li>
-                </ul>
-                <a href="design_development.html" class="learn-more-btn">Learn More</a>
-            </div>
-            <!-- Service Card -->
-            <div class="service-card">
-                <div class="icon-container">
-                    <img src="images/icons/service_icons/calendar-clock.svg" alt="Event Management Icon" />
-                </div>
-                <h3>Event Management & Coordination</h3>
-                <ul class="hover-list">
-                    <li>On-Site Support</li>
-                    <li>Promotion Materials</li>
-                    <li>Full Strategy</li>
-                </ul>
-                <a href="events.html" class="learn-more-btn">Learn More</a>
-            </div>
-            <!-- Service Card -->
-            <div class="service-card">
-                <div class="icon-container">
-                    <img src="images/icons/service_icons/graduation-cap.svg" alt="Trainings Icon" />
-                </div>
-                <h3>Trainings & Workshops</h3>
-                <ul class="hover-list">
-                    <li>Social Media Basics</li>
-                    <li>Branding 101</li>
-                    <li>Target Audience Persona</li>
-                </ul>
-                <a href="trainings.html" class="learn-more-btn">Learn More</a>
-            </div>
-            <!-- Service Card -->
-            <div class="service-card">
-                <div class="icon-container">
-                    <img src="images/icons/service_icons/notebook-pen.svg" alt="Copywriting Icon" />
-                </div>
-                <h3>Copywriting</h3>
-                <ul class="hover-list">
-                    <li>Website Copy</li>
-                    <li>Social Captions</li>
-                    <li>Email Campaigns</li>
-                </ul>
-                <a href="copywriting.html" class="learn-more-btn">Learn More</a>
-            </div>
-        </div>
-    </section>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 TV Media · Boxborough, Massachusetts. All rights reserved.</p>
+    </div>
+  </footer>
 
-    <script src="java/script.js"></script>
+  <script src="java/script.js"></script>
 </body>
 </html>

@@ -1,232 +1,25 @@
-:root {
-  --primary: #ff6600;
-  --secondary: #1B264D;
-  --accent: #CA054D;
-  --heading: #D4D4A0;
-  --support: #148888;
-  --text_dark: #000;
-  --text_light: #fff;
-  --radius: 12px;
+@import url('subpage.css');
+
+/* Page-specific styles for Digital Marketing Services (marketing.html) */
+.tier-container.top-row {
+  max-width: 1160px;
+  margin: 0 auto 2.25rem;
 }
 
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  padding: 2rem;
-  background: radial-gradient(circle at 50% 50%, #ff6600, #CA054D);
-  overflow-x: hidden;
-  font-family: Arial, sans-serif;
-}
-
-/* Header */
-.main-header {
-  text-align: center;
-}
-
-.header-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-
-.back-arrow {
-  width: 28px;
-  height: 28px;
-  border-left: 4px solid var(--primary);
-  border-bottom: 4px solid var(--primary);
-  transform: rotate(45deg);
-  margin-left: 1rem;
-  margin-top: 2rem;
-  cursor: pointer;
-}
-.back-arrow:hover {
-  border-color: var(--secondary);
-}
-
-.btn-header-example {
-  margin-right: 1rem;
-  margin-top: 2rem;
-  background-color: var(--primary);
-  color: white;
-  padding: 0.6rem 1.5rem;
-  border-radius: 20px;
-  text-decoration: none;
-  font-weight: 700;
-  font-size: 0.95rem;
-  transition: background-color 0.3s ease;
-}
-.btn-header-example:hover {
-  background-color: var(--secondary);
-}
-
-.header-text h1 {
-  font-weight: 900;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.6rem;
-}
-
-.header-icon {
-  width: 36px;
-  height: 36px;
-}
-
-.subheader {
-  font-size: 1.1rem;
-  margin-top: 0.5rem;
-  color: var(--text_light);
-}
-
-/* Tier Containers */
-.tier-container {
-  display: flex;
-  gap: 2rem;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-bottom: 3rem;
-  max-width: 1000px;
-  margin-left: auto;
-  margin-right: auto;
-  align-items: stretch;
-}
-.top-row {
-  justify-content: space-between;
-}
-.bottom-row {
-  justify-content: center;
-}
-
-/* Tier Card */
-.tier {
-  background: white;
-  border-radius: 12px;
-  padding: 3rem 2rem 3.2rem;
-  width: 100%;
-  max-width: 300px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-  min-height: 480px;
-}
-.tier:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.16);
-}
-.tier-header {
-  font-size: 1.25rem;
-  font-weight: 900;
-  margin-bottom: 1.5rem;
-}
-.features {
-  list-style-type: none;
-  padding-left: 1.4rem;
-  font-weight: 600;
-  font-size: 0.9rem;
-  line-height: 1.4;
-}
-
-.check-list li {
-  position: relative;
-  padding-left: 1.8rem;
-  margin-bottom: 0.8rem;
-}
-
-.check-list li::before {
-  content: "✔";
-  position: absolute;
-  left: 0;
-  color: var(--primary);
-  font-weight: bold;
-}
-
-
-/* Addons */
-.addons {
-  max-width: 1200px;
-  margin: 4rem auto;
-  text-align: center;
-  padding: 0 1rem;
-}
-
-.addons h1 {
-  font-size: 2rem;
-  margin-bottom: 2rem;
+.tier-container.bottom-row {
+  max-width: 820px;
+  margin: 0 auto 3rem;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
 }
 
 .addons-grid {
-  display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
-  max-width: 900px;
-  margin: 0 auto;
+  max-width: 1000px;
 }
 
-.addon-card {
-  background: var(--text_light);
-  border-radius: var(--radius);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
-  padding: 2rem;
-  text-align: left;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-  font-weight: 600;
-}
-
-.addon-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-}
-
-
-/* CTA */
-.setup-cta {
-  text-align: center;
-  margin: 2rem 0 3rem;
-}
-.btn-link {
-  color: var(--heading);
-  font-weight: 700;
-  font-size: 1.1rem;
-  text-decoration: none;
-  border-bottom: 2px solid transparent;
-  transition: border-color 0.3s ease, color 0.3s ease;
-}
-.btn-link:hover {
-  color: var(--secondary);
-  border-color: var(--support);
-}
-
-/* Responsive */
-@media (max-width: 1100px) {
-  .tier-container {
-    justify-content: center;
-  }
-  .tier {
-    max-width: 280px;
-    min-height: 480px;
-  }
-  .addon-columns {
-    flex-direction: column;
-    border: none;
-  }
-  .addon-col {
-    border-left: none;
-    padding-left: 0;
+@media (max-width: 720px) {
+  .tier-container.bottom-row,
+  .addons-grid {
+    grid-template-columns: 1fr;
   }
 }
-@media (max-width: 600px) {
-  body {
-    padding: 1rem;
-  }
-  .tier {
-    max-width: 100%;
-    min-height: auto;
-  }
-}
-

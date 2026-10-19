@@ -2,17 +2,42 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Search Engine Optimization services to boost your visibility and grow your business." />
-  <link rel="stylesheet" href="css/search_engine.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Search Engine Optimization (SEO) services in Boxborough, MA by TV Media—technical SEO audits, on-page keyword optimization, and local search growth." />
+  <title>Search Engine Optimization (SEO) | TV Media — Boxborough, MA</title>
   <link rel="stylesheet" href="css/fonts.css" />
-  <title>Search Engine Optimization | TV Media</title>
+  <link rel="stylesheet" href="css/header_nav.css" />
+  <link rel="stylesheet" href="css/search_engine.css" />
 </head>
 <body>
+  <!-- Global Header -->
+  <header class="site-header">
+    <div class="logo">
+      <a href="index.html">
+        <img src="images/logo.png" alt="TV Media Logo" />
+        <div class="logo-text">
+          <span class="logo-brand">TV Media</span>
+          <span class="logo-location">Boxborough, MA</span>
+        </div>
+      </a>
+    </div>
+
+    <button type="button" class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+
+    <nav aria-label="Primary Navigation">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html" class="active">Services</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
   <header class="main-header">
-    <nav class="header-nav">
-      <a href="services.html" class="back-arrow" aria-label="Go back"></a>
-      <a href="seo_learn_more" class="btn-header-example">Learn More</a>
+    <nav class="header-nav" aria-label="Service Navigation">
+      <a href="services.html" class="back-arrow" aria-label="Back to all services">All Services</a>
+      <a href="contact.html" class="btn-header-example">Get a Quote</a>
     </nav>
     <div class="header-text">
       <h1>
@@ -25,41 +50,40 @@
 
   <main>
     <section id="packages" class="tier-container" aria-label="SEO Packages">
-
       <article class="tier" tabindex="0">
         <header>
-          <h3 class="tier-header">One-Time Audit</h3>
-          <h2 class="tier-price">$300</h2>
-          <p class="tier-subtitle">Pinpoint SEO issues fast. Get a full technical audit, keyword check, and a clear action plan to improve your site’s search performance.</p>     
+          <h2 class="tier-header">One-Time Audit</h2>
+          <p class="tier-price">$300</p>
+          <p class="tier-subtitle">Pinpoint SEO issues fast. Get a full technical audit, keyword check, and a clear action plan to improve your site’s search performance.</p>
         </header>
         <ul class="features">
-          <li>Website Crawl & Index Check</li>
+          <li>Website Crawl &amp; Index Check</li>
           <li>Keyword Ranking Snapshot</li>
-          <li>Meta Titles & Descriptions Review</li>
+          <li>Meta Titles &amp; Descriptions Review</li>
           <li>On-Page SEO Check</li>
           <li>URL Structure</li>
           <li>Site Speed</li>
           <li>Mobile Usability Report</li>
           <li>Backlink Overview</li>
           <li>Technical Issues Summary</li>
-          <li>Actionable Report & Strategy Debrief</li>
+          <li>Actionable Report &amp; Strategy Debrief</li>
         </ul>
       </article>
 
       <article class="tier" tabindex="0">
         <header>
-          <h3 class="tier-header">Optimization Package</h3>
-          <h2 class="tier-price">$750</h2>
+          <h2 class="tier-header">Optimization Package</h2>
+          <p class="tier-price">$750</p>
           <p class="tier-subtitle">Upgrade your site with targeted keyword tuning, content structure fixes, meta tags, and technical enhancements—all in one go.</p>
         </header>
         <ul class="features">
           <li>Audit Included</li>
           <li>Keyword Optimizations (10 Pages)</li>
-          <li>Meta Titles & Description Rewrite</li>
-          <li>Header & Content Structure Optimization</li>
+          <li>Meta Titles &amp; Description Rewrite</li>
+          <li>Header &amp; Content Structure Optimization</li>
           <li>Internal Linking</li>
           <li>Image Optimizations</li>
-          <li>Sitemap & Robots.txt Updates</li>
+          <li>Sitemap &amp; Robots.txt Updates</li>
           <li>Google Search Console Setup</li>
           <li>2 Revisions</li>
         </ul>
@@ -67,8 +91,8 @@
 
       <article class="tier" tabindex="0">
         <header>
-          <h3 class="tier-header">SEO Management</h3>
-          <h2 class="tier-price">$500/month</h2>
+          <h2 class="tier-header">SEO Management</h2>
+          <p class="tier-price">$500/month</p>
           <p class="tier-subtitle">Ongoing SEO support to boost rankings month over month. Includes keyword tracking, on-page improvements, and content strategy.</p>
         </header>
         <ul class="features">
@@ -82,28 +106,73 @@
           <li>Ongoing Monitoring</li>
         </ul>
       </article>
-
     </section>
 
     <section class="addons" aria-label="SEO Add-Ons">
-      <h3>Available Add-Ons</h3>
+      <h2 class="section-title">Available Add-Ons</h2>
       <div class="addons-grid">
-        <article class="addon-card">Local SEO Setup – $250</article>
-        <article class="addon-card">E-Commerce SEO (10 Products) – $300</article>
-        <article class="addon-card">Additional Page – $75</article>
-        <article class="addon-card">Blog Writing – $150/Post</article>
-        <article class="addon-card">Backlink Outreach Strategy – from $300</article>
-        <article class="addon-card">Schema Markup – $100</article>
-        <article class="addon-card">Google Business Profile – $125</article>
-        <article class="addon-card">SEO Landing Page (Design) – $300</article>
-        <article class="addon-card">SEO Landing Page (Code) – $350</article>
-        <article class="addon-card">Keyword Strategy Guide – $100</article>
+        <article class="addon-card">
+          <h3>On-Page &amp; Content SEO</h3>
+          <ul>
+            <li><strong>SEO Landing Page (Code):</strong> $350</li>
+            <li><strong>SEO Landing Page (Design):</strong> $300</li>
+            <li><strong>E-Commerce SEO (10 Products):</strong> $300</li>
+            <li><strong>Blog Writing:</strong> $150/post</li>
+            <li><strong>Keyword Strategy Guide:</strong> $100</li>
+            <li><strong>Additional Page Optimization:</strong> $75</li>
+          </ul>
+        </article>
+
+        <article class="addon-card">
+          <h3>Local &amp; Technical SEO</h3>
+          <ul>
+            <li><strong>Backlink Outreach Strategy:</strong> Starting at $300</li>
+            <li><strong>Local SEO Setup:</strong> $250</li>
+            <li><strong>Google Business Profile Optimization:</strong> $125</li>
+            <li><strong>Schema Markup Implementation:</strong> $100</li>
+          </ul>
+        </article>
       </div>
     </section>
 
     <section class="setup-cta">
-      <a href="setup.html" class="btn-link">See what's included in setup →</a>
+      <a href="set_up.html" class="btn-link">See what's included in platform setup →</a>
     </section>
   </main>
+
+  <!-- Global Footer -->
+  <footer id="site-footer">
+    <div class="footer-container">
+      <div class="footer-branding">
+        <img src="images/logo.png" alt="TV Media Logo" />
+        <p>Creating purpose-driven digital media that connects local brands with their communities.</p>
+        <p class="footer-location">📍 Boxborough, MA · Serving MetroWest &amp; Central MA</p>
+      </div>
+      <div class="footer-links">
+        <h4>Explore</h4>
+        <ul class="footer-nav-horizontal">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h4>Connect</h4>
+        <p>📱 <a href="tel:+19785013526">978-501-3526</a></p>
+        <p>📧 <a href="mailto:tvmediama@gmail.com">tvmediama@gmail.com</a></p>
+        <div class="footer-social-links">
+          <a href="https://www.facebook.com/tvmediama" target="_blank" rel="noopener" aria-label="Follow TV Media on Facebook">
+            <img src="images/icons/social_icons/facebook.svg" alt="Facebook" class="footer-social-icon" />
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 TV Media · Boxborough, Massachusetts. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="java/script.js"></script>
 </body>
 </html>

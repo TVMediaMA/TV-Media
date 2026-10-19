@@ -1,0 +1,9 @@
+# Internal audit & task planning files
+tasks.md
+
+# macOS system metadata
+.DS_Store
+**/.DS_Store
+
+# Editor configuration
+.vscode/

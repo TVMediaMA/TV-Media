@@ -1,364 +1,239 @@
-/* --- Gambarino font-face --- */
-@font-face {
-    font-family: 'Gambarino';
-    src: url('../brand_fonts/Gambarino/Gambarino-Regular.woff2') format('woff2'),
-         url('../brand_fonts/Gambarino/Gambarino-Regular.woff') format('woff'),
-         url('../brand_fonts/Gamarino/Gambarino-Regular.ttf') format('truetype');
-    font-weight: 400;
-    font-display: swap;
-    font-style: normal;
-  }
-  
-  /* --- Work Sans font-faces (abbreviated from your file) --- */
-  @font-face {
-    font-family: 'WorkSans-Thin';
-    src: url('../brand_fonts/Work_Sans/WorkSans-Thin.woff2') format('woff2'),
-         url('../brand_fonts/Work_Sans/WorkSans-Thin.woff') format('woff'),
-         url('../brand_fonts/Work_Sans/WorkSans-Thin.ttf') format('truetype');
-    font-weight: 100;
-    font-display: swap;
-    font-style: normal;
-  }
-  @font-face {
-    font-family: 'WorkSans-ThinItalic';
-    src: url('../brand_fonts/Work_Sans/WorkSans-ThinItalic.woff2') format('woff2'),
-         url('../brand_fonts/Work_Sans/WorkSans-ThinItalic.woff') format('woff'),
-         url('../brand_fonts/Work_Sans/WorkSans-ThinItalic.ttf') format('truetype');
-    font-weight: 100;
-    font-display: swap;
-    font-style: italic;
-  }
-  @font-face {
-    font-family: 'WorkSans-ExtraLight';
-    src: url('../brand_fonts/Work_Sans/WorkSans-ExtraLight.woff2') format('woff2'),
-         url('../brand_fonts/Work_Sans/WorkSans-ExtraLight.woff') format('woff'),
-         url('../brand_fonts/Work_Sans/WorkSans-ExtraLight.ttf') format('truetype');
-    font-weight: 200;
-    font-display: swap;
-    font-style: normal;
-  }
-  @font-face {
-    font-family: 'WorkSans-ExtraLightItalic';
-    src: url('../brand_fonts/Work_Sans/WorkSans-ExtraLightItalic.woff2') format('woff2'),
-         url('../brand_fonts/Work_Sans/WorkSans-ExtraLightItalic.woff') format('woff'),
-         url('../brand_fonts/Work_Sans/WorkSans-ExtraLightItalic.ttf') format('truetype');
-    font-weight: 200;
-    font-display: swap;
-    font-style: italic;
-  }
-  @font-face {
-    font-family: 'WorkSans-Light';
-    src: url('../brand_fonts/Work_Sans/WorkSans-Light.woff2') format('woff2'),
-         url('../brand_fonts/Work_Sans/WorkSans-Light.woff') format('woff'),
-         url('../brand_fonts/Work_Sans/WorkSans-Light.ttf') format('truetype');
-    font-weight: 300;
-    font-display: swap;
-    font-style: normal;
-  }
-  @font-face {
-    font-family: 'WorkSans-LightItalic';
-    src: url('../brand_fonts/Work_Sans/WorkSans-LightItalic.woff2') format('woff2'),
-         url('../brand_fonts/Work_Sans/WorkSans-LightItalic.woff') format('woff'),
-         url('../brand_fonts/Work_Sans/WorkSans-LightItalic.ttf') format('truetype');
-    font-weight: 300;
-    font-display: swap;
-    font-style: italic;
-  }
-  @font-face {
-    font-family: 'WorkSans-Regular';
-    src: url('../brand_fonts/Work_Sans/WorkSans-Regular.woff2') format('woff2'),
-         url('../brand_fonts/Work_Sans/WorkSans-Regular.woff') format('woff'),
-         url('../brand_fonts/Work_Sans/WorkSans-Regular.ttf') format('truetype');
-    font-weight: 400;
-    font-display: swap;
-    font-style: normal;
-  }
-  @font-face {
-    font-family: 'WorkSans-Italic';
-    src: url('../brand_fonts/Work_Sans/WorkSans-Italic.woff2') format('woff2'),
-         url('../brand_fonts/Work_Sans/WorkSans-Italic.woff') format('woff'),
-         url('../brand_fonts/Work_Sans/WorkSans-Italic.ttf') format('truetype');
-    font-weight: 400;
-    font-display: swap;
-    font-style: italic;
-  }
-  @font-face {
-    font-family: 'WorkSans-Medium';
-    src: url('../brand_fonts/Work_Sans/WorkSans-Medium.woff2') format('woff2'),
-         url('../brand_fonts/Work_Sans/WorkSans-Medium.woff') format('woff'),
-         url('../brand_fonts/Work_Sans/WorkSans-Medium.ttf') format('truetype');
-    font-weight: 500;
-    font-display: swap;
-    font-style: normal;
-  }
-  @font-face {
-    font-family: 'WorkSans-MediumItalic';
-    src: url('../brand_fonts/Work_Sans/WorkSans-MediumItalic.woff2') format('woff2'),
-         url('../brand_fonts/Work_Sans/WorkSans-MediumItalic.woff') format('woff'),
-         url('../brand_fonts/Work_Sans/WorkSans-MediumItalic.ttf') format('truetype');
-    font-weight: 500;
-    font-display: swap;
-    font-style: italic;
-  }
-  @font-face {
-    font-family: 'WorkSans-SemiBold';
-    src: url('../brand_fonts/Work_Sans/WorkSans-SemiBold.woff2') format('woff2'),
-         url('../brand_fonts/Work_Sans/WorkSans-SemiBold.woff') format('woff'),
-         url('../brand_fonts/Work_Sans/WorkSans-SemiBold.ttf') format('truetype');
-    font-weight: 600;
-    font-display: swap;
-    font-style: normal;
-  }
-  @font-face {
-    font-family: 'WorkSans-SemiBoldItalic';
-    src: url('../brand_fonts/Work_Sans/WorkSans-SemiBoldItalic.woff2') format('woff2'),
-         url('../brand_fonts/Work_Sans/WorkSans-SemiBoldItalic.woff') format('woff'),
-         url('../brand_fonts/Work_Sans/WorkSans-SemiBoldItalic.ttf') format('truetype');
-    font-weight: 600;
-    font-display: swap;
-    font-style: italic;
-  }
-  @font-face {
-    font-family: 'WorkSans-Bold';
-    src: url('../brand_fonts/Work_Sans/WorkSans-Bold.woff2') format('woff2'),
-         url('../brand_fonts/Work_Sans/WorkSans-Bold.woff') format('woff'),
-         url('../brand_fonts/Work_Sans/WorkSans-Bold.ttf') format('truetype');
-    font-weight: 700;
-    font-display: swap;
-    font-style: normal;
-  }
-  @font-face {
-    font-family: 'WorkSans-BoldItalic';
-    src: url('../brand_fonts/Work_Sans/WorkSans-BoldItalic.woff2') format('woff2'),
-         url('../brand_fonts/Work_Sans/WorkSans-BoldItalic.woff') format('woff'),
-         url('../brand_fonts/Work_Sans/WorkSans-BoldItalic.ttf') format('truetype');
-    font-weight: 700;
-    font-display: swap;
-    font-style: italic;
-  }
-  @font-face {
-    font-family: 'WorkSans-ExtraBold';
-    src: url('../brand_fonts/Work_Sans/WorkSans-ExtraBold.woff2') format('woff2'),
-         url('../brand_fonts/Work_Sans/WorkSans-ExtraBold.woff') format('woff'),
-         url('../brand_fonts/Work_Sans/WorkSans-ExtraBold.ttf') format('truetype');
-    font-weight: 800;
-    font-display: swap;
-    font-style: normal;
-  }
-  @font-face {
-    font-family: 'WorkSans-ExtraBoldItalic';
-    src: url('../brand_fonts/Work_Sans/WorkSans-ExtraBoldItalic.woff2') format('woff2'),
-         url('../brand_fonts/Work_Sans/WorkSans-ExtraBoldItalic.woff') format('woff'),
-         url('../brand_fonts/Work_Sans/WorkSans-ExtraBoldItalic.ttf') format('truetype');
-    font-weight: 800;
-    font-display: swap;
-    font-style: italic;
-  }
-  @font-face {
-    font-family: 'WorkSans-Black';
-    src: url('../brand_fonts/Work_Sans/WorkSans-Black.woff2') format('woff2'),
-         url('../brand_fonts/Work_Sans/WorkSans-Black.woff') format('woff'),
-         url('../brand_fonts/Work_Sans/WorkSans-Black.ttf') format('truetype');
-    font-weight: 900;
-    font-display: swap;
-    font-style: normal;
-  }
-  @font-face {
-    font-family: 'WorkSans-BlackItalic';
-    src: url('../brand_fonts/Work_Sans/WorkSans-BlackItalic.woff2') format('woff2'),
-         url('../brand_fonts/Work_Sans/WorkSans-BlackItalic.woff') format('woff'),
-         url('../brand_fonts/Work_Sans/WorkSans-BlackItalic.ttf') format('truetype');
-    font-weight: 900;
-    font-display: swap;
-    font-style: italic;
-  }
-  /**
-  * This is a variable font
-  * You can control variable axes as shown below:
-  * font-variation-settings: wght 400.0;
-  *
-  * available axes:
-  'wght' (range from 100.0 to 900.0
-  */
-  @font-face {
-    font-family: 'WorkSans-Variable';
-    src: url('../brand_fonts/Work_Sans/WorkSans-Variable.woff2') format('woff2'),
-         url('../brand_fonts/Work_Sans/WorkSans-Variable.woff') format('woff'),
-         url('../brand_fonts/Work_Sans/WorkSans-Variable.ttf') format('truetype');
-    font-weight: 100 900;
-    font-display: swap;
-    font-style: normal;
-  }
-  /**
-  * This is a variable font
-  * You can control variable axes as shown below:
-  * font-variation-settings: wght 400.0;
-  *
-  * available axes:
-  'wght' (range from 100.0 to 900.0
-  */
-  @font-face {
-    font-family: 'WorkSans-VariableItalic';
-    src: url('../brand_fonts/Work_Sans/WorkSans-VariableItalic.woff2') format('woff2'),
-         url('../brand_fonts/Work_Sans/WorkSans-VariableItalic.woff') format('woff'),
-         url('../brand_fonts/Work_Sans/WorkSans-VariableItalic.ttf') format('truetype');
-    font-weight: 100 900;
-    font-display: swap;
-    font-style: italic;
-  }  
-  
-  /* Optionally include more font-weights as needed */
-  
-  /* --- Font usage --- */
-  :root {
-    --primary: #ff6600;
-    --secondary: #1B264D;
-    --accent: #CA054D;
-    --heading: #D4D4A0;
-    --support: #148888;
-    --text_dark: #000000;
-    --text_light: #ffffff;
-  }
-  
-  /* Base body text */
-  body {
-    font-family: 'WorkSans-Regular', Arial, sans-serif;
-    font-weight: 400;
-    font-size: 1rem;
-    line-height: 1.5;
-    color: var(--text_dark);
-    background-color: var(--text_light); /* optional */
-    margin: 0;
-    padding: 0;
-  }
-  
-  /* Headings */
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Gambarino', serif;
-    font-weight: 400;
-    margin-top: 0;
-    margin-bottom: 1rem;
-    line-height: 1.2;
-    color: var(--support); /* base fallback */
-  }
-  
-  h1 {
-    font-size: 2.8rem;
-    color: var(--heading);
-  }
-  
-  h2 {
-    font-size: 1.8rem;
-    color: var(--primary);
-  }
-  
-  h3 {
-    font-size: 2.2rem;
-    color: var(--secondary);
-  }
-  
-  h4 {
-    font-size: 1.4rem;
-    color: var(--accent);
-  }
-  
-  h5 {
-    font-size: 1.2rem;
-    color: var(--support);
-  }
-  
-  h6 {
-    font-size: 1rem;
-    color: var(--secondary);
-  }
-  
-  /* Paragraphs */
-  p {
-    font-family: 'WorkSans-Regular', Arial, sans-serif;
-    font-size: 1rem;
-    line-height: 1.6;
-    margin-bottom: 1rem;
-    color: var(--text_dark);
-  }
-  
-  /* Links */
-  a {
-    font-family: 'WorkSans-Regular', Arial, sans-serif;
-    font-weight: 500;
-    text-decoration: none;
-    color: var(--accent);
-    transition: color 0.3s ease;
-  }
-  
-  a:hover,
-  a:focus {
-    color: var(--text_light);
-    text-decoration: none;
-  }
-  
-  /* Lists */
-  ul, ol {
-    font-family: 'WorkSans-Regular', Arial, sans-serif;
-    font-size: 1rem;
-    margin-bottom: 1rem;
-    color: var(--text_dark);
-    padding-left: 1.5rem;
-  }
-  
-  li {
-    line-height: 1.5;
-    color: var(--text_dark);
-  }
-  
-  /* Blockquotes */
-  blockquote {
-    font-family: 'Gambarino', serif;
-    font-style: italic;
-    font-size: 1.2rem;
-    color: var(--secondary);
-    border-left: 4px solid var(--accent);
-    padding-left: 1rem;
-    margin: 1.5rem 0;
-  }
-  
-  /* Code */
-  code, pre {
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 0.95rem;
-    background-color: #f4f4f4;
-    color: var(--secondary);
-    padding: 0.2rem 0.4rem;
-    border-radius: 4px;
-  }
-  
-  pre {
-    padding: 1rem;
-    overflow-x: auto;
-  }
-  
-  /* Strong and Emphasis */
-  strong {
-    font-weight: 600;
-    color: var(--primary);
-  }
-  
-  em {
-    font-style: italic;
-    color: var(--accent);
-  }
-  
-  /* Small text */
-  small {
-    font-size: 0.875rem;
-    color: var(--secondary);
-  }
-  
-  /* Horizontal Rule */
-  hr {
-    border: 0;
-    border-top: 1px solid var(--support);
-    margin: 2rem 0;
-  }
-  
+/* ===== TV Media Official Typography & Brand Color System (css/fonts.css) ===== */
 
-  
+/* --- Gambarino Display Serif (@font-face) --- */
+@font-face {
+  font-family: 'Gambarino';
+  src: url('../brand_fonts/Gambarino/Gambarino-Regular.woff2') format('woff2'),
+       url('../brand_fonts/Gambarino/Gambarino-Regular.woff') format('woff'),
+       url('../brand_fonts/Gambarino/Gambarino-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+
+/* --- Work Sans Unified Family (@font-face) --- */
+@font-face {
+  font-family: 'Work Sans';
+  src: url('../brand_fonts/Work_Sans/WorkSans-Variable.woff2') format('woff2-variations'),
+       url('../brand_fonts/Work_Sans/WorkSans-Variable.woff2') format('woff2'),
+       url('../brand_fonts/Work_Sans/WorkSans-Variable.woff') format('woff'),
+       url('../brand_fonts/Work_Sans/WorkSans-Variable.ttf') format('truetype');
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Work Sans';
+  src: url('../brand_fonts/Work_Sans/WorkSans-VariableItalic.woff2') format('woff2-variations'),
+       url('../brand_fonts/Work_Sans/WorkSans-VariableItalic.woff2') format('woff2'),
+       url('../brand_fonts/Work_Sans/WorkSans-VariableItalic.woff') format('woff'),
+       url('../brand_fonts/Work_Sans/WorkSans-VariableItalic.ttf') format('truetype');
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: italic;
+}
+
+/* --- Official Brand Palette & Retro-Digital Design Tokens ---
+   WCAG 2.1 Verified Contrast Matrix:
+   - #ffffff on #1b264d (Navy):    14.67:1 (AAA)
+   - #d6d4a0 on #1b264d (Navy):     9.63:1 (AAA)
+   - #ff6600 on #1b264d (Navy):     5.00:1 (AA)
+   - #000000 on #ffffff (White):   21.00:1 (AAA)
+   - #1b264d on #ffffff (White):   14.67:1 (AAA)
+   - #ca054d on #ffffff (White):    5.77:1 (AA)
+   - #ffffff on #ca054d (Magenta):  5.77:1 (AA)
+   - #000000 on #d6d4a0 (Cream):   13.78:1 (AAA)
+   - #1b264d on #d6d4a0 (Cream):    9.63:1 (AAA)
+   - #000000 on #ff6600 (Orange):   7.15:1 (AAA)
+   - #1b264d on #ff6600 (Orange):   5.00:1 (AA)
+   - #000000 on #148888 (Teal):     4.91:1 (AA)
+*/
+:root {
+  /* Official Palette */
+  --primary: #ff6600;
+  --secondary: #1b264d;
+  --accent: #ca054d;
+  --heading: #d6d4a0;
+  --support: #148888;
+  --black: #000000;
+  --white: #ffffff;
+
+  /* Semantic Aliases */
+  --text_dark: #000000;
+  --text_navy: #1b264d;
+  --text_light: #ffffff;
+  --surface-navy: #1b264d;
+  --surface-cream: #d6d4a0;
+  --surface-white: #ffffff;
+
+  /* Retro-Digital Broadcast Borders & Tactile Offset Shadows */
+  --border-ink: 2px solid #000000;
+  --border-navy: 2px solid #1b264d;
+  --border-cream: 2px solid #d6d4a0;
+  --border-teal: 2px solid #148888;
+  --shadow-retro-black: 6px 6px 0 #000000;
+  --shadow-retro-orange: 6px 6px 0 #ff6600;
+  --shadow-retro-teal: 6px 6px 0 #148888;
+  --shadow-retro-magenta: 6px 6px 0 #ca054d;
+  --shadow-retro-cream: 6px 6px 0 #d6d4a0;
+  --shadow-sm: 4px 4px 0 #000000;
+  --radius-card: 12px;
+  --radius-pill: 999px;
+
+  /* Broadcast Color-Bar Stripe */
+  --signal-bars: linear-gradient(
+    90deg,
+    #ff6600 0% 25%,
+    #ca054d 25% 50%,
+    #148888 50% 75%,
+    #d6d4a0 75% 100%
+  );
+
+  /* Typography */
+  --font-display: 'Gambarino', Georgia, serif;
+  --font-sans: 'Work Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Base Body */
+body {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--black);
+  background-color: var(--secondary);
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Headings — Gambarino is a 400-weight display serif; never faux-bold */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--secondary);
+}
+
+h1 {
+  font-size: clamp(2.2rem, 4vw + 0.85rem, 3.25rem);
+  color: var(--heading);
+}
+
+h2 {
+  font-size: clamp(1.75rem, 2.5vw + 0.75rem, 2.4rem);
+  color: var(--secondary);
+}
+
+h3 {
+  font-size: clamp(1.35rem, 1.8vw + 0.55rem, 1.7rem);
+  color: var(--secondary);
+}
+
+h4 {
+  font-size: 1.25rem;
+  color: var(--secondary);
+}
+
+h5 {
+  font-size: 1rem;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  color: var(--accent);
+}
+
+h6 {
+  font-size: 0.95rem;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  color: var(--secondary);
+}
+
+/* Paragraphs */
+p {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.65;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: var(--black);
+}
+
+/* Links — WCAG AA compliant (#ca054d on #ffffff = 5.77:1; #1b264d on #ffffff = 14.67:1) */
+a {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--accent);
+  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+a:hover,
+a:focus {
+  color: var(--secondary);
+  text-decoration: none;
+}
+
+a:focus-visible,
+button:focus-visible,
+[tabindex="0"]:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 3px;
+}
+
+/* Lists */
+ul, ol {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: var(--black);
+  padding-left: 1.5rem;
+}
+
+li {
+  line-height: 1.55;
+  color: var(--black);
+}
+
+/* Blockquotes */
+blockquote {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.25rem;
+  color: var(--secondary);
+  border-left: 4px solid var(--accent);
+  padding-left: 1rem;
+  margin: 1.5rem 0;
+}
+
+/* Strong and Emphasis */
+strong {
+  font-weight: 700;
+  color: inherit;
+}
+
+em {
+  font-style: italic;
+}
+
+small {
+  font-size: 0.875rem;
+  color: var(--secondary);
+}
+
+hr {
+  border: 0;
+  border-top: 2px solid var(--support);
+  margin: 2rem 0;
+}

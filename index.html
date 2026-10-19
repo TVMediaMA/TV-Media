@@ -1,26 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/home.css" />
-    <link rel="stylesheet" href="css/header_nav.css" />
-    <link rel="stylesheet" href="css/fonts.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TV Media | Digital Communications, Social Media &amp; Event Management in Boxborough, MA</title>
+  <meta name="description" content="TV Media is an independent digital communications studio based in Boxborough, MA specializing in social media management, custom content creation, event coordination, and digital strategy for local small businesses." />
+  <link rel="stylesheet" href="css/fonts.css" />
+  <link rel="stylesheet" href="css/header_nav.css" />
+  <link rel="stylesheet" href="css/home.css" />
 </head>
 <body>
-   <!-- Header Section -->
-   <header>
+  <!-- Global Header -->
+  <header class="site-header">
     <div class="logo">
       <a href="index.html">
         <img src="images/logo.png" alt="TV Media Logo" />
+        <div class="logo-text">
+          <span class="logo-brand">TV Media</span>
+          <span class="logo-location">Boxborough, MA</span>
+        </div>
       </a>
     </div>
-    
-    <div class="menu-toggle" id="mobile-menu">&#9776;</div>
-  
-    <nav>
+
+    <button type="button" class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+
+    <nav aria-label="Primary Navigation">
       <ul>
-        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html" class="active">Home</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="services.html">Services</a></li>
         <li><a href="contact.html">Contact</a></li>
@@ -28,91 +34,103 @@
     </nav>
   </header>
 
-   <!-- Services Preview Section -->
-   <section id="product-preview">
-    <h1>TV Media</h1>
-    <div class="product-container">
-        <a href="services.html" class="product-image">
-                <img src="images/icons/service_icons/message-circle-heart.svg" alt="Social Media Management"/>
-            <h3>Social Media Management</h3>
-            <p>We help small businesses grow on platforms like Instagram, Facebook, and TikTok with custom content, audience engagement, and data-driven social media strategy.</p>
-        </a>
-        <a href="services.html" class="product-image">
-            <img src="images/icons/service_icons/calendar-clock.svg" alt="Content Creation" />
-            <h3>Event Coordination & Management</h3>
-            <p>From pop-ups to full-scale launches, we bring your in-person events to life with creative planning, timeline management, and branded promotional support.</p>
-        </a>
-        <a href="services.html" class="product-image">
-            <img src="images/icons/service_icons/image-plus.svg" alt="Engagement Campaigns" />
-            <h3>Content Creation</h3>
-            <p>Stand out online with custom graphics, brand photography, and scroll-stopping visuals designed to connect with your audience and elevate your digital presence.</p>
-        </a>
-        <a href="services.html" class="product-image">
-            <img src="images/icons/service_icons/trending-up.svg" alt="Consulting & Audits" />
-            <h3>Strategy & Consulting</h3>
-            <p>Not sure what’s working? We offer social media audits, platform reviews, and custom action plans to help your content connect and your brand grow with intention.</p>
-        </a>
-    </div>
-</section>
-
-     <!-- Intro Section -->
-<section id="intro">
-    <div class="visibility-overlay">
-      <div class="intro-content">
-        <h1>Making Media</h1>
-        <h1>Matter</h1>
-        <p>
-            At TV Media, we help small businesses thrive in the digital landscape through expert social media management, custom content creation, and professional event coordination. 
-            Our mission is to build real connections between brands and their communities. Using strategy, creativity, and consistency to fuel authentic growth.
-          </p>
-          
+  <main>
+    <!-- Hero / Intro Section -->
+    <section id="intro">
+      <div class="visibility-overlay">
+        <div class="intro-content">
+          <span class="hero-eyebrow">Boxborough, MA · Digital Communications &amp; Events</span>
+          <h1>Making Media Matter</h1>
           <p>
-            We make your media matter. That means creating purpose-driven content that strengthens your message and builds lasting audience relationships. 
-            Whether online or face to face, we believe media should connect, inspire, and elevate your brand’s voice, so it reaches the people who need to hear it.
+            At TV Media, we help small businesses across Boxborough, Acton, Littleton, and Massachusetts thrive in the digital landscape through hands-on social media management, custom content creation, and local event coordination.
+            Our mission is to build real connections between independent brands and their communities—using strategy, creativity, and consistency to fuel authentic growth.
           </p>
-
-        <p>When your story is told with care, people pay attention.</p>
-          <!-- <a href="contact.html" class="btn">Contact Us</a> -->
+          <p>
+            We make your media matter. That means creating purpose-driven content that strengthens your message and builds lasting audience relationships.
+            Whether online or face-to-face, we believe media should connect, inspire, and elevate your brand’s voice so it reaches the people who need to hear it.
+          </p>
+          <p class="hero-tagline">When your story is told with care, people pay attention.</p>
+          <div class="hero-actions">
+            <a href="services.html" class="btn">Explore Our Services</a>
+            <a href="contact.html" class="btn-secondary">Start a Conversation</a>
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
-
-<!-- Contact Section -->
-        <section id="home-contact">
-        <h2>Contact Us</h2>
-        <p>Email us at <a href="mailto:tvmediama@gmail.com">tvmediama@gmail.com</a></p>
-        <a href="contact.html" class="btn">More Info</a>
     </section>
 
-    <script src="java/script.js"></script>
-</body>
+    <!-- Core Services Preview Section -->
+    <section id="product-preview" aria-label="Core Services">
+      <h2>How We Help Local Businesses Grow</h2>
+      <p class="section-lead">Practical digital execution tailored for independent businesses and community organizations.</p>
+      <div class="product-container">
+        <a href="social_media.html" class="product-image">
+          <img src="images/icons/service_icons/message-circle-heart.svg" alt="Social Media Management Icon" />
+          <h3>Social Media Management</h3>
+          <p>We help small businesses grow on platforms like Instagram, Facebook, and TikTok with custom content, audience engagement, and data-driven social media strategy.</p>
+          <span class="card-cta">View Packages →</span>
+        </a>
+        <a href="events.html" class="product-image">
+          <img src="images/icons/service_icons/calendar-clock.svg" alt="Event Coordination &amp; Management Icon" />
+          <h3>Event Coordination &amp; Management</h3>
+          <p>From pop-ups to full-scale launches, we bring your in-person events to life with creative planning, timeline management, and branded promotional support.</p>
+          <span class="card-cta">View Event Services →</span>
+        </a>
+        <a href="content.html" class="product-image">
+          <img src="images/icons/service_icons/image-plus.svg" alt="Content Creation Icon" />
+          <h3>Content Creation</h3>
+          <p>Stand out online with custom graphics, brand photography, and scroll-stopping visuals designed to connect with your audience and elevate your digital presence.</p>
+          <span class="card-cta">View Content Packages →</span>
+        </a>
+        <a href="marketing.html" class="product-image">
+          <img src="images/icons/service_icons/trending-up.svg" alt="Strategy &amp; Consulting Icon" />
+          <h3>Strategy &amp; Consulting</h3>
+          <p>Not sure what’s working? We offer social media audits, platform reviews, and custom action plans to help your content connect and your brand grow with intention.</p>
+          <span class="card-cta">View Strategy Plans →</span>
+        </a>
+      </div>
+    </section>
 
-<!-- Footer -->
-<footer id="site-footer">
+    <!-- Contact CTA Section -->
+    <section id="home-contact">
+      <h2>Ready to Elevate Your Digital Presence?</h2>
+      <p>Based in Boxborough, MA. Call us at <a href="tel:+19785013526">978-501-3526</a> or email <a href="mailto:tvmediama@gmail.com">tvmediama@gmail.com</a>.</p>
+      <a href="contact.html" class="btn">Get in Touch</a>
+    </section>
+  </main>
+
+  <!-- Global Footer -->
+  <footer id="site-footer">
     <div class="footer-container">
       <div class="footer-branding">
         <img src="images/logo.png" alt="TV Media Logo" />
-        <p>Creating purpose-driven media that connects and inspires.</p>
+        <p>Creating purpose-driven digital media that connects local brands with their communities.</p>
+        <p class="footer-location">📍 Boxborough, MA · Serving MetroWest &amp; Central MA</p>
       </div>
       <div class="footer-links">
         <h4>Explore</h4>
         <ul class="footer-nav-horizontal">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="contact.html">Contact</a></li>
-          </ul>          
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
       </div>
       <div class="footer-contact">
-        <h4>Follow Us</h4>
-        <a href="https://www.facebook.com/tvmediama" target="_blank" rel="noopener" aria-label="Facebook">
-          <img src="images/icons/social_icons/facebook.svg" alt="Facebook" class="footer-social-icon" />
-        </a>
+        <h4>Connect</h4>
+        <p>📱 <a href="tel:+19785013526">978-501-3526</a></p>
+        <p>📧 <a href="mailto:tvmediama@gmail.com">tvmediama@gmail.com</a></p>
+        <div class="footer-social-links">
+          <a href="https://www.facebook.com/tvmediama" target="_blank" rel="noopener" aria-label="Follow TV Media on Facebook">
+            <img src="images/icons/social_icons/facebook.svg" alt="Facebook" class="footer-social-icon" />
+          </a>
+        </div>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>&copy; 2026 TV Media. All rights reserved.</p>
+      <p>&copy; 2026 TV Media · Boxborough, Massachusetts. All rights reserved.</p>
     </div>
   </footer>
-  
+
+  <script src="java/script.js"></script>
+</body>
 </html>
