@@ -6,4 +6,3 @@ Allow: /
 
 User-agent: *
 Allow: /
-
