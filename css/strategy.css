@@ -860,6 +860,44 @@ body {
   margin-bottom: 0.2rem;
 }
 
+.deliverables-samples-link-wrap {
+  text-align: center;
+  margin-top: 1.75rem;
+  padding: 0.25rem 0;
+}
+
+.link-view-samples {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-sans, 'Work Sans', sans-serif);
+  font-size: 14px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #1b264d;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+
+.link-view-samples .samples-arrow {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.link-view-samples:hover,
+.link-view-samples:focus {
+  color: #ff6600;
+  text-decoration-color: #ff6600;
+}
+
+.link-view-samples:hover .samples-arrow,
+.link-view-samples:focus .samples-arrow {
+  transform: translateX(5px);
+}
+
 /* ===== Section 5: Conversion Actions, Lead Capture & AI Notice ===== */
 .disclaimer-card {
   background-color: #1b264d;

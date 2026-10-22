@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Our Work | TV Media - Print Collateral &amp; Commercial Photography in Boxborough, MA</title>
-  <meta name="description" content="Explore TV Media's portfolio of print and community collateral, event posters, civic campaign designs, and hospitality and commercial photography across MetroWest and Central MA." />
+  <title>Selected Work | TV Media - Boxborough, MA Digital &amp; Floor Assets</title>
+  <meta name="description" content="Explore TV Media's selected work built for real floors: civic information design for Pathways for Change, hospitality event activation for Citizen Crust, and commercial photography for Tiny's Coffeehouse." />
   <link rel="stylesheet" href="css/fonts.css" />
   <link rel="stylesheet" href="css/header_nav.css" />
   <link rel="stylesheet" href="css/work.css" />
 </head>
 <body>
-  <!-- Global Header -->
+  <!-- 1. Global Header -->
   <header class="site-header">
     <div class="logo">
       <a href="index.html" aria-label="TV Media Home">
@@ -32,210 +32,326 @@
     </nav>
   </header>
 
-  <main class="work-page">
-    <!-- Hero Intro Banner -->
-    <section class="work-hero" aria-labelledby="work-hero-title">
-      <div class="work-hero-inner">
-        <div class="work-pill-row">
-          <span class="work-hero-pill">TV MEDIA // FIELD ARCHIVE</span>
+  <main class="work-tuner-main">
+    <!-- 2. Page Masthead -->
+    <section class="tuner-masthead" aria-labelledby="work-title">
+      <h1 id="work-title">SELECTED WORK</h1>
+      <p class="tuner-subhead">Real Assets Built for Real Floors</p>
+    </section>
+
+    <!-- 3. Broadcast Tuner Control Bar (Full-Width 4-Color Stripe + ON AIR + Channel Push-Buttons) -->
+    <section class="tuner-control-strip" aria-label="Broadcast Tuner Channel Controls">
+      <div class="broadcast-stripe-track" aria-hidden="true"></div>
+      <div class="tuner-control-inner">
+        <div class="on-air-housing" aria-live="polite">
+          <span class="on-air-lamp">ON AIR</span>
         </div>
-        <h1 id="work-hero-title">Work Built for the Floor</h1>
-        <p class="work-hero-lead">
-          Tangible print collateral, community campaign visuals, and commercial photography designed to move local foot traffic and earn real-world trust.
-        </p>
+
+        <div class="channel-push-group" role="tablist" aria-label="Portfolio Channels">
+          <button
+            type="button"
+            role="tab"
+            id="tab-ch01"
+            class="tuner-push-btn active"
+            aria-selected="true"
+            aria-controls="tuner-live-deck"
+            data-channel="ch01"
+          >
+            CH 01 // CIVIC
+          </button>
+          <button
+            type="button"
+            role="tab"
+            id="tab-ch02"
+            class="tuner-push-btn"
+            aria-selected="false"
+            aria-controls="tuner-live-deck"
+            data-channel="ch02"
+            tabindex="-1"
+          >
+            CH 02 // NIGHTLIFE
+          </button>
+          <button
+            type="button"
+            role="tab"
+            id="tab-ch03"
+            class="tuner-push-btn"
+            aria-selected="false"
+            aria-controls="tuner-live-deck"
+            data-channel="ch03"
+            tabindex="-1"
+          >
+            CH 03 // CAFE
+          </button>
+        </div>
       </div>
     </section>
 
-    <!-- Section 1: Print & Community Collateral -->
-    <section id="print-collateral" class="work-section" aria-labelledby="collateral-heading">
-      <div class="work-section-header">
-        <div class="work-section-meta">
-          <span class="teal-tag">SHOWCASE 01 // TANGIBLE DESIGN</span>
-          <span class="crimson-tag">PRINT &amp; CIVIC CAMPAIGNS</span>
+    <!-- 4. Dual-Deck Main Showcase (Desktop Interactive 50/50 Split) -->
+    <section id="tuner-live-deck" class="tuner-dual-deck" aria-live="polite">
+      <!-- Left Deck: The Industrial CRT Monitor Chassis -->
+      <div class="crt-monitor-deck">
+        <div class="crt-cabinet">
+          <div class="crt-main-column">
+            <!-- Recessed Screen Bezel -->
+            <div class="crt-bezel">
+              <div class="crt-screen">
+                <span id="crt-feed-badge" class="crt-feed-badge">FEED: CH-01</span>
+                <img
+                  id="crt-active-image"
+                  src="images/portfolio/group_flyer.png"
+                  alt="Pathways for Change community outreach poster"
+                />
+              </div>
+            </div>
+            <!-- Horizontal Speaker Grille -->
+            <div class="crt-speaker-row">
+              <div class="crt-speaker-grille" aria-hidden="true"></div>
+            </div>
+          </div>
+
+          <!-- Right Physical TV Control Column (Rotary Dials & Vents) -->
+          <div class="crt-side-panel" aria-hidden="true">
+            <div class="crt-panel-recessed-top"></div>
+            <div class="crt-dials-stack">
+              <button
+                type="button"
+                class="crt-dial crt-dial-top"
+                id="crt-dial-channel"
+                tabindex="-1"
+                title="Cycle Broadcast Channel"
+              >
+                <span class="crt-dial-bar"></span>
+              </button>
+              <button
+                type="button"
+                class="crt-dial crt-dial-bottom"
+                id="crt-dial-fine"
+                tabindex="-1"
+                title="Cycle Broadcast Channel"
+              >
+                <span class="crt-dial-bar"></span>
+              </button>
+            </div>
+            <div class="crt-side-vents">
+              <span></span>
+              <span></span>
+              <span></span>
+              <div class="crt-mini-buttons">
+                <i></i>
+                <i></i>
+              </div>
+            </div>
+          </div>
         </div>
-        <h2 id="collateral-heading">Print &amp; Community Collateral</h2>
-        <p>
-          Event flyers, tabletop promos, community outreach posters, and civic campaign materials built for bulletin boards, countertops, and local venues.
-        </p>
+        <div class="crt-base-stand" aria-hidden="true"></div>
       </div>
 
-      <div class="collateral-grid">
-        <!-- Collateral Slot 01 -->
-        <article class="collateral-card">
-          <div class="collateral-media-frame">
-            <img
-              src="images/graphic_examples/graphic_example1.png"
-              alt="Event flyer and venue promotion poster design"
-              loading="lazy"
-            />
+      <!-- Right Deck: The Retro OS Telemetry Terminal -->
+      <article class="telemetry-window" aria-labelledby="telemetry-window-title">
+        <!-- Top Title Bar -->
+        <div class="telemetry-titlebar">
+          <span id="telemetry-window-title" class="telemetry-title-text">TELEMETRY</span>
+          <div class="telemetry-os-dots" aria-hidden="true">
+            <span class="os-dot os-dot-orange"></span>
+            <span class="os-dot os-dot-teal"></span>
+            <span class="os-dot os-dot-crimson"></span>
           </div>
-          <div class="collateral-card-body">
-            <div class="collateral-tags">
-              <span class="crimson-tag">EVENT FLYER</span>
-              <span class="work-spec-badge">PRINT + SOCIAL</span>
-            </div>
-            <h3>Venue Night &amp; Live Event Promotion</h3>
-            <p>
-              High-contrast poster architecture built to stop foot traffic in busy hospitality spaces and translate cleanly to local event feeds.
-            </p>
-          </div>
-        </article>
+        </div>
 
-        <!-- Collateral Slot 02 -->
-        <article class="collateral-card">
-          <div class="collateral-media-frame">
-            <img
-              src="images/graphic_examples/group_flyer.png"
-              alt="Community program and civic campaign outreach poster"
-              loading="lazy"
-            />
-          </div>
-          <div class="collateral-card-body">
-            <div class="collateral-tags">
-              <span class="teal-tag">COMMUNITY &amp; CIVIC</span>
-              <span class="work-spec-badge">OUTREACH POSTER</span>
-            </div>
-            <h3>Community &amp; Nonprofit Outreach Campaign</h3>
-            <p>
-              Clear, accessible hierarchy designed for regional resource boards, municipal spaces, and community distribution.
-            </p>
-          </div>
-        </article>
+        <!-- Sub-bar Badges -->
+        <div class="telemetry-subbar">
+          <span id="telemetry-category" class="subbar-pill pill-category">CIVIC INFORMATION DESIGN</span>
+          <span class="subbar-pill pill-status">STATUS: VERIFIED ON FLOOR</span>
+        </div>
 
-        <!-- Collateral Slot 03 -->
-        <article class="collateral-card">
-          <div class="collateral-media-frame">
-            <img
-              src="images/graphic_examples/business_flyer.png"
-              alt="Local small business promotional handout and spec flyer"
-              loading="lazy"
-            />
-          </div>
-          <div class="collateral-card-body">
-            <div class="collateral-tags">
-              <span class="crimson-tag">FLOOR COLLATERAL</span>
-              <span class="work-spec-badge">COUNTER HANDOUT</span>
-            </div>
-            <h3>Small Business Counter &amp; Leave-Behind Print</h3>
-            <p>
-              Structured promotional layout engineered to turn one-time visitors into repeat local regulars.
+        <!-- Terminal Content Body -->
+        <div class="telemetry-body">
+          <!-- Card 01: The Problem -->
+          <div class="telemetry-block block-problem">
+            <h2 class="problem-heading">01 // THE PROBLEM</h2>
+            <p id="telemetry-problem" class="problem-copy">
+              Community outreach and support initiatives frequently struggle to communicate critical logistics without overwhelming participants or burying contact points under bureaucratic text blocks.
             </p>
           </div>
-        </article>
-      </div>
+
+          <!-- Card 02: The Solution (Pillar Matrix) -->
+          <div class="telemetry-block block-solution">
+            <div class="solution-banner">
+              <h2>02 // THE SOLUTION (PILLAR MATRIX)</h2>
+            </div>
+            <p class="solution-intro">Structured strategic breakdown:</p>
+            <ul id="telemetry-solutions" class="solution-bullet-list">
+              <li>
+                <strong>The Foundation (Making Media Matter):</strong> Prioritizes immediate public trust over promotional vanity, putting confidential hotline support and accessibility access front and center.
+              </li>
+              <li>
+                <strong>Pillar 2 (Operational Reality and Intuitive Flow):</strong> Organizes dense operational data (recurring meeting cadences, Zoom details, and physical meet-up notes) into a scannable visual hierarchy.
+              </li>
+              <li>
+                <strong>Pillar 3 (Platform Native Utility):</strong> Built specifically for high-utility community sharing, civic syndication, and clean offline printing.
+              </li>
+              <li>
+                <strong>The Capstone (Intentional Community Growth):</strong> Removes friction for vulnerable individuals seeking connection, turning an intimidating support service into an accessible community group.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </article>
     </section>
 
-    <!-- Section 2: Hospitality & Commercial Photography -->
-    <section id="hospitality-photography" class="work-section" aria-labelledby="photography-heading">
-      <div class="work-section-header">
-        <div class="work-section-meta">
-          <span class="crimson-tag">SHOWCASE 02 // ON-LOCATION PRODUCTION</span>
-          <span class="teal-tag">FOOD, DRINK &amp; SPACES</span>
+    <!-- Mobile Viewport Graceful Fallback (< 768px): Vertically Unrolled Case Studies -->
+    <section class="mobile-unrolled-work" aria-label="Selected Work Case Studies">
+      <!-- Mobile Card 01: Pathways for Change -->
+      <article class="mobile-work-card">
+        <div class="telemetry-titlebar">
+          <span class="telemetry-title-text">FEED: CH-01 // CIVIC</span>
+          <div class="telemetry-os-dots" aria-hidden="true">
+            <span class="os-dot os-dot-orange"></span>
+            <span class="os-dot os-dot-teal"></span>
+            <span class="os-dot os-dot-crimson"></span>
+          </div>
         </div>
-        <h2 id="photography-heading">Hospitality &amp; Commercial Photography</h2>
-        <p>
-          On-location photography capturing the craft, plating, pours, and atmosphere of independent cafes, taprooms, kitchens, and storefronts.
-        </p>
-      </div>
-
-      <div class="photo-showcase-grid">
-        <figure class="photo-card">
-          <div class="photo-frame">
-            <img
-              src="images/photo_examples/coffeehouse-post1.png"
-              alt="Specialty coffeehouse beverage and counter presentation"
-              loading="lazy"
-            />
+        <div class="telemetry-subbar">
+          <span class="subbar-pill pill-category">CIVIC INFORMATION DESIGN</span>
+          <span class="subbar-pill pill-status">STATUS: VERIFIED ON FLOOR</span>
+        </div>
+        <div class="mobile-crt-frame">
+          <img src="images/portfolio/group_flyer.png" alt="Pathways for Change community outreach poster" loading="lazy" />
+        </div>
+        <div class="telemetry-body">
+          <div class="telemetry-block block-problem">
+            <h2 class="problem-heading">01 // THE PROBLEM</h2>
+            <p class="problem-copy">
+              Community outreach and support initiatives frequently struggle to communicate critical logistics without overwhelming participants or burying contact points under bureaucratic text blocks.
+            </p>
           </div>
-          <figcaption class="photo-caption">
-            <span class="teal-tag">CAFE &amp; ROASTERY</span>
-            <h4>Signature Beverage &amp; Counter Craft</h4>
-          </figcaption>
-        </figure>
-
-        <figure class="photo-card">
-          <div class="photo-frame">
-            <img
-              src="images/photo_examples/coffeehouse-post2.png"
-              alt="Freshly plated cafe menu item and table styling"
-              loading="lazy"
-            />
+          <div class="telemetry-block block-solution">
+            <div class="solution-banner">
+              <h2>02 // THE SOLUTION (PILLAR MATRIX)</h2>
+            </div>
+            <p class="solution-intro">Structured strategic breakdown:</p>
+            <ul class="solution-bullet-list">
+              <li>
+                <strong>The Foundation (Making Media Matter):</strong> Prioritizes immediate public trust over promotional vanity, putting confidential hotline support and accessibility access front and center.
+              </li>
+              <li>
+                <strong>Pillar 2 (Operational Reality and Intuitive Flow):</strong> Organizes dense operational data (recurring meeting cadences, Zoom details, and physical meet-up notes) into a scannable visual hierarchy.
+              </li>
+              <li>
+                <strong>Pillar 3 (Platform Native Utility):</strong> Built specifically for high-utility community sharing, civic syndication, and clean offline printing.
+              </li>
+              <li>
+                <strong>The Capstone (Intentional Community Growth):</strong> Removes friction for vulnerable individuals seeking connection, turning an intimidating support service into an accessible community group.
+              </li>
+            </ul>
           </div>
-          <figcaption class="photo-caption">
-            <span class="crimson-tag">HOSPITALITY MENU</span>
-            <h4>Daytime Menu &amp; Table Plating</h4>
-          </figcaption>
-        </figure>
+        </div>
+      </article>
 
-        <figure class="photo-card">
-          <div class="photo-frame">
-            <img
-              src="images/photo_examples/coffeehouse-post3.png"
-              alt="Warm interior hospitality atmosphere and seating flow"
-              loading="lazy"
-            />
+      <!-- Mobile Card 02: Citizen Crust -->
+      <article class="mobile-work-card">
+        <div class="telemetry-titlebar">
+          <span class="telemetry-title-text">FEED: CH-02 // NIGHTLIFE</span>
+          <div class="telemetry-os-dots" aria-hidden="true">
+            <span class="os-dot os-dot-orange"></span>
+            <span class="os-dot os-dot-teal"></span>
+            <span class="os-dot os-dot-crimson"></span>
           </div>
-          <figcaption class="photo-caption">
-            <span class="teal-tag">SPACE &amp; FLOW</span>
-            <h4>In-Store Atmosphere &amp; Guest Experience</h4>
-          </figcaption>
-        </figure>
+        </div>
+        <div class="telemetry-subbar">
+          <span class="subbar-pill pill-category">HOSPITALITY EVENT ACTIVATION</span>
+          <span class="subbar-pill pill-status">STATUS: VERIFIED ON FLOOR</span>
+        </div>
+        <div class="mobile-crt-frame">
+          <img src="images/portfolio/graphic_example1.png" alt="Citizen Crust Wednesday Night DJ Bingo promotional graphic" loading="lazy" />
+        </div>
+        <div class="telemetry-body">
+          <div class="telemetry-block block-problem">
+            <h2 class="problem-heading">01 // THE PROBLEM</h2>
+            <p class="problem-copy">
+              Independent restaurants and taprooms regularly battle dead midweek calendar slots where kitchen overhead runs high while dining room seats sit empty.
+            </p>
+          </div>
+          <div class="telemetry-block block-solution">
+            <div class="solution-banner">
+              <h2>02 // THE SOLUTION (PILLAR MATRIX)</h2>
+            </div>
+            <p class="solution-intro">Structured strategic breakdown:</p>
+            <ul class="solution-bullet-list">
+              <li>
+                <strong>The Foundation (Making Media Matter):</strong> Replaces generic sales posts with an engaging, interactive event hook that offers entertainment and humor before asking customers to spend a dollar.
+              </li>
+              <li>
+                <strong>Pillar 1 (Acquisition and Loyalty):</strong> Activates existing patrons by giving weekday regulars a competitive reason to return, while incentivizing them to bring groups of friends.
+              </li>
+              <li>
+                <strong>Pillar 2 (Operational Reality and Intuitive Flow):</strong> Grounded in real floor capacity and timing constraints, highlighting clear 6:30 to 8:30 PM event hours.
+              </li>
+              <li>
+                <strong>The Capstone (Intentional Community Growth):</strong> Converts a quiet Wednesday into a lively recurring ritual, driving physical foot traffic and establishing the venue as a dependable neighborhood hangout.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </article>
 
-        <figure class="photo-card">
-          <div class="photo-frame">
-            <img
-              src="images/photo_examples/photo_example1.png"
-              alt="Commercial product detail photography"
-              loading="lazy"
-            />
+      <!-- Mobile Card 03: Tiny's Coffeehouse -->
+      <article class="mobile-work-card">
+        <div class="telemetry-titlebar">
+          <span class="telemetry-title-text">FEED: CH-03 // CAFE</span>
+          <div class="telemetry-os-dots" aria-hidden="true">
+            <span class="os-dot os-dot-orange"></span>
+            <span class="os-dot os-dot-teal"></span>
+            <span class="os-dot os-dot-crimson"></span>
           </div>
-          <figcaption class="photo-caption">
-            <span class="crimson-tag">COMMERCIAL DETAIL</span>
-            <h4>Product &amp; Craft Close-Up</h4>
-          </figcaption>
-        </figure>
-
-        <figure class="photo-card">
-          <div class="photo-frame">
-            <img
-              src="images/photo_examples/photo_example2.png"
-              alt="On-location brand story photography"
-              loading="lazy"
-            />
+        </div>
+        <div class="telemetry-subbar">
+          <span class="subbar-pill pill-category">COMMERCIAL PRODUCT PHOTOGRAPHY</span>
+          <span class="subbar-pill pill-status">STATUS: VERIFIED ON FLOOR</span>
+        </div>
+        <div class="mobile-crt-frame">
+          <img src="images/portfolio/coffeehouse-post2.png" alt="Tiny's Coffeehouse fresh berry and granola breakfast bowl" loading="lazy" />
+        </div>
+        <div class="telemetry-body">
+          <div class="telemetry-block block-problem">
+            <h2 class="problem-heading">01 // THE PROBLEM</h2>
+            <p class="problem-copy">
+              Neighborhood cafes often settle for sterile stock imagery or muddy smartphone snapshots that fail to capture freshness and get ignored by morning mobile scrollers.
+            </p>
           </div>
-          <figcaption class="photo-caption">
-            <span class="teal-tag">ON LOCATION</span>
-            <h4>Working Floor &amp; Process Documentation</h4>
-          </figcaption>
-        </figure>
-
-        <figure class="photo-card">
-          <div class="photo-frame">
-            <img
-              src="images/photo_examples/photo_example3.png"
-              alt="Local business visual campaign asset"
-              loading="lazy"
-            />
+          <div class="telemetry-block block-solution">
+            <div class="solution-banner">
+              <h2>02 // THE SOLUTION (PILLAR MATRIX)</h2>
+            </div>
+            <p class="solution-intro">Structured strategic breakdown:</p>
+            <ul class="solution-bullet-list">
+              <li>
+                <strong>The Foundation (Making Media Matter):</strong> Delivers an authentic, visually rich food asset that provides immediate appetizing value rather than a loud corporate sales pitch.
+              </li>
+              <li>
+                <strong>Pillar 1 (Acquisition and Loyalty):</strong> Focuses on celebrating everyday craftsmanship and core menu quality, reinforcing to daily commuters that their regular breakfast stop takes pride in its ingredients.
+              </li>
+              <li>
+                <strong>Pillar 3 (Platform Native Utility):</strong> Treats Instagram as a high-resolution visual portfolio where crisp composition, natural light, and organic textures stop thumbs naturally.
+              </li>
+              <li>
+                <strong>The Capstone (Intentional Community Growth):</strong> Bridges the gap between digital discovery and real-world door-swings, motivating neighborhood locals to make an intentional morning visit.
+              </li>
+            </ul>
           </div>
-          <figcaption class="photo-caption">
-            <span class="crimson-tag">CAMPAIGN READY</span>
-            <h4>Seasonal Launch &amp; Promo Visuals</h4>
-          </figcaption>
-        </figure>
-      </div>
+        </div>
+      </article>
     </section>
 
-    <!-- Bottom CTA Banner Connecting to Strategy Generator -->
-    <section class="work-strategy-cta" aria-labelledby="work-cta-heading">
-      <div class="work-strategy-cta-inner">
-        <span class="teal-tag">NEXT STEP // DIAGNOSTIC TOOL</span>
-        <h2 id="work-cta-heading">See How These Assets Fit Your Operation</h2>
-        <p>
-          Before we design a single flyer or shoot a single frame, we diagnose where your customer flow or margin is getting stuck.
-        </p>
-        <a href="strategy.html" class="btn-work-strategy">
-          Want a custom breakdown for your floor? Run the Strategy Generator ->
-        </a>
+    <!-- 5. Bottom Conversion Deck -->
+    <section class="conversion-deck-section" aria-label="Next Step Conversion">
+      <div class="conversion-deck-bar">
+        <p class="conversion-deck-prompt">Ready to solve the bottlenecks on your own floor?</p>
+        <div class="conversion-deck-actions">
+          <a href="strategy.html" class="btn-deck-orange">Run Strategy Generator -&gt;</a>
+          <a href="contact.html" class="btn-deck-cream">Book a 15-Minute Review</a>
+        </div>
       </div>
     </section>
   </main>
@@ -276,5 +392,6 @@
   </footer>
 
   <script src="java/script.js"></script>
+  <script src="java/work.js"></script>
 </body>
 </html>
