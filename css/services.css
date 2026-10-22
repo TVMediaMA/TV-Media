@@ -634,12 +634,35 @@
   color: #d6d4a0;
 }
 
+/* Pricing scope note */
+.scope-note-container {
+  max-width: 1140px;
+  margin: 48px auto 0;
+  padding: 0 24px;
+}
+
+.scope-note {
+  margin: 0;
+  padding: 12px 18px;
+  border: 2px solid #000000;
+  border-left: 6px solid #ff6600;
+  border-radius: 8px;
+  background-color: #f4f1d6;
+  box-shadow: 4px 4px 0 #000000;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.84rem;
+  font-weight: 600;
+  line-height: 1.55;
+  letter-spacing: 0.01em;
+  color: #1b264d;
+}
+
 /* ==========================================================================
    STRATEGY LAB BRIDGE (TERMINAL ALERT)
    ========================================================================== */
 .lab-bridge {
   max-width: 1140px;
-  margin: 64px auto 0;
+  margin: 28px auto 0;
   padding: 0 24px;
 }
 
@@ -832,6 +855,7 @@
 
   .switchboard-masthead,
   .switchboard-wrap,
+  .scope-note-container,
   .lab-bridge {
     padding-left: 16px;
     padding-right: 16px;
