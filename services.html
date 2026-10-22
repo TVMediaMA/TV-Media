@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Our Services | TV Media - Boxborough, MA Digital Communications</title>
-  <meta name="description" content="Explore TV Media's digital communications services in Boxborough, MA: social media management, content creation, event coordination, digital marketing, SEO, web design, workshops, and copywriting." />
+  <title>Services Switchboard | TV Media - Boxborough, MA Digital Communications</title>
+  <meta name="description" content="TV Media's Services Switchboard: monthly partnerships, project sprints, audits, and team workshops with transparent pricing. Fast custom tools with human strategy, local photography, and creative direction in Boxborough, MA." />
   <link rel="stylesheet" href="css/fonts.css" />
   <link rel="stylesheet" href="css/header_nav.css" />
   <link rel="stylesheet" href="css/services.css" />
@@ -32,129 +32,461 @@
     </nav>
   </header>
 
-  <main>
-    <!-- Grid Layout -->
-    <section class="services-landing" aria-label="All Digital Communications Services">
-      <h1>Our Services</h1>
-      <p class="services-subtitle">Transparent packages and hands-on digital execution for Massachusetts small businesses.</p>
-      <div class="service-grid">
-        <!-- Service Card -->
-        <article class="service-card">
-          <div class="icon-container">
-            <img src="images/icons/service_icons/message-circle-heart.svg" alt="Social Media Icon" />
+  <main class="switchboard-main">
+    <!-- Masthead -->
+    <section class="switchboard-masthead" aria-labelledby="switchboard-title">
+      <div class="masthead-row">
+        <span class="masthead-pill pill-left">Rooted in Boxborough, Massachusetts</span>
+        <h1 id="switchboard-title">Services Switchboard</h1>
+        <span class="masthead-pill pill-right">Making Media Matter</span>
+      </div>
+      <p class="masthead-sub">Fast custom tools under the hood. Human creative direction, local strategy, and real photography up front.</p>
+    </section>
+
+    <!-- Mode Selector -->
+    <div class="switchboard-wrap" id="switchboard">
+      <nav class="mode-selector" role="tablist" aria-label="Service categories">
+        <a href="#monthly" role="tab" id="tab-monthly" class="mode-tab" aria-controls="panel-monthly" aria-selected="true" data-mode="monthly">[01] MONTHLY</a>
+        <a href="#sprints" role="tab" id="tab-sprints" class="mode-tab" aria-controls="panel-sprints" aria-selected="false" data-mode="sprints">[02] SPRINTS</a>
+        <a href="#audits" role="tab" id="tab-audits" class="mode-tab" aria-controls="panel-audits" aria-selected="false" data-mode="audits">[03] AUDITS</a>
+        <a href="#workshops" role="tab" id="tab-workshops" class="mode-tab" aria-controls="panel-workshops" aria-selected="false" data-mode="workshops">[04] WORKSHOPS</a>
+      </nav>
+
+      <div class="mode-panels">
+        <section class="mode-panel" id="panel-monthly" role="tabpanel" aria-labelledby="tab-monthly" tabindex="-1" data-mode="monthly">
+          <div class="mode-intro">
+            <p class="mode-kicker">Mode 01 // MONTHLY</p>
+            <h2>Monthly Partnerships</h2>
+            <p class="mode-tagline">Hands-off communications, run by a real person who knows your block.</p>
           </div>
-          <h3>Social Media Management</h3>
-          <ul class="hover-list">
-            <li>Weekly Social Media Posts</li>
-            <li>Engagement Campaigns</li>
-            <li>Monthly Analytics Reports</li>
-          </ul>
-          <a href="social_media.html" class="learn-more-btn">View Packages</a>
-        </article>
-        <!-- Service Card -->
-        <article class="service-card">
-          <div class="icon-container">
-            <img src="images/icons/service_icons/image-plus.svg" alt="Content Creation Icon" />
+          <div class="svc-grid grid-3">
+          <article class="svc-card" aria-labelledby="monthly-1-title">
+            <div class="svc-stripe" aria-hidden="true"></div>
+            <div class="svc-body">
+              <div class="svc-head">
+                <div class="svc-head-text">
+                  <h3 id="monthly-1-title">Core Presence</h3>
+                </div>
+                <img class="svc-icon" src="images/icons/service_icons/message-circle-heart.svg" alt="" width="44" height="44" />
+              </div>
+              <p class="svc-price"><span class="price-tag chip-orange">$850</span> <span class="price-unit">/ mo</span></p>
+              <p class="svc-outcome">Show up consistently while we handle the daily noise.</p>
+              <ul class="svc-highlights">
+                <li>3 strategic posts per week</li>
+                <li>Branded graphics and platform-native copy</li>
+                <li>Daily comment triage</li>
+              </ul>
+              <div class="svc-actions">
+                <a class="svc-btn svc-btn-primary" href="contact.html">Select Plan</a>
+              </div>
+              <details class="svc-drawer">
+                <summary><span>Inspect Deliverables</span><span class="drawer-icon" aria-hidden="true"></span></summary>
+                <div class="drawer-content">
+                  <ul class="drawer-list">
+                    <li>3 strategic posts per week (1 to 2 channels)</li>
+                    <li>Branded graphic design</li>
+                    <li>Platform-native copy</li>
+                    <li>Daily comment triage</li>
+                    <li>Google Business monthly maintenance</li>
+                    <li>Monthly performance reporting</li>
+                  </ul>
+                  <p class="drawer-note">$200 setup fee waived with a 6-month agreement.</p>
+                </div>
+              </details>
+            </div>
+          </article>
+          <article class="svc-card is-featured" aria-labelledby="monthly-2-title">
+            <div class="svc-stripe" aria-hidden="true"></div>
+            <div class="svc-body">
+              <div class="svc-head">
+                <div class="svc-head-text">
+                  <span class="svc-flag">Featured</span>
+                  <h3 id="monthly-2-title">Growth &amp; Local Traffic Engine</h3>
+                </div>
+                <img class="svc-icon" src="images/icons/service_icons/trending-up.svg" alt="" width="44" height="44" />
+              </div>
+              <p class="svc-price"><span class="price-tag chip-teal">$1,350</span> <span class="price-unit">/ mo</span></p>
+              <p class="svc-outcome">Turn your feed into foot traffic with photo, email, and ads.</p>
+              <ul class="svc-highlights">
+                <li>Everything in Core Presence</li>
+                <li>4 to 5 posts per week across 2 platforms</li>
+                <li>Quarterly on-site photo and video session</li>
+                <li>1 managed ad campaign</li>
+              </ul>
+              <div class="svc-actions">
+                <a class="svc-btn svc-btn-primary" href="contact.html">Select Plan</a>
+              </div>
+              <details class="svc-drawer">
+                <summary><span>Inspect Deliverables</span><span class="drawer-icon" aria-hidden="true"></span></summary>
+                <div class="drawer-content">
+                  <ul class="drawer-list">
+                    <li>Everything in Core Presence</li>
+                    <li>4 to 5 posts per week across 2 platforms</li>
+                    <li>Quarterly on-site photo/video session (capped at 60 minutes, within 15 miles of Boxborough)</li>
+                    <li>1 to 2 email newsletters or blasts per month</li>
+                    <li>1 managed ad campaign (ad spend billed direct to client)</li>
+                    <li>Local search tracking</li>
+                  </ul>
+                  <p class="drawer-note">$250 setup fee waived with a 6-month agreement.</p>
+                </div>
+              </details>
+            </div>
+          </article>
+          <article class="svc-card" aria-labelledby="monthly-3-title">
+            <div class="svc-stripe" aria-hidden="true"></div>
+            <div class="svc-body">
+              <div class="svc-head">
+                <div class="svc-head-text">
+                  <h3 id="monthly-3-title">Dedicated Studio Partner</h3>
+                </div>
+                <img class="svc-icon" src="images/icons/service_icons/user-plus.svg" alt="" width="44" height="44" />
+              </div>
+              <p class="svc-price"><span class="price-tag chip-cream">$2,000</span> <span class="price-unit">/ mo</span></p>
+              <p class="svc-outcome">A communications director on call, running it all off-site.</p>
+              <ul class="svc-highlights">
+                <li>Social, email, and website updates</li>
+                <li>Rapid print and event graphics</li>
+                <li>Priority on-site event coverage</li>
+              </ul>
+              <div class="svc-actions">
+                <a class="svc-btn svc-btn-primary" href="contact.html">Select Plan</a>
+              </div>
+              <details class="svc-drawer">
+                <summary><span>Inspect Deliverables</span><span class="drawer-icon" aria-hidden="true"></span></summary>
+                <div class="drawer-content">
+                  <ul class="drawer-list">
+                    <li>Full off-site communications director</li>
+                    <li>Social media management</li>
+                    <li>Email marketing</li>
+                    <li>Website updates</li>
+                    <li>Rapid print and event graphics</li>
+                    <li>Priority on-site event coverage</li>
+                  </ul>
+                  <p class="drawer-note">Best for owners who want one partner to run communications end to end.</p>
+                </div>
+              </details>
+            </div>
+          </article>
           </div>
-          <h3>Content Creation</h3>
-          <ul class="hover-list">
-            <li>Engaging Custom Graphics</li>
-            <li>Flyers, Posters &amp; Templates</li>
-            <li>Brand &amp; Event Photography</li>
-          </ul>
-          <a href="content.html" class="learn-more-btn">View Packages</a>
-        </article>
-        <!-- Service Card -->
-        <article class="service-card">
-          <div class="icon-container">
-            <img src="images/icons/service_icons/user-plus.svg" alt="Account Setup Icon" />
+        </section>
+
+        <section class="mode-panel" id="panel-sprints" role="tabpanel" aria-labelledby="tab-sprints" tabindex="-1" data-mode="sprints">
+          <div class="mode-intro">
+            <p class="mode-kicker">Mode 02 // SPRINTS</p>
+            <h2>Project Sprints</h2>
+            <p class="mode-tagline">One-time turnkey builds. Clear scope, fixed price, shipped fast.</p>
           </div>
-          <h3>Account Set Up</h3>
-          <ul class="hover-list">
-            <li>New Platform Creation</li>
-            <li>Profile &amp; Bio Optimization</li>
-            <li>Brand &amp; Link Alignment</li>
-          </ul>
-          <a href="set_up.html" class="learn-more-btn">View Setup Tiers</a>
-        </article>
-        <!-- Service Card -->
-        <article class="service-card">
-          <div class="icon-container">
-            <img src="images/icons/service_icons/trending-up.svg" alt="Digital Marketing Icon" />
+          <div class="svc-grid grid-2">
+          <article class="svc-card" aria-labelledby="sprints-1-title">
+            <div class="svc-stripe" aria-hidden="true"></div>
+            <div class="svc-body">
+              <div class="svc-head">
+                <div class="svc-head-text">
+                  <h3 id="sprints-1-title">Profile &amp; Channel Reset</h3>
+                </div>
+                <img class="svc-icon" src="images/icons/service_icons/monitor-check.svg" alt="" width="44" height="44" />
+              </div>
+              <p class="svc-price"><span class="price-tag chip-orange">$500</span> <span class="price-unit">one-time</span></p>
+              <p class="svc-outcome">Fix your digital storefront in a single pass.</p>
+              <ul class="svc-highlights">
+                <li>Google Business Profile, Facebook, Instagram</li>
+                <li>Bio copywriting</li>
+                <li>Branded headers and link-in-bio</li>
+              </ul>
+              <div class="svc-actions">
+                <a class="svc-btn svc-btn-primary" href="contact.html">Book This Sprint</a>
+              </div>
+              <details class="svc-drawer">
+                <summary><span>Inspect Deliverables</span><span class="drawer-icon" aria-hidden="true"></span></summary>
+                <div class="drawer-content">
+                  <ul class="drawer-list">
+                    <li>Full optimization of Google Business Profile, Facebook, and Instagram</li>
+                    <li>Bio copywriting</li>
+                    <li>Branded headers</li>
+                    <li>Link-in-bio setup</li>
+                  </ul>
+                </div>
+              </details>
+            </div>
+          </article>
+          <article class="svc-card" aria-labelledby="sprints-2-title">
+            <div class="svc-stripe" aria-hidden="true"></div>
+            <div class="svc-body">
+              <div class="svc-head">
+                <div class="svc-head-text">
+                  <h3 id="sprints-2-title">Turnkey Website Sprint</h3>
+                </div>
+                <img class="svc-icon" src="images/icons/service_icons/image-plus.svg" alt="" width="44" height="44" />
+              </div>
+              <p class="svc-price"><span class="price-tag chip-teal">$1,650</span> <span class="price-unit">one-time</span></p>
+              <p class="hybrid-badge"><span class="hybrid-bolt" aria-hidden="true">&#9889;</span>Fast custom tools + human strategy and oversight</p>
+              <p class="svc-outcome">A fast, custom, mobile-first site that loads before the customer gives up.</p>
+              <ul class="svc-highlights">
+                <li>Up to 5 pages, custom layout</li>
+                <li>Local schema and contact forms</li>
+                <li>Copy included, 2 revision rounds</li>
+              </ul>
+              <div class="svc-actions">
+                <a class="svc-btn svc-btn-primary" href="contact.html">Book This Sprint</a>
+              </div>
+              <details class="svc-drawer">
+                <summary><span>Inspect Deliverables</span><span class="drawer-icon" aria-hidden="true"></span></summary>
+                <div class="drawer-content">
+                  <ul class="drawer-list">
+                    <li>Fast, custom, static, mobile-first site (up to 5 pages)</li>
+                    <li>Custom layout</li>
+                    <li>Local schema</li>
+                    <li>Copywriting</li>
+                    <li>Contact forms</li>
+                    <li>Strictly 2 revision rounds</li>
+                  </ul>
+                  <p class="drawer-note">Single-page Quick Launch available at $750.</p>
+                </div>
+              </details>
+            </div>
+          </article>
+          <article class="svc-card" aria-labelledby="sprints-3-title">
+            <div class="svc-stripe" aria-hidden="true"></div>
+            <div class="svc-body">
+              <div class="svc-head">
+                <div class="svc-head-text">
+                  <h3 id="sprints-3-title">Custom Web App &amp; Interactive Lead Tool</h3>
+                </div>
+                <img class="svc-icon" src="images/icons/service_icons/search-check.svg" alt="" width="44" height="44" />
+              </div>
+              <p class="svc-price"><span class="price-tag chip-cream">$1,850 to $2,500</span> <span class="price-unit">one-time</span></p>
+              <p class="hybrid-badge"><span class="hybrid-bolt" aria-hidden="true">&#9889;</span>Fast custom tools + human strategy and oversight</p>
+              <p class="svc-outcome">A single-purpose calculator, quiz, or intake engine that captures leads for you.</p>
+              <ul class="svc-highlights">
+                <li>Calculator, diagnostic quiz, or intake engine</li>
+                <li>Lead capture built in</li>
+                <li>Your API accounts, zero token markups</li>
+              </ul>
+              <div class="svc-actions">
+                <a class="svc-btn svc-btn-primary" href="contact.html">Book This Sprint</a>
+              </div>
+              <details class="svc-drawer">
+                <summary><span>Inspect Deliverables</span><span class="drawer-icon" aria-hidden="true"></span></summary>
+                <div class="drawer-content">
+                  <ul class="drawer-list">
+                    <li>Custom single-purpose calculator, diagnostic quiz, or intake engine</li>
+                    <li>Max 4 inputs and 1 structured output</li>
+                    <li>Custom prompt architecture</li>
+                    <li>Lead capture</li>
+                    <li>Connected directly to client-owned API accounts (BYOK: zero token markups)</li>
+                  </ul>
+                  <p class="drawer-note">Optional $99/mo care plan.</p>
+                </div>
+              </details>
+            </div>
+          </article>
+          <article class="svc-card" aria-labelledby="sprints-4-title">
+            <div class="svc-stripe" aria-hidden="true"></div>
+            <div class="svc-body">
+              <div class="svc-head">
+                <div class="svc-head-text">
+                  <h3 id="sprints-4-title">Event Activation Sprint</h3>
+                </div>
+                <img class="svc-icon" src="images/icons/service_icons/calendar-clock.svg" alt="" width="44" height="44" />
+              </div>
+              <p class="svc-price"><span class="price-tag chip-orange">$650</span> <span class="price-unit">one-time</span></p>
+              <p class="svc-outcome">Everything you need to fill the room, packaged.</p>
+              <ul class="svc-highlights">
+                <li>1 print-ready flyer or poster</li>
+                <li>4 social promo graphics</li>
+                <li>Press release and email layout</li>
+              </ul>
+              <div class="svc-actions">
+                <a class="svc-btn svc-btn-primary" href="contact.html">Book This Sprint</a>
+              </div>
+              <details class="svc-drawer">
+                <summary><span>Inspect Deliverables</span><span class="drawer-icon" aria-hidden="true"></span></summary>
+                <div class="drawer-content">
+                  <ul class="drawer-list">
+                    <li>1 print-ready flyer or poster</li>
+                    <li>4 social promo graphics</li>
+                    <li>Local press release copy</li>
+                    <li>Email announcement layout</li>
+                  </ul>
+                </div>
+              </details>
+            </div>
+          </article>
           </div>
-          <h3>Digital Marketing Services</h3>
-          <ul class="hover-list">
-            <li>Targeted Ad Campaigns</li>
-            <li>Email Marketing &amp; Flows</li>
-            <li>Digital Presence Audits</li>
-          </ul>
-          <a href="marketing.html" class="learn-more-btn">View Packages</a>
-        </article>
-        <!-- Service Card -->
-        <article class="service-card">
-          <div class="icon-container">
-            <img src="images/icons/service_icons/search-check.svg" alt="SEO Icon" />
+        </section>
+
+        <section class="mode-panel" id="panel-audits" role="tabpanel" aria-labelledby="tab-audits" tabindex="-1" data-mode="audits">
+          <div class="mode-intro">
+            <p class="mode-kicker">Mode 03 // AUDITS</p>
+            <h2>Diagnostics &amp; Reviews</h2>
+            <p class="mode-tagline">Low-friction entry. Find the leak before you spend another dollar.</p>
           </div>
-          <h3>Search Engine Optimization (SEO)</h3>
-          <ul class="hover-list">
-            <li>Technical &amp; On-Page Audits</li>
-            <li>Keyword Optimization</li>
-            <li>Local Search Ranking</li>
-          </ul>
-          <a href="search_engine.html" class="learn-more-btn">View Packages</a>
-        </article>
-        <!-- Service Card -->
-        <article class="service-card">
-          <div class="icon-container">
-            <img src="images/icons/service_icons/monitor-check.svg" alt="Website Design Icon" />
+          <div class="svc-grid grid-2">
+          <article class="svc-card" aria-labelledby="audits-1-title">
+            <div class="svc-stripe" aria-hidden="true"></div>
+            <div class="svc-body">
+              <div class="svc-head">
+                <div class="svc-head-text">
+                  <h3 id="audits-1-title">Strategy Blueprint Review</h3>
+                </div>
+                <img class="svc-icon" src="images/icons/service_icons/trending-up.svg" alt="" width="44" height="44" />
+              </div>
+              <p class="svc-price"><span class="price-tag chip-teal">$0</span> <span class="price-unit">via Generator</span></p>
+              <p class="price-alt">or $150 standalone</p>
+              <p class="svc-outcome">Thirty minutes to review your bottlenecks and cut wasted spend.</p>
+              <ul class="svc-highlights">
+                <li>30-minute consult</li>
+                <li>Review your real bottlenecks</li>
+                <li>Cut wasted spend</li>
+              </ul>
+              <div class="svc-actions">
+                <a class="svc-btn svc-btn-primary" href="strategy.html">Run the Generator</a>
+                <a class="svc-btn svc-btn-secondary" href="contact.html">Book Standalone ($150)</a>
+              </div>
+              <details class="svc-drawer">
+                <summary><span>Inspect Deliverables</span><span class="drawer-icon" aria-hidden="true"></span></summary>
+                <div class="drawer-content">
+                  <ul class="drawer-list">
+                    <li>30-minute consult to review bottlenecks and cut wasted spend</li>
+                    <li>Free when you start with the Strategy Generator</li>
+                    <li>$150 as a standalone session</li>
+                  </ul>
+                  <p class="drawer-note">Run your bottleneck through the Strategy Generator first to unlock the review at no cost.</p>
+                </div>
+              </details>
+            </div>
+          </article>
+          <article class="svc-card" aria-labelledby="audits-2-title">
+            <div class="svc-stripe" aria-hidden="true"></div>
+            <div class="svc-body">
+              <div class="svc-head">
+                <div class="svc-head-text">
+                  <h3 id="audits-2-title">Local Footprint &amp; Search Audit</h3>
+                </div>
+                <img class="svc-icon" src="images/icons/service_icons/search-check.svg" alt="" width="44" height="44" />
+              </div>
+              <p class="svc-price"><span class="price-tag chip-orange">$300</span> <span class="price-unit">one-time</span></p>
+              <p class="hybrid-badge"><span class="hybrid-bolt" aria-hidden="true">&#9889;</span>Fast custom tools + human strategy and oversight</p>
+              <p class="svc-outcome">See exactly how customers find you, and where they do not.</p>
+              <ul class="svc-highlights">
+                <li>Complete crawl report</li>
+                <li>Mobile performance and local ranking</li>
+                <li>1-page action punch list</li>
+              </ul>
+              <div class="svc-actions">
+                <a class="svc-btn svc-btn-primary" href="contact.html">Book This Audit</a>
+              </div>
+              <details class="svc-drawer">
+                <summary><span>Inspect Deliverables</span><span class="drawer-icon" aria-hidden="true"></span></summary>
+                <div class="drawer-content">
+                  <ul class="drawer-list">
+                    <li>Complete crawl report</li>
+                    <li>Mobile performance test</li>
+                    <li>Local search ranking</li>
+                    <li>Google Profile review</li>
+                    <li>1-page action punch list</li>
+                  </ul>
+                  <p class="drawer-note">The full $300 fee is credited toward Month 1 if you sign any monthly retainer within 14 days.</p>
+                </div>
+              </details>
+            </div>
+          </article>
           </div>
-          <h3>Website Design &amp; Development</h3>
-          <ul class="hover-list">
-            <li>Custom Multi-Page Builds</li>
-            <li>Quick-Launch Landing Pages</li>
-            <li>Mobile &amp; SEO Optimization</li>
-          </ul>
-          <a href="design_development.html" class="learn-more-btn">View Packages</a>
-        </article>
-        <!-- Service Card -->
-        <article class="service-card">
-          <div class="icon-container">
-            <img src="images/icons/service_icons/calendar-clock.svg" alt="Event Management Icon" />
+        </section>
+
+        <section class="mode-panel" id="panel-workshops" role="tabpanel" aria-labelledby="tab-workshops" tabindex="-1" data-mode="workshops">
+          <div class="mode-intro">
+            <p class="mode-kicker">Mode 04 // WORKSHOPS</p>
+            <h2>Team Workshops</h2>
+            <p class="mode-tagline">Upskill your staff with practical sessions they can use the next morning.</p>
           </div>
-          <h3>Event Management &amp; Coordination</h3>
-          <ul class="hover-list">
-            <li>Concept &amp; Run-of-Show</li>
-            <li>Branded Event Promotion</li>
-            <li>Day-Of On-Site Coordination</li>
-          </ul>
-          <a href="events.html" class="learn-more-btn">View Event Services</a>
-        </article>
-        <!-- Service Card -->
-        <article class="service-card">
-          <div class="icon-container">
-            <img src="images/icons/service_icons/graduation-cap.svg" alt="Trainings Icon" />
+          <div class="svc-grid grid-3">
+          <article class="svc-card" aria-labelledby="workshops-1-title">
+            <div class="svc-stripe" aria-hidden="true"></div>
+            <div class="svc-body">
+              <div class="svc-head">
+                <div class="svc-head-text">
+                  <h3 id="workshops-1-title">Standard Workshop</h3>
+                </div>
+                <img class="svc-icon" src="images/icons/service_icons/graduation-cap.svg" alt="" width="44" height="44" />
+              </div>
+              <p class="svc-price"><span class="price-tag chip-orange">$350</span> <span class="price-unit">1.5 hours</span></p>
+              <p class="svc-outcome">A practical skill session on social tools or local search.</p>
+              <ul class="svc-highlights">
+                <li>1.5 hour live session</li>
+                <li>Social tools or local search</li>
+              </ul>
+              <div class="duration-meter level-1" role="img" aria-label="Session length level 1 of 3"><span></span><span></span><span></span></div>
+              <div class="svc-actions">
+                <a class="svc-btn svc-btn-primary" href="contact.html">Book Workshop</a>
+              </div>
+            </div>
+          </article>
+          <article class="svc-card is-featured" aria-labelledby="workshops-2-title">
+            <div class="svc-stripe" aria-hidden="true"></div>
+            <div class="svc-body">
+              <div class="svc-head">
+                <div class="svc-head-text">
+                  <span class="svc-flag">Featured</span>
+                  <h3 id="workshops-2-title">Half-Day Intensive</h3>
+                </div>
+                <img class="svc-icon" src="images/icons/service_icons/graduation-cap.svg" alt="" width="44" height="44" />
+              </div>
+              <p class="svc-price"><span class="price-tag chip-teal">$750</span> <span class="price-unit">3 to 4 hours</span></p>
+              <p class="svc-outcome">An interactive workshop with templates and guided exercises.</p>
+              <ul class="svc-highlights">
+                <li>3 to 4 hour interactive session</li>
+                <li>Templates and guided exercises</li>
+              </ul>
+              <div class="duration-meter level-2" role="img" aria-label="Session length level 2 of 3"><span></span><span></span><span></span></div>
+              <div class="svc-actions">
+                <a class="svc-btn svc-btn-primary" href="contact.html">Book Workshop</a>
+              </div>
+            </div>
+          </article>
+          <article class="svc-card" aria-labelledby="workshops-3-title">
+            <div class="svc-stripe" aria-hidden="true"></div>
+            <div class="svc-body">
+              <div class="svc-head">
+                <div class="svc-head-text">
+                  <h3 id="workshops-3-title">Full-Day Immersion</h3>
+                </div>
+                <img class="svc-icon" src="images/icons/service_icons/graduation-cap.svg" alt="" width="44" height="44" />
+              </div>
+              <p class="svc-price"><span class="price-tag chip-cream">$1,500</span> <span class="price-unit">6 to 7 hours</span></p>
+              <p class="svc-outcome">A comprehensive overhaul of digital communications and workflow.</p>
+              <ul class="svc-highlights">
+                <li>6 to 7 hour deep dive</li>
+                <li>Digital communications and workflow overhaul</li>
+              </ul>
+              <div class="duration-meter level-3" role="img" aria-label="Session length level 3 of 3"><span></span><span></span><span></span></div>
+              <div class="svc-actions">
+                <a class="svc-btn svc-btn-primary" href="contact.html">Book Workshop</a>
+              </div>
+            </div>
+          </article>
           </div>
-          <h3>Trainings &amp; Workshops</h3>
-          <ul class="hover-list">
-            <li>Social Media &amp; SEO Basics</li>
-            <li>Branding &amp; Email Marketing</li>
-            <li>Interactive Team Sessions</li>
-          </ul>
-          <a href="trainings.html" class="learn-more-btn">View Workshops</a>
-        </article>
-        <!-- Service Card -->
-        <article class="service-card">
-          <div class="icon-container">
-            <img src="images/icons/service_icons/notebook-pen.svg" alt="Copywriting Icon" />
+        </section>
+      </div>
+    </div>
+
+    <!-- Strategy Lab Bridge -->
+    <section class="lab-bridge" aria-labelledby="lab-bridge-title">
+      <div class="lab-window">
+        <div class="lab-titlebar">
+          <span class="lab-title-text">TV_MEDIA // STRATEGY LAB</span>
+          <span class="lab-dots" aria-hidden="true"><i class="dot-orange"></i><i class="dot-teal"></i><i class="dot-crimson"></i></span>
+        </div>
+        <div class="lab-body">
+          <div class="lab-copy">
+            <h2 id="lab-bridge-title"><span class="lab-prompt" aria-hidden="true">&gt;</span><span class="lab-heading-text">Not sure which mode fits?</span><span class="lab-cursor" aria-hidden="true"></span></h2>
+            <p>Run your real bottleneck through the Strategy Generator. You get a tailored 4-part strategy snapshot, free, with no sales call attached.</p>
           </div>
-          <h3>Copywriting</h3>
-          <ul class="hover-list">
-            <li>Website &amp; Landing Page Copy</li>
-            <li>Blog Articles &amp; Guides</li>
-            <li>Brand Voice Alignment</li>
-          </ul>
-          <a href="copywriting.html" class="learn-more-btn">View Packages</a>
-        </article>
+          <div class="lab-actions">
+            <a href="strategy.html" class="svc-btn svc-btn-primary">Run Strategy Generator -&gt;</a>
+            <a href="contact.html" class="svc-btn svc-btn-secondary">Talk to a Human</a>
+          </div>
+        </div>
       </div>
     </section>
   </main>
@@ -195,5 +527,6 @@
   </footer>
 
   <script src="java/script.js"></script>
+  <script src="java/services.js"></script>
 </body>
 </html>

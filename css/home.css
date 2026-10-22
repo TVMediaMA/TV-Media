@@ -1,37 +1,43 @@
-/* ===== Homepage Styles - Retro-Digital Broadcast Aesthetic (css/home.css) ===== */
+/* ===== Homepage Styles - Retro-Digital Broadcast Aesthetic (css/home.css) =====
+   Shares one design language with services.css, work.css and strategy.css:
+   - Pale-yellow dot-grid canvas with navy tactile cards (never navy on navy)
+   - 3px solid black borders, zero-blur offset shadows, 4-color signal stripe
+   - Sans-serif 900 uppercase headings, Gambarino kept for editorial accents
+   Contrast: #ffffff on #1b264d 14.67:1, #d6d4a0 on #1b264d 9.63:1,
+   #000000 on #ff6600 7.15:1, #1b264d on #d6d4a0 9.63:1, #ff6600 on #1b264d 4.99:1 */
 
-/* === Hero / Intro Section (#1b264d Navy Canvas) === */
+/* === Hero / Intro Section (#d6d4a0 dot-grid canvas, navy card) === */
 #intro {
-  background-color: #1b264d;
-  background-image: radial-gradient(rgba(214, 212, 160, 0.14) 1.5px, transparent 1.5px);
-  background-size: 24px 24px;
-  padding: 4.5rem 1.5rem 5rem;
+  background-color: #d6d4a0;
+  background-image: radial-gradient(rgba(27, 38, 77, 0.3) 1.3px, transparent 1.6px);
+  background-size: 16px 16px;
+  padding: 4.25rem 1.5rem 5rem;
   position: relative;
   text-align: center;
   border-bottom: 4px solid #000000;
 }
 
 .visibility-overlay {
-  max-width: 900px;
+  max-width: 920px;
   margin: 0 auto;
   background-color: #1b264d;
   border: 3px solid #000000;
-  border-radius: 16px;
-  box-shadow: 10px 10px 0 #ff6600;
-  padding: 3rem 2.5rem;
+  border-radius: 14px;
+  box-shadow: 10px 10px 0 #000000;
+  padding: 4rem 2.5rem 3rem;
   position: relative;
   z-index: 2;
   overflow: hidden;
 }
 
-/* 4-Color Broadcast Signal Bar inside Hero Frame */
+/* 4-Color Broadcast Signal Stripe across the card header */
 .visibility-overlay::before {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 8px;
+  height: 16px;
   background: linear-gradient(
     90deg,
     #ff6600 0% 25%,
@@ -39,7 +45,7 @@
     #148888 50% 75%,
     #d6d4a0 75% 100%
   );
-  border-bottom: 2px solid #000000;
+  border-bottom: 3px solid #000000;
 }
 
 /* Eyebrow Badge (#000000 on #d6d4a0 = 13.78:1 AAA) */
@@ -47,30 +53,32 @@
   display: inline-block;
   background-color: #d6d4a0;
   color: #000000;
-  border: 2px solid #000000;
+  border: 3px solid #000000;
   box-shadow: 3px 3px 0 #ff6600;
   padding: 0.4rem 1.1rem;
   border-radius: 999px;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  margin-bottom: 1.25rem;
+  letter-spacing: 0.07em;
+  margin-bottom: 1.4rem;
 }
 
 /* Main Hero Headline (#d6d4a0 on #1b264d = 9.63:1 AAA) */
 #intro h1 {
-  font-family: var(--font-display, 'Gambarino', Georgia, serif);
-  font-size: clamp(2.5rem, 5vw + 1rem, 4.1rem);
-  font-weight: 400;
+  font-family: var(--font-sans, 'Work Sans', sans-serif);
+  font-size: clamp(2.3rem, 5.6vw, 4rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
   color: #d6d4a0;
-  margin: 0 0 1.25rem;
-  line-height: 1.08;
+  margin: 0 0 1.4rem;
+  line-height: 1.04;
 }
 
 /* Hero Body Copy (#ffffff on #1b264d = 14.67:1 AAA) */
 #intro p {
-  font-size: 1.12rem;
+  font-size: 1.1rem;
   margin: 0 auto 1.15rem;
   max-width: 740px;
   line-height: 1.7;
@@ -80,10 +88,12 @@
 /* Tagline Callout (#d6d4a0 on #1b264d = 9.63:1 AAA) */
 #intro .hero-tagline {
   font-family: var(--font-display, 'Gambarino', Georgia, serif);
-  font-size: 1.45rem;
+  font-size: 1.5rem;
   color: #d6d4a0;
-  margin-top: 1.5rem;
+  margin-top: 1.75rem;
   margin-bottom: 1.85rem;
+  padding-top: 1.5rem;
+  border-top: 2px dashed #d6d4a0;
 }
 
 .hero-actions {
@@ -92,76 +102,118 @@
   align-items: center;
   gap: 1.15rem;
   flex-wrap: wrap;
-  margin-top: 1.75rem;
+  margin-top: 1.5rem;
 }
 
-/* Primary Hero CTA (#000000 on #ff6600 = 7.15:1 AAA) */
-#intro .btn {
-  display: inline-block;
-  background-color: #ff6600;
-  color: #000000;
-  border: 2px solid #000000;
-  padding: 0.85rem 1.9rem;
-  border-radius: 999px;
-  font-weight: 800;
-  font-size: 1rem;
+/* Shared tactile buttons (match .svc-btn on services.html) */
+#intro .btn,
+#intro .btn-secondary,
+#home-contact .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem 1.75rem;
+  border: 3px solid #000000;
+  border-radius: 8px;
+  box-shadow: 3px 4px 0 #000000;
+  font-family: var(--font-sans, 'Work Sans', sans-serif);
+  font-size: 0.95rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   text-decoration: none;
-  box-shadow: 5px 5px 0 #d6d4a0;
-  transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.15s ease;
+  color: #000000;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background-color 0.12s ease;
 }
 
 #intro .btn:hover,
-#intro .btn:focus {
-  background-color: #d6d4a0;
-  color: #000000;
-  transform: translate(-2px, -2px);
-  box-shadow: 7px 7px 0 #ff6600;
-}
-
-/* Secondary Hero CTA (#ffffff on #ca054d = 5.77:1 AA) */
-#intro .btn-secondary {
-  display: inline-block;
-  background-color: #ca054d;
-  color: #ffffff;
-  border: 2px solid #000000;
-  padding: 0.85rem 1.85rem;
-  border-radius: 999px;
-  font-weight: 800;
-  font-size: 1rem;
-  text-decoration: none;
-  box-shadow: 5px 5px 0 #000000;
-  transition: background-color 0.2s ease, color 0.2s ease, transform 0.15s ease, box-shadow 0.15s ease;
-}
-
+#intro .btn:focus-visible,
 #intro .btn-secondary:hover,
-#intro .btn-secondary:focus {
-  background-color: #ffffff;
-  color: #000000;
-  transform: translate(-2px, -2px);
-  box-shadow: 7px 7px 0 #148888;
+#intro .btn-secondary:focus-visible,
+#home-contact .btn:hover,
+#home-contact .btn:focus-visible {
+  transform: translate(-1px, -2px);
+  box-shadow: 5px 6px 0 #000000;
 }
 
-/* === Services Preview Section (#d6d4a0 Warm Vintage Cream Canvas) === */
+#intro .btn:active,
+#intro .btn-secondary:active,
+#home-contact .btn:active {
+  transform: translate(2px, 3px);
+  box-shadow: 1px 1px 0 #000000;
+}
+
+#intro .btn:focus-visible,
+#intro .btn-secondary:focus-visible,
+#home-contact .btn:focus-visible {
+  outline: 3px dashed #ff6600;
+  outline-offset: 3px;
+}
+
+/* Primary (#000000 on #ff6600 = 7.15:1 AAA) */
+#intro .btn,
+#home-contact .btn {
+  background-color: #ff6600;
+}
+
+#intro .btn:hover,
+#home-contact .btn:hover {
+  background-color: #ff8433;
+}
+
+/* Secondary (#000000 on #f4f1d6) */
+#intro .btn-secondary {
+  background-color: #f4f1d6;
+}
+
+#intro .btn-secondary:hover {
+  background-color: #ffffff;
+}
+
+/* === Services Preview Section (light cream dot canvas, navy cards) === */
 #product-preview {
-  background-color: #d6d4a0;
-  padding: 4.5rem 2rem 5rem;
+  position: relative;
+  background-color: #f4f1d6;
+  background-image: radial-gradient(rgba(27, 38, 77, 0.22) 1.3px, transparent 1.6px);
+  background-size: 16px 16px;
+  padding: 5.5rem 1.5rem 5.25rem;
   text-align: center;
   border-bottom: 4px solid #000000;
 }
 
-/* Section Heading (#1b264d on #d6d4a0 = 9.63:1 AAA) */
-#product-preview h2 {
-  font-family: var(--font-display, 'Gambarino', Georgia, serif);
-  font-size: clamp(2rem, 3.2vw + 0.8rem, 2.85rem);
-  color: #1b264d;
-  margin-bottom: 0.65rem;
-  margin-top: 0;
+/* Full-bleed broadcast test stripe at the top of the section */
+#product-preview::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 18px;
+  background: linear-gradient(
+    90deg,
+    #ff6600 0% 25%,
+    #ca054d 25% 50%,
+    #148888 50% 75%,
+    #d6d4a0 75% 100%
+  );
+  border-bottom: 3px solid #000000;
 }
 
-/* Section Lead (#000000 on #d6d4a0 = 13.78:1 AAA) */
+/* Section Heading (#1b264d on #f4f1d6 = 12.4:1 AAA) */
+#product-preview h2 {
+  font-family: var(--font-sans, 'Work Sans', sans-serif);
+  font-size: clamp(1.7rem, 3.4vw, 2.6rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  color: #1b264d;
+  margin: 0 0 0.65rem;
+}
+
+/* Section Lead (#000000 on #f4f1d6 = 18:1 AAA) */
 #product-preview .section-lead {
   max-width: 680px;
-  margin: 0 auto 2.75rem;
+  margin: 0 auto 3rem;
   color: #000000;
   font-weight: 600;
   font-size: 1.1rem;
@@ -170,27 +222,28 @@
 .product-container {
   max-width: 1180px;
   margin: 0 auto;
+  padding-right: 8px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 2rem;
   align-items: stretch;
 }
 
-/* Featured Service Card (#ffffff Surface + Retro Offset Shadow) */
+/* Service Card: navy tactile card with signal stripe (matches .svc-card) */
 .product-image {
-  background-color: #ffffff;
-  padding: 2.25rem 1.65rem 2rem;
+  background-color: #1b264d;
+  padding: 3.1rem 1.6rem 1.75rem;
   border: 3px solid #000000;
-  border-radius: 12px;
-  box-shadow: 7px 7px 0 #1b264d;
+  border-radius: 14px;
+  box-shadow: 8px 8px 0 #000000;
   text-decoration: none;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
+  align-items: flex-start;
+  text-align: left;
   position: relative;
   overflow: hidden;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
 }
 
 .product-image::before {
@@ -199,147 +252,198 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 8px;
-  background: #ff6600;
-  border-bottom: 2px solid #000000;
-}
-
-.product-image:nth-child(2)::before {
-  background: #ca054d;
-}
-
-.product-image:nth-child(3)::before {
-  background: #148888;
-}
-
-.product-image:nth-child(4)::before {
-  background: #1b264d;
+  height: 16px;
+  background: linear-gradient(
+    90deg,
+    #ff6600 0% 25%,
+    #ca054d 25% 50%,
+    #148888 50% 75%,
+    #d6d4a0 75% 100%
+  );
+  border-bottom: 3px solid #000000;
 }
 
 .product-image:hover,
-.product-image:focus {
-  transform: translate(-3px, -3px);
-  box-shadow: 10px 10px 0 #ca054d;
+.product-image:focus-visible {
+  transform: translate(-2px, -3px);
+  box-shadow: 10px 11px 0 #000000;
+}
+
+.product-image:focus-visible {
+  outline: 3px dashed #ff6600;
+  outline-offset: 4px;
 }
 
 .product-image img {
-  width: 60px;
-  height: 60px;
+  width: 58px;
+  height: 58px;
   padding: 10px;
   background-color: #d6d4a0;
   border: 2px solid #000000;
-  border-radius: 12px;
+  border-radius: 10px;
   box-shadow: 3px 3px 0 #000000;
   margin-bottom: 1.25rem;
 }
 
-/* Card Title (#1b264d on #ffffff = 14.67:1 AAA) */
+/* Card Title (#ffffff on #1b264d = 14.67:1 AAA) */
 .product-image h3 {
-  font-family: var(--font-display, 'Gambarino', Georgia, serif);
-  font-weight: 400;
-  font-size: 1.5rem;
-  color: #1b264d;
-  margin-bottom: 0.65rem;
+  font-family: var(--font-sans, 'Work Sans', sans-serif);
+  font-weight: 900;
+  font-size: 1.35rem;
+  line-height: 1.1;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  color: #ffffff;
+  margin: 0 0 0.75rem;
 }
 
-/* Card Description (#000000 on #ffffff = 21.00:1 AAA) */
+/* Card Description (#d6d4a0 on #1b264d = 9.63:1 AAA) */
 .product-image p {
-  font-size: 0.96rem;
+  font-size: 0.97rem;
   line-height: 1.55;
-  color: #000000;
-  margin-bottom: 1.5rem;
+  color: #d6d4a0;
+  margin: 0 0 1.5rem;
   flex-grow: 1;
 }
 
-/* Card CTA Pill (#ffffff on #1b264d = 14.67:1 AAA) */
+/* Card CTA (#000000 on #ff6600 = 7.15:1 AAA) */
 .product-image .card-cta {
-  display: inline-block;
-  font-size: 0.9rem;
-  font-weight: 800;
-  background-color: #1b264d;
-  color: #ffffff;
-  border: 2px solid #000000;
-  border-radius: 999px;
-  padding: 0.45rem 1.15rem;
-  box-shadow: 3px 3px 0 #ff6600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  font-size: 0.85rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background-color: #ff6600;
+  color: #000000;
+  border: 3px solid #000000;
+  border-radius: 8px;
+  padding: 0.7rem 1rem;
+  box-shadow: 3px 4px 0 #000000;
   margin-top: auto;
-  transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+  transition: background-color 0.12s ease, transform 0.12s ease, box-shadow 0.12s ease;
 }
 
 .product-image:hover .card-cta {
-  background-color: #ff6600;
-  color: #000000; /* 7.15:1 on #ff6600 (AAA) */
-  box-shadow: 3px 3px 0 #1b264d;
+  background-color: #ff8433;
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 5px 0 #000000;
 }
 
-/* === Bottom Contact CTA Section (#1b264d Navy Surface) === */
+/* === Bottom Contact CTA Section (cream canvas, navy terminal-style card) === */
 #home-contact {
-  padding: 4.5rem 2rem;
+  padding: 5rem 1.5rem 5.5rem;
   text-align: center;
+  background-color: #d6d4a0;
+  background-image: radial-gradient(rgba(27, 38, 77, 0.3) 1.3px, transparent 1.6px);
+  background-size: 16px 16px;
+  border-bottom: 4px solid #000000;
+}
+
+.contact-window {
+  position: relative;
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 3.5rem 2rem 2.75rem;
   background-color: #1b264d;
-  color: #ffffff;
+  border: 3px solid #000000;
+  border-radius: 14px;
+  box-shadow: 8px 8px 0 #000000;
+  overflow: hidden;
+}
+
+.contact-window::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 16px;
+  background: linear-gradient(
+    90deg,
+    #ff6600 0% 25%,
+    #ca054d 25% 50%,
+    #148888 50% 75%,
+    #d6d4a0 75% 100%
+  );
+  border-bottom: 3px solid #000000;
 }
 
 #home-contact h2 {
-  font-family: var(--font-display, 'Gambarino', Georgia, serif);
-  font-size: clamp(1.9rem, 2.8vw + 0.8rem, 2.6rem);
+  font-family: var(--font-sans, 'Work Sans', sans-serif);
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
   color: #d6d4a0; /* 9.63:1 on #1b264d (AAA) */
-  margin-bottom: 0.85rem;
+  margin: 0 0 0.85rem;
 }
 
 #home-contact p {
   color: #ffffff; /* 14.67:1 on #1b264d (AAA) */
-  font-size: 1.12rem;
+  font-size: 1.1rem;
   max-width: 620px;
-  margin: 0 auto 1.5rem;
+  margin: 0 auto 1.6rem;
 }
 
 #home-contact p a {
-  color: #d6d4a0; /* 9.63:1 on #1b264d (AAA) */
+  color: #d6d4a0;
   text-decoration: underline;
+  text-underline-offset: 3px;
   font-weight: 800;
 }
 
 #home-contact p a:hover,
-#home-contact p a:focus {
-  color: #ff6600; /* 5.00:1 on #1b264d (AA) */
-}
-
-/* Contact Button (#000000 on #ff6600 = 7.15:1 AAA) */
-#home-contact .btn {
-  display: inline-block;
-  margin-top: 0.5rem;
-  padding: 0.85rem 2.1rem;
-  background-color: #ff6600;
-  color: #000000;
-  border: 2px solid #000000;
-  border-radius: 999px;
-  font-weight: 800;
-  font-size: 1.02rem;
-  text-decoration: none;
-  box-shadow: 5px 5px 0 #d6d4a0;
-  transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.15s ease;
-}
-
-#home-contact .btn:hover,
-#home-contact .btn:focus {
-  background-color: #d6d4a0;
-  color: #000000;
-  transform: translate(-2px, -2px);
-  box-shadow: 7px 7px 0 #ca054d;
+#home-contact p a:focus-visible {
+  color: #ff6600; /* 4.99:1 on #1b264d (AA) */
 }
 
 @media (max-width: 640px) {
   #intro {
-    padding: 2.5rem 1rem 3rem;
+    padding: 2.25rem 1rem 3rem;
   }
 
   .visibility-overlay {
-    padding: 2.25rem 1.25rem;
-    box-shadow: 6px 6px 0 #ff6600;
+    padding: 3.25rem 1.25rem 2.25rem;
+    box-shadow: 6px 6px 0 #000000;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
   }
 
   #product-preview {
-    padding: 3.25rem 1.25rem;
+    padding: 4.25rem 1rem 3.5rem;
+  }
+
+  .product-container {
+    gap: 1.6rem;
+    padding-right: 6px;
+  }
+
+  #home-contact {
+    padding: 3rem 1rem 3.5rem;
+  }
+
+  .contact-window {
+    padding: 3.25rem 1.25rem 2rem;
+    box-shadow: 6px 6px 0 #000000;
+  }
+
+  #home-contact .btn {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .product-image,
+  .product-image .card-cta,
+  #intro .btn,
+  #intro .btn-secondary,
+  #home-contact .btn {
+    transition: none;
   }
 }

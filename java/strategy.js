@@ -409,7 +409,7 @@
       '- NEVER suggest generic margin-killing discounts, BOGO deals, or free inventory giveaways.',
       '- NEVER use corporate marketing jargon (e.g. "magnetic pull", "synergy", "must-visit hub", "elevate your brand", "omnichannel", "deep-dive").',
       '- NEVER summarize or parrot the user prompt back to them in the output.',
-      '- NEVER use em dashes or en dashes anywhere. Use commas, periods, or clean simple hyphens " - ".',
+      '- NEVER use em dashes or en dashes anywhere. Use commas, periods, or clean simple hyphens " - "., or bulleted or numbered lists.',
       '',
       'OUTPUT SECTION CONTEXT:',
       '1. The Reality Check: A frank, validating diagnosis of the misconception or operational bottleneck keeping them stuck, challenging standard marketing assumptions.',
