@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Strategy Blueprint Generator | TV Media - Boxborough, MA</title>
+  <meta name="description" content="Run your real-world business bottleneck through the TV Media framework. Generate a custom, pragmatic 4-part digital and operational strategy snapshot in seconds." />
+  <link rel="stylesheet" href="css/fonts.css" />
+  <link rel="stylesheet" href="css/header_nav.css" />
+  <link rel="stylesheet" href="css/strategy.css" />
+</head>
+<body>
+  <!-- Global Header -->
+  <header class="site-header">
+    <div class="logo">
+      <a href="index.html" aria-label="TV Media Home">
+        <img src="images/logo.png" alt="TV Media - Communications Agency" />
+      </a>
+    </div>
+
+    <button type="button" class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+
+    <nav aria-label="Primary Navigation">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="work.html">Work</a></li>
+        <li><a href="strategy.html" class="active">Strategy Generator</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="strategy-page">
+    <!-- Hero Intro Banner -->
+    <section class="strategy-hero" aria-labelledby="strategy-hero-title">
+      <div class="strategy-hero-inner">
+        <div class="hero-tag-row">
+          <span class="hero-single-pill">TV MEDIA // STRATEGY LAB</span>
+        </div>
+        <h1 id="strategy-hero-title">Strategy Blueprint Generator</h1>
+        <p class="strategy-hero-lead">
+          No corporate buzzwords or generic "post 3 times a week" filler. Tell us what your business actually does and where things are getting stuck, and our practitioner framework will map out a grounded 4-part operational and media direction.
+        </p>
+      </div>
+    </section>
+
+    <!-- Interactive Input Console -->
+    <section class="blueprint-workspace" aria-label="Strategy Generator Controls">
+      <div class="console-card">
+        <div class="console-header">
+          <span class="teal-tag">STEP 01 // THE DIAGNOSTIC INPUT</span>
+          <h2>Tell Us Where Things Are Stuck</h2>
+          <p>Vent honestly about your day-to-day bottleneck, or test a realistic scenario below with one click.</p>
+        </div>
+
+        <form id="strategy-form" novalidate>
+          <!-- Quick Starter Scenario Pills -->
+          <div class="starter-pills-block">
+            <span class="field-sublabel">Quick Starter Scenarios (One-Click Test):</span>
+            <div class="starter-pills" role="group" aria-label="Quick scenario presets">
+              <button type="button" class="starter-pill" data-scenario="cafe">☕ Local Cafe</button>
+              <button type="button" class="starter-pill" data-scenario="b2b">🏭 B2B Shop</button>
+              <button type="button" class="starter-pill" data-scenario="auto">🔧 Auto Repair Bays</button>
+              <button type="button" class="starter-pill" data-scenario="nonprofit">🤝 Non-Profit</button>
+              <button type="button" class="starter-pill" data-scenario="tabletop">🎲 Tabletop Lounge</button>
+              <button type="button" id="random-scenario-btn" class="starter-pill starter-pill-random" data-scenario="random">⚡ Random Scenario</button>
+            </div>
+          </div>
+
+          <!-- Open Textarea -->
+          <div class="form-group">
+            <label for="bottleneck-input" class="primary-label">
+              What does your business do, and what is the real bottleneck keeping you stuck right now?
+            </label>
+            <textarea
+              id="bottleneck-input"
+              name="bottleneck"
+              rows="4"
+              required
+              placeholder="Example: We run a 4-bay independent auto repair shop near Route 2. Our bays are clogged with low-margin oil changes and $35 state inspections, while high-margin diagnostics and brake jobs go to the dealership down the road..."
+            ></textarea>
+            <div class="textarea-footer">
+              <span id="scenario-status" class="scenario-status">Ready for your real-world bottleneck.</span>
+              <button type="button" id="clear-input-btn" class="text-action-btn">Clear Text</button>
+            </div>
+          </div>
+
+          <!-- Context Selectors Grid -->
+          <div class="context-selectors-grid">
+            <!-- Selector 1: Team Bandwidth -->
+            <div class="selector-group" role="group" aria-labelledby="legend-bandwidth">
+              <div class="selector-group-header" id="legend-bandwidth">
+                <span class="teal-tag">CONTEXT 01</span>
+                <span class="selector-group-title">Team Bandwidth</span>
+              </div>
+              <div class="selector-options" data-selector="bandwidth">
+                <label class="selector-option active">
+                  <input type="radio" name="bandwidth" value="Solo Owner" checked />
+                  <span class="option-title">Solo Owner</span>
+                  <span class="option-desc">Wearing every hat between customers</span>
+                </label>
+                <label class="selector-option">
+                  <input type="radio" name="bandwidth" value="Small Team" />
+                  <span class="option-title">Small Team</span>
+                  <span class="option-desc">2 to 5 people juggling daily ops</span>
+                </label>
+                <label class="selector-option">
+                  <input type="radio" name="bandwidth" value="Established Crew" />
+                  <span class="option-title">Established Crew</span>
+                  <span class="option-desc">Dedicated staff ready to run a system</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Selector 2: Investment Appetite -->
+            <div class="selector-group" role="group" aria-labelledby="legend-investment">
+              <div class="selector-group-header" id="legend-investment">
+                <span class="teal-tag">CONTEXT 02</span>
+                <span class="selector-group-title">Investment Appetite</span>
+              </div>
+              <div class="selector-options" data-selector="investment">
+                <label class="selector-option">
+                  <input type="radio" name="investment" value="Hard Mode ($0 Budget)" />
+                  <span class="option-title">Hard Mode ($0 Budget)</span>
+                  <span class="option-desc">Sweat equity and zero-cost fixes only</span>
+                </label>
+                <label class="selector-option active">
+                  <input type="radio" name="investment" value="Scrappy ($100 - $800)" checked />
+                  <span class="option-title">Scrappy ($100 - $800)</span>
+                  <span class="option-desc">High-leverage printables, tools, or setup</span>
+                </label>
+                <label class="selector-option">
+                  <input type="radio" name="investment" value="Focused ($800 - $2,500)" />
+                  <span class="option-title">Focused ($800 - $2,500)</span>
+                  <span class="option-desc">Cohesive campaign or core asset buildout</span>
+                </label>
+                <label class="selector-option">
+                  <input type="radio" name="investment" value="Strategic ($2,500+)" />
+                  <span class="option-title">Strategic ($2,500+)</span>
+                  <span class="option-desc">Full multi-channel system and execution</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Selector 3: Owner Mindset (Spans full width on desktop with 3-col grid) -->
+            <div class="selector-group selector-group-wide" role="group" aria-labelledby="legend-mindset">
+              <div class="selector-group-header" id="legend-mindset">
+                <span class="teal-tag">CONTEXT 03</span>
+                <span class="selector-group-title">Owner Mindset</span>
+              </div>
+              <div class="selector-options selector-options-mindset" data-selector="mindset">
+                <label class="selector-option active">
+                  <input type="radio" name="mindset" value="Pragmatic & Direct (Cut the fluff, show me what moves the needle)" checked />
+                  <span class="option-title">Pragmatic &amp; Direct</span>
+                  <span class="option-desc">Cut the fluff, show me what works</span>
+                </label>
+                <label class="selector-option">
+                  <input type="radio" name="mindset" value="Stretched Thin / High Traffic, Zero Margin" />
+                  <span class="option-title">Stretched Thin</span>
+                  <span class="option-desc">High traffic, zero margin</span>
+                </label>
+                <label class="selector-option">
+                  <input type="radio" name="mindset" value="Word-of-Mouth Plateau (Great regulars, invisible to new residents)" />
+                  <span class="option-title">Word-of-Mouth Plateau</span>
+                  <span class="option-desc">Great regulars, invisible to new residents</span>
+                </label>
+                <label class="selector-option">
+                  <input type="radio" name="mindset" value="Burned Out on Social (Posting into the void with zero ROI)" />
+                  <span class="option-title">Burned Out on Social</span>
+                  <span class="option-desc">Tired of posting with zero foot traffic</span>
+                </label>
+                <label class="selector-option">
+                  <input type="radio" name="mindset" value="Overwhelmed by Ad Jargon" />
+                  <span class="option-title">Overwhelmed by Ad Jargon</span>
+                  <span class="option-desc">Tired of vanity metrics and agency speak</span>
+                </label>
+                <label class="selector-option">
+                  <input type="radio" name="mindset" value="Ready to Experiment (Open to bold, unconventional local plays)" />
+                  <span class="option-title">Ready to Experiment</span>
+                  <span class="option-desc">Open to unconventional local plays</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Generate Submit Bar -->
+          <div class="submit-bar">
+            <button type="submit" id="generate-btn" class="btn-generate">
+              <span class="btn-generate-text">Build My Strategy Blueprint -></span>
+            </button>
+            <p id="form-error" class="form-error" role="alert" hidden></p>
+          </div>
+        </form>
+      </div>
+
+      <!-- Loading State -->
+      <div id="loading-panel" class="loading-panel" aria-live="polite" hidden>
+        <div class="loading-signal-bars"></div>
+        <div class="loading-inner">
+          <span class="crimson-tag">TV MEDIA // STRATEGY LAB</span>
+          <h3>Running Your Bottleneck Through the TV Media Framework...</h3>
+          <p>Validating your current footing and mapping out high-level operational shifts, media direction, and tangible assets.</p>
+        </div>
+      </div>
+
+      <!-- Dynamic Output Container -->
+      <section id="blueprint-results" class="blueprint-results" aria-live="polite" hidden>
+        <!-- Results Header Summary Bar -->
+        <div class="results-banner">
+          <div class="results-banner-top">
+            <span class="teal-tag">CUSTOM STRATEGY SNAPSHOT</span>
+            <div id="results-context-badges" class="results-context-badges"></div>
+          </div>
+          <h2 id="results-headline">Your TV Media Strategy Blueprint</h2>
+          <p id="results-inquiry-echo" class="results-inquiry-echo"></p>
+        </div>
+
+        <!-- 1. The Reality Check -->
+        <article class="blueprint-card card-reality" aria-labelledby="section-reality-title">
+          <div class="card-badge-row">
+            <span class="crimson-tag">SECTION 01 // THE REALITY CHECK</span>
+            <span class="teal-tag">PRACTITIONER PERSPECTIVE</span>
+          </div>
+          <h3 id="section-reality-title">The Reality Check</h3>
+          <p id="reality-headline" class="reality-lead"></p>
+          <p id="reality-body" class="card-body-text"></p>
+        </article>
+
+        <!-- 2. Making Your Media Matter -->
+        <article class="blueprint-card card-media-matter" aria-labelledby="section-media-title">
+          <div class="card-badge-row">
+            <span class="teal-tag">SECTION 02 // MAKING YOUR MEDIA MATTER</span>
+            <span class="crimson-tag">VALUE BEFORE TRANSACTION</span>
+          </div>
+          <h3 id="section-media-title">Making Your Media Matter</h3>
+          <p id="media-philosophy" class="card-body-text"></p>
+          <div class="social-examples-box">
+            <h4>Concrete Content &amp; Media Play</h4>
+            <div id="media-examples-grid" class="media-examples-grid"></div>
+          </div>
+        </article>
+
+        <!-- 3. The Three Pillars -->
+        <section class="pillars-wrapper" aria-labelledby="section-pillars-title">
+          <div class="section-heading-box">
+            <span class="teal-tag">SECTION 03 // THE THREE PILLARS</span>
+            <h3 id="section-pillars-title">High-Level Operational &amp; Digital Direction</h3>
+          </div>
+          <div class="pillars-grid">
+            <article class="blueprint-card pillar-card">
+              <span class="crimson-tag">PILLAR 01</span>
+              <h4>Acquisition AND Loyalty</h4>
+              <p id="pillar-acquisition" class="card-body-text"></p>
+            </article>
+            <article class="blueprint-card pillar-card">
+              <span class="teal-tag">PILLAR 02</span>
+              <h4>Operational Reality &amp; Intuitive Flow</h4>
+              <p id="pillar-operations" class="card-body-text"></p>
+            </article>
+            <article class="blueprint-card pillar-card">
+              <span class="crimson-tag">PILLAR 03</span>
+              <h4>Platform Native Utility</h4>
+              <p id="pillar-platform" class="card-body-text"></p>
+            </article>
+          </div>
+        </section>
+
+        <!-- 4. What We Could Actually Build -->
+        <section class="deliverables-wrapper" aria-labelledby="section-deliverables-title">
+          <div class="section-heading-box">
+            <span class="crimson-tag">SECTION 04 // TANGIBLE EXECUTION</span>
+            <h3 id="section-deliverables-title">What We Could Actually Build</h3>
+            <p class="section-subnote">Three distinct operational artifacts dynamically designed for your bottleneck, bandwidth, and budget.</p>
+          </div>
+          <div id="deliverables-grid" class="deliverables-grid"></div>
+        </section>
+
+        <!-- 5. Disclaimer & Next Step -->
+        <aside class="blueprint-card disclaimer-card" aria-labelledby="section-next-title">
+          <div class="card-badge-row">
+            <span class="teal-tag">SECTION 05 // NEXT STEP</span>
+          </div>
+          <h3 id="section-next-title">Where We Go From Here</h3>
+          <p id="disclaimer-note" class="disclaimer-text">
+            This blueprint is an initial diagnostic sketch built to surface high-leverage directions. Turning these ideas into working floor systems happens when we look at your actual workflow, margins, and goals together.
+          </p>
+
+          <div class="disclaimer-actions">
+            <a href="contact.html" class="btn-book-review">Book a 15-Minute Strategy Review -></a>
+            <div class="email-trigger-group">
+              <button type="button" id="email-blueprint-btn" class="btn-email-blueprint" aria-expanded="false" aria-controls="email-capture-panel">
+                Email Me This Blueprint
+              </button>
+              <span class="email-trigger-subtext">Get the human touch and discuss your breakdown</span>
+            </div>
+          </div>
+
+          <p class="ai-boilerplate-notice">This application is powered by AI and can make mistakes.</p>
+
+          <!-- Interactive Lead-Capture Drawer -->
+          <div id="email-capture-panel" class="email-capture-panel" hidden>
+            <div class="email-capture-header">
+              <h4>Get the Human Touch and Discuss Your Breakdown</h4>
+              <p>Enter your email below to send a copy of this blueprint to your inbox and start a direct, no-pressure thread with Tyler.</p>
+            </div>
+            <div class="email-capture-fields">
+              <div class="email-field-col">
+                <label for="lead-name-input">Your Name or Business (Optional)</label>
+                <input type="text" id="lead-name-input" placeholder="e.g. Alex / Route 111 Auto" />
+              </div>
+              <div class="email-field-col">
+                <label for="lead-email-input">Your Email Address *</label>
+                <input type="email" id="lead-email-input" placeholder="you@yourbusiness.com" required />
+              </div>
+            </div>
+            <div class="email-capture-actions">
+              <button type="button" id="send-blueprint-email-btn" class="btn-send-blueprint">
+                Send Blueprint &amp; Open Email ->
+              </button>
+              <button type="button" id="cancel-email-btn" class="btn-cancel-email">
+                Close
+              </button>
+            </div>
+            <p id="email-feedback" class="copy-feedback" aria-live="polite" hidden></p>
+          </div>
+        </aside>
+      </section>
+    </section>
+  </main>
+
+  <!-- Global Footer -->
+  <footer id="site-footer">
+    <div class="footer-container">
+      <div class="footer-branding">
+        <img src="images/logo.png" alt="TV Media Logo" />
+        <p>Creating purpose-driven digital media that connects local brands with their communities.</p>
+        <p class="footer-location">📍 Boxborough, MA · Serving MetroWest &amp; Central MA</p>
+      </div>
+      <div class="footer-links">
+        <h4>Explore</h4>
+        <ul class="footer-nav-horizontal">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="work.html">Work</a></li>
+          <li><a href="strategy.html">Strategy Generator</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h4>Connect</h4>
+        <p>📱 <a href="tel:+19785013526">978-501-3526</a></p>
+        <p>📧 <a href="mailto:tvmediama@gmail.com">tvmediama@gmail.com</a></p>
+        <div class="footer-social-links">
+          <a href="https://www.facebook.com/tvmediama" target="_blank" rel="noopener" aria-label="Follow TV Media on Facebook">
+            <img src="images/icons/social_icons/facebook.svg" alt="Facebook" class="footer-social-icon" />
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 TV Media · Boxborough, Massachusetts. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="java/script.js"></script>
+  <script src="java/config.local.js" onerror="window.TVMEDIA_CONFIG = window.TVMEDIA_CONFIG || {};"></script>
+  <script src="java/strategy.js"></script>
+</body>
+</html>

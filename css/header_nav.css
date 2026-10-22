@@ -46,7 +46,8 @@ header.site-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.75rem 2.25rem;
+  gap: 1.5rem;
+  padding: 0.55rem clamp(1.25rem, 4vw, 3rem);
   background-color: #ffffff;
   position: sticky;
   top: 0;
@@ -90,58 +91,43 @@ header.example-header::before {
   display: none;
 }
 
-/* ===== Brand Logo Lockup ===== */
+/* ===== Standalone Retro CRT Television Brand Badge ===== */
+.logo {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
 .logo a {
   display: inline-flex;
   align-items: center;
-  gap: 0.85rem;
   text-decoration: none;
-  padding-top: 2px;
+  line-height: 0;
+  padding: 2px 0;
+  border-radius: 10px;
+}
+
+.logo a:focus-visible {
+  outline: 3px solid #ff6600;
+  outline-offset: 4px;
 }
 
 .logo img {
-  height: 58px;
+  height: 70px;
   width: auto;
-  border-radius: 10px;
-  border: 2px solid #000000;
-  box-shadow: 3px 3px 0 #ff6600;
   display: block;
-  background: #ffffff;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  filter: drop-shadow(2px 3px 0 rgba(27, 38, 77, 0.22));
+  transition: transform 0.2s ease, filter 0.2s ease;
 }
 
-.logo a:hover img {
-  transform: translate(-2px, -2px);
-  box-shadow: 5px 5px 0 #ca054d;
-}
-
-.logo-text {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.12;
-}
-
-.logo-brand {
-  font-family: var(--font-display, 'Gambarino', Georgia, serif);
-  font-size: 1.45rem;
-  color: #1b264d; /* 14.67:1 on #ffffff (AAA) */
-  letter-spacing: -0.01em;
-}
-
-.logo-location {
-  font-family: var(--font-sans, 'Work Sans', sans-serif);
-  font-size: 0.74rem;
-  font-weight: 800;
-  color: #000000; /* 13.78:1 on #d6d4a0 (AAA) */
-  background-color: #d6d4a0;
-  border: 1.5px solid #000000;
-  border-radius: 4px;
-  padding: 0.12rem 0.45rem;
-  margin-top: 0.2rem;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  display: inline-block;
-  align-self: flex-start;
+.logo a:hover img,
+.logo a:focus-visible img {
+  transform: translate(-2px, -2px) scale(1.03);
+  filter: drop-shadow(4px 4px 0 #ff6600);
 }
 
 /* ===== Global Navigation Links ===== */
@@ -153,6 +139,7 @@ header.site-header > nav ul {
   gap: 0.65rem;
   margin: 0;
   padding: 0;
+  flex-wrap: nowrap;
 }
 
 body > header:first-of-type > nav ul li,
@@ -169,9 +156,10 @@ header.site-header > nav ul li a {
   border: 2px solid transparent;
   font-weight: 700;
   font-size: 0.96rem;
-  padding: 0.5rem 1.1rem;
+  padding: 0.52rem 1.05rem;
   border-radius: 8px;
   display: inline-block;
+  white-space: nowrap;
   transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.15s ease, box-shadow 0.15s ease;
 }
 
@@ -208,13 +196,14 @@ header.site-header > nav ul li a.active:hover {
   background: #d6d4a0;
   border: 2px solid #000000;
   border-radius: 8px;
-  padding: 0.4rem 0.7rem;
+  padding: 0.42rem 0.72rem;
   font-size: 1.45rem;
   line-height: 1;
   color: #000000; /* 13.78:1 on #d6d4a0 (AAA) */
   box-shadow: 3px 3px 0 #000000;
   cursor: pointer;
   z-index: 1100;
+  flex-shrink: 0;
   transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.15s ease;
 }
 
@@ -268,12 +257,12 @@ header.site-header > nav ul li a.active:hover {
 }
 
 .footer-branding img {
-  max-width: 68px;
+  max-width: 108px;
   height: auto;
-  border-radius: 10px;
-  border: 2px solid #d6d4a0;
-  background: #ffffff;
-  margin-bottom: 0.85rem;
+  border-radius: 0;
+  border: none;
+  background: transparent;
+  margin-bottom: 0.75rem;
   display: block;
 }
 
@@ -405,15 +394,30 @@ header.site-header > nav ul li a.active:hover {
   margin: 0;
 }
 
+/* ===== Intermediate Tablet Breakpoint ===== */
+@media (max-width: 920px) {
+  body > header:first-of-type > nav ul,
+  header.site-header > nav ul {
+    gap: 0.4rem;
+  }
+
+  body > header:first-of-type > nav ul li a,
+  header.site-header > nav ul li a {
+    padding: 0.45rem 0.75rem;
+    font-size: 0.9rem;
+  }
+}
+
 /* ===== Responsive Mobile Navigation ===== */
 @media (max-width: 768px) {
   body > header:first-of-type,
   header.site-header {
-    padding: 0.7rem 1.15rem;
+    padding: 0.5rem 1.15rem;
+    gap: 1rem;
   }
 
   .logo img {
-    height: 50px;
+    height: 54px;
   }
 
   body > header:first-of-type > nav,

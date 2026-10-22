@@ -1,4 +1,4 @@
-/* ===== Shared Subpage Architecture — Retro-Digital Studio Design (css/subpage.css) ===== */
+/* ===== Shared Subpage Architecture - Retro-Digital Studio Design (css/subpage.css) ===== */
 
 /* Deep Broadcast Navy Canvas with subtle retro dot-grid texture */
 body {
@@ -198,7 +198,7 @@ main {
   font-size: 1.5rem;
 }
 
-/* ===== Pricing Tier Grids (CSS Grid — Zero Collapse) ===== */
+/* ===== Pricing Tier Grids (CSS Grid - Zero Collapse) ===== */
 .tier-container,
 .tier-section {
   display: grid;
@@ -208,7 +208,7 @@ main {
   margin-bottom: 3rem;
 }
 
-/* Pricing Card — Crisp White Surface with Retro Offset Shadow */
+/* Pricing Card - Crisp White Surface with Retro Offset Shadow */
 .tier,
 .tier-card {
   background: #ffffff;
@@ -281,7 +281,7 @@ main {
   line-height: 1.2;
 }
 
-/* Retro Price Tag Badge (#000000 on #ff6600 = 7.15:1 AAA — fixes low-contrast orange text on white!) */
+/* Retro Price Tag Badge (#000000 on #ff6600 = 7.15:1 AAA - fixes low-contrast orange text on white!) */
 .tier-price {
   display: inline-block;
   align-self: flex-start;

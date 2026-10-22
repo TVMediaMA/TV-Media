@@ -1,4 +1,4 @@
-/* ===== About Page Styles — Retro-Digital Studio Design (css/about.css) ===== */
+/* ===== About Page Styles - Retro-Digital Studio & Indie Zine Spread (css/about.css) ===== */
 
 body {
   background-color: #1b264d;
@@ -9,7 +9,7 @@ img {
   display: block;
 }
 
-/* ===== About Hero Section (#1b264d Broadcast Navy) ===== */
+/* ===== Chapter 0: Studio Intro Hero (#1b264d Broadcast Navy) ===== */
 #about {
   position: relative;
   background-color: #1b264d;
@@ -22,7 +22,7 @@ img {
 }
 
 .about-content {
-  max-width: 860px;
+  max-width: 880px;
   margin: 0 auto;
   background-color: #1b264d;
   border: 3px solid #000000;
@@ -90,7 +90,15 @@ img {
   margin-bottom: 2rem;
 }
 
-/* CTA Button (#000000 on #ff6600 = 7.15:1 AAA) */
+.about-cta-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* CTA Buttons */
 .about-content .btn {
   display: inline-block;
   padding: 0.85rem 2.1rem;
@@ -100,6 +108,7 @@ img {
   border: 2px solid #000000;
   border-radius: 999px;
   box-shadow: 5px 5px 0 #d6d4a0;
+  text-decoration: none;
   transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.15s ease;
   cursor: pointer;
 }
@@ -112,44 +121,373 @@ img {
   box-shadow: 7px 7px 0 #ca054d;
 }
 
-/* ===== Team & Local Roots Section (#d6d4a0 Warm Vintage Cream) ===== */
+.about-content .btn.btn-secondary {
+  background-color: #d6d4a0;
+  color: #000000;
+  box-shadow: 5px 5px 0 #148888;
+}
+
+.about-content .btn.btn-secondary:hover,
+.about-content .btn.btn-secondary:focus {
+  background-color: #ffffff;
+  color: #000000;
+  box-shadow: 7px 7px 0 #ff6600;
+}
+
+/* ===== Chapter 1: "OUR APPROACH" Two-Column Indie Zine Spread (#d6d4a0 Canvas) ===== */
+#approach {
+  background-color: #d6d4a0;
+  background-image:
+    linear-gradient(rgba(27, 38, 77, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(27, 38, 77, 0.06) 1px, transparent 1px);
+  background-size: 28px 28px;
+  padding: 4.75rem 1.5rem 5.25rem;
+  border-bottom: 4px solid #000000;
+  color: #000000;
+}
+
+.approach-container {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+/* Editorial Spread Header */
+.approach-header {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 3rem;
+  background-color: #ffffff;
+  border: 3px solid #000000;
+  border-radius: 14px;
+  padding: 1.85rem 2rem 1.65rem;
+  box-shadow: 8px 8px 0 #1b264d;
+  position: relative;
+  overflow: hidden;
+}
+
+.approach-header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background: linear-gradient(
+    90deg,
+    #ff6600 0% 25%,
+    #ca054d 25% 50%,
+    #148888 50% 75%,
+    #d6d4a0 75% 100%
+  );
+  border-bottom: 2px solid #000000;
+}
+
+.approach-kicker {
+  display: inline-block;
+  background-color: #148888;
+  color: #000000; /* 4.91:1 on #148888 (AA) */
+  border: 2px solid #000000;
+  box-shadow: 3px 3px 0 #000000;
+  border-radius: 6px;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.75rem;
+}
+
+.approach-header h2 {
+  font-family: var(--font-display, 'Gambarino', Georgia, serif);
+  font-weight: 400;
+  font-size: clamp(2.2rem, 3.8vw + 0.8rem, 3.2rem);
+  color: #1b264d; /* 14.67:1 on #ffffff (AAA) */
+  letter-spacing: 0.02em;
+  margin: 0 0 0.35rem;
+  line-height: 1.08;
+}
+
+.approach-subheader {
+  font-family: var(--font-display, 'Gambarino', Georgia, serif);
+  font-size: clamp(1.2rem, 1.5vw + 0.6rem, 1.55rem);
+  color: #ca054d; /* 5.77:1 on #ffffff (AA) */
+  margin: 0;
+}
+
+/* Two-Column Editorial Spread Layout */
+.approach-spread {
+  display: grid;
+  grid-template-columns: minmax(320px, 5fr) minmax(380px, 7fr);
+  gap: 2.5rem;
+  align-items: start;
+}
+
+/* Left Column: Framework Poster Graphic */
+.approach-poster-col {
+  position: sticky;
+  top: 6.25rem;
+}
+
+.approach-poster-frame {
+  margin: 0;
+  background-color: #1b264d;
+  border: 3px solid #000000;
+  border-radius: 14px;
+  padding: 0.85rem;
+  box-shadow: 10px 10px 0 #000000;
+}
+
+.approach-poster-frame img {
+  width: 100%;
+  height: auto;
+  border: 3px solid #000000;
+  border-radius: 8px;
+  display: block;
+}
+
+.approach-poster-caption {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  padding: 0.7rem 0.35rem 0.15rem;
+  font-family: var(--font-sans, 'Work Sans', sans-serif);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: #d6d4a0; /* 9.63:1 on #1b264d (AAA) */
+}
+
+/* Right Column: Written Framework Zine Cards */
+.approach-editorial-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.zine-card {
+  background-color: #ffffff;
+  border: 3px solid #000000;
+  border-radius: 12px;
+  padding: 1.65rem 1.75rem;
+  position: relative;
+  box-shadow: 7px 7px 0 #1b264d;
+}
+
+.zine-card-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.75rem;
+}
+
+.zine-badge {
+  display: inline-block;
+  border: 2px solid #000000;
+  box-shadow: 2px 2px 0 #000000;
+  border-radius: 5px;
+  padding: 0.2rem 0.65rem;
+  font-size: 0.75rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.badge-orange {
+  background-color: #ff6600;
+  color: #000000; /* 7.15:1 AAA */
+}
+
+.badge-teal {
+  background-color: #148888;
+  color: #000000; /* 4.91:1 AA */
+}
+
+.badge-crimson {
+  background-color: #ca054d;
+  color: #ffffff; /* 5.77:1 AA */
+}
+
+.zine-index {
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #1b264d;
+}
+
+/* Capstone Card (#1b264d Dark Navy with #ff6600 offset shadow) */
+.zine-capstone {
+  background-color: #1b264d;
+  color: #ffffff;
+  box-shadow: 8px 8px 0 #ff6600;
+}
+
+.zine-capstone .zine-index {
+  color: #d6d4a0;
+}
+
+.zine-capstone h3 {
+  font-family: var(--font-display, 'Gambarino', Georgia, serif);
+  font-size: clamp(1.55rem, 2.2vw + 0.5rem, 2rem);
+  color: #d6d4a0; /* 9.63:1 on #1b264d (AAA) */
+  margin: 0 0 0.65rem;
+  line-height: 1.18;
+}
+
+.zine-capstone p {
+  color: #ffffff; /* 14.67:1 on #1b264d (AAA) */
+  font-size: 1.02rem;
+  line-height: 1.68;
+  margin: 0;
+}
+
+/* Foundation Card (#ffffff with #148888 offset shadow) */
+.zine-foundation {
+  border-top: 8px solid #148888;
+  box-shadow: 8px 8px 0 #148888;
+}
+
+.zine-foundation h3 {
+  font-family: var(--font-display, 'Gambarino', Georgia, serif);
+  font-size: clamp(1.5rem, 2vw + 0.5rem, 1.85rem);
+  color: #1b264d; /* 14.67:1 on #ffffff (AAA) */
+  margin: 0 0 0.6rem;
+  line-height: 1.2;
+}
+
+.zine-foundation p {
+  color: #000000; /* 21.00:1 on #ffffff (AAA) */
+  font-size: 1.02rem;
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* Three Pillars Stack */
+.zine-pillars-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-top: 0.25rem;
+}
+
+.zine-pillars-divider {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  font-size: 0.84rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #1b264d;
+}
+
+.zine-pillars-divider::before,
+.zine-pillars-divider::after {
+  content: "";
+  flex: 1;
+  height: 3px;
+  background-color: #000000;
+}
+
+.zine-pillar {
+  padding: 1.45rem 1.6rem;
+}
+
+.zine-pillar h4 {
+  font-family: var(--font-display, 'Gambarino', Georgia, serif);
+  font-size: 1.45rem;
+  color: #1b264d;
+  margin: 0 0 0.5rem;
+  line-height: 1.2;
+}
+
+.zine-pillar p {
+  color: #000000;
+  font-size: 0.98rem;
+  line-height: 1.62;
+  margin: 0;
+}
+
+.pillar-crimson {
+  border-left: 9px solid #ca054d;
+  box-shadow: 6px 6px 0 #ca054d;
+}
+
+.pillar-orange {
+  border-left: 9px solid #ff6600;
+  box-shadow: 6px 6px 0 #ff6600;
+}
+
+.pillar-teal {
+  border-left: 9px solid #148888;
+  box-shadow: 6px 6px 0 #148888;
+}
+
+/* ===== Chapter 2: Meet Our Founder (#1b264d Distinct Studio Chapter) ===== */
 #team {
   position: relative;
-  padding: 4.5rem 2rem 5rem;
-  text-align: center;
-  background-color: #d6d4a0;
+  padding: 4.75rem 1.5rem 5.25rem;
+  background-color: #1b264d;
+  background-image: radial-gradient(rgba(214, 212, 160, 0.12) 1.5px, transparent 1.5px);
+  background-size: 24px 24px;
   border-bottom: 4px solid #000000;
 }
 
-/* Heading (#1b264d on #d6d4a0 = 9.63:1 AAA) */
-#team h2,
-#team h3 {
+.team-container {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.team-section-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.team-kicker {
+  display: inline-block;
+  background-color: #ca054d;
+  color: #ffffff; /* 5.77:1 on #ca054d (AA) */
+  border: 2px solid #000000;
+  box-shadow: 3px 3px 0 #000000;
+  border-radius: 6px;
+  padding: 0.25rem 0.8rem;
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.75rem;
+}
+
+/* Heading (#d6d4a0 on #1b264d = 9.63:1 AAA) */
+#team h2 {
   font-family: var(--font-display, 'Gambarino', Georgia, serif);
   font-weight: 400;
-  font-size: clamp(1.95rem, 2.8vw + 0.8rem, 2.6rem);
-  color: #1b264d;
-  margin-bottom: 2.25rem;
+  font-size: clamp(2.05rem, 3vw + 0.8rem, 2.75rem);
+  color: #d6d4a0;
+  margin: 0;
 }
 
 .team-members {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
-  gap: 2rem;
 }
 
 .team-member {
   background-color: #ffffff;
-  padding: 2.5rem 2.25rem;
-  border-radius: 14px;
-  max-width: 500px;
+  padding: 2.5rem;
+  border-radius: 16px;
+  width: 100%;
   border: 3px solid #000000;
-  box-shadow: 8px 8px 0 #1b264d;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  display: flex;
-  flex-direction: column;
+  box-shadow: 10px 10px 0 #d6d4a0;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 2.25rem;
   align-items: center;
-  text-align: center;
+  text-align: left;
   position: relative;
   overflow: hidden;
 }
@@ -161,40 +499,40 @@ img {
   left: 0;
   right: 0;
   height: 8px;
-  background: #ca054d;
+  background: linear-gradient(
+    90deg,
+    #ca054d 0% 50%,
+    #ff6600 50% 100%
+  );
   border-bottom: 2px solid #000000;
 }
 
-.team-member:hover {
-  transform: translate(-3px, -3px);
-  box-shadow: 11px 11px 0 #ff6600;
-}
-
-.team-member img {
-  border-radius: 14px;
-  margin-bottom: 1.35rem;
+.team-photo-col img {
+  border-radius: 12px;
   width: 100%;
-  max-width: 320px;
+  max-width: 280px;
   height: auto;
   aspect-ratio: 1 / 1;
   object-fit: cover;
   border: 3px solid #000000;
   box-shadow: 6px 6px 0 #148888;
+  margin: 0 auto;
 }
 
 /* Founder Name (#1b264d on #ffffff = 14.67:1 AAA) */
-.team-member h4 {
+.team-bio-col h4 {
   font-family: var(--font-display, 'Gambarino', Georgia, serif);
   font-weight: 400;
-  font-size: 1.75rem;
+  font-size: 2rem;
   color: #1b264d;
-  margin-bottom: 0.45rem;
+  margin: 0 0 0.5rem;
 }
 
 /* Role Badge (#ffffff on #ca054d = 5.77:1 AA) */
-.team-member h5 {
+.team-bio-col h5 {
+  display: inline-block;
   font-family: var(--font-sans, 'Work Sans', sans-serif);
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   font-weight: 800;
   background-color: #ca054d;
   color: #ffffff;
@@ -203,20 +541,59 @@ img {
   padding: 0.3rem 0.95rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  margin-bottom: 1.25rem;
+  margin: 0 0 1.15rem;
 }
 
 /* Founder Bio (#000000 on #ffffff = 21.00:1 AAA) */
-.team-member p {
+.team-bio-col p {
   color: #000000;
-  font-size: 1rem;
-  line-height: 1.65;
-  margin-bottom: 0;
+  font-size: 1.04rem;
+  line-height: 1.7;
+  margin: 0 0 1.4rem;
 }
 
-/* ===== Responsive Design ===== */
+.btn-founder-cta {
+  display: inline-block;
+  background-color: #ff6600;
+  color: #000000;
+  font-weight: 800;
+  font-size: 0.95rem;
+  padding: 0.7rem 1.5rem;
+  border: 2px solid #000000;
+  border-radius: 999px;
+  text-decoration: none;
+  box-shadow: 4px 4px 0 #1b264d;
+  transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn-founder-cta:hover,
+.btn-founder-cta:focus {
+  background-color: #1b264d;
+  color: #ffffff;
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 #ff6600;
+}
+
+/* ===== Responsive Breakpoints ===== */
+@media (max-width: 920px) {
+  .approach-spread {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .approach-poster-col {
+    position: static;
+  }
+
+  .approach-poster-frame {
+    max-width: 480px;
+    margin: 0 auto;
+  }
+}
+
 @media (max-width: 768px) {
   #about,
+  #approach,
   #team {
     padding: 2.75rem 1rem 3.25rem;
   }
@@ -226,7 +603,41 @@ img {
     box-shadow: 6px 6px 0 #148888;
   }
 
+  .approach-header {
+    padding: 1.5rem 1.25rem;
+    margin-bottom: 2rem;
+    box-shadow: 6px 6px 0 #1b264d;
+  }
+
+  /* Cap the image max-height on mobile so readers do not scroll through an oversized image */
+  .approach-poster-frame {
+    max-width: 100%;
+    padding: 0.65rem;
+    box-shadow: 6px 6px 0 #000000;
+  }
+
+  .approach-poster-frame img {
+    max-height: 400px;
+    width: auto;
+    max-width: 100%;
+    margin: 0 auto;
+    object-fit: contain;
+    background-color: #d6d4a0;
+  }
+
+  .zine-card,
+  .zine-pillar {
+    padding: 1.35rem 1.25rem;
+  }
+
   .team-member {
-    padding: 2rem 1.4rem;
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding: 2rem 1.35rem;
+    gap: 1.5rem;
+  }
+
+  .team-photo-col img {
+    max-width: 240px;
   }
 }

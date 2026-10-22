@@ -1,10 +1,14 @@
 # Internal audit & task planning files
 tasks.md
 
+# Local environment & API keys (never commit secrets)
+.env
+.env.*
+java/config.local.js
+
 # macOS system metadata
 .DS_Store
 **/.DS_Store
 
 # Editor configuration
 .vscode/
-

@@ -114,7 +114,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Headings — Gambarino is a 400-weight display serif; never faux-bold */
+/* Headings - Gambarino is a 400-weight display serif; never faux-bold */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
   font-weight: 400;
@@ -169,7 +169,7 @@ p {
   color: var(--black);
 }
 
-/* Links — WCAG AA compliant (#ca054d on #ffffff = 5.77:1; #1b264d on #ffffff = 14.67:1) */
+/* Links - WCAG AA compliant (#ca054d on #ffffff = 5.77:1; #1b264d on #ffffff = 14.67:1) */
 a {
   font-family: var(--font-sans);
   font-weight: 700;
