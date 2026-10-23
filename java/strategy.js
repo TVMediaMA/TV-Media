@@ -409,7 +409,7 @@
       '- NEVER suggest generic margin-killing discounts, BOGO deals, or free inventory giveaways.',
       '- NEVER use corporate marketing jargon (e.g. "magnetic pull", "synergy", "must-visit hub", "elevate your brand", "omnichannel", "deep-dive").',
       '- NEVER summarize or parrot the user prompt back to them in the output.',
-      '- NEVER use em dashes or en dashes anywhere. Use commas, periods, or clean simple hyphens " - "., or bulleted or numbered lists.',
+      '- NEVER use em dashes or en dashes anywhere. Use commas, periods, or clean simple hyphens " - "., or bulleted or numbered lists, or any type of list.',
       '',
       'OUTPUT SECTION CONTEXT:',
       '1. The Reality Check: A frank, validating diagnosis of the misconception or operational bottleneck keeping them stuck, challenging standard marketing assumptions.',
@@ -434,7 +434,7 @@
         },
         three_pillars: {
           acquisition_and_loyalty: 'Strategic direction focusing on retention and customer lifetime value over churn. Reject margin-killing discounts and new-customer churn. Shift strategy toward customer lifetime value, insider perks, and tangible retention mechanisms that turn existing regulars into a secondary acquisition engine.',
-          operational_reality_and_flow: 'Strategic direction addressing physical or digital flow bottlenecks. The actionable bridge between diagnosis and execution. 1. Consumer-first flow: Design every touchpoint (booking, counter flow, flyers, forms) for real human behavior, making it dead simple, frictionless, and effortless to navigate without being condescending to the customer. 2. Scrappy feasibility: Focus on what the business can realistically execute right now, rejecting expensive agency ideals (like $10k software or massive retainers) in favor of practical, accessible tools that actually move the needle on their floor.',
+          operational_reality_and_flow: 'Strategic direction addressing physical or digital flow bottlenecks. The actionable bridge between diagnosis and execution. 1. Consumer-first flow: Design every touchpoint (booking, counter flow, flyers, forms) for real human behavior, making it dead simple, frictionless, and effortless to navigate without being condescending to the customer. 2. Scrappy feasibility: Focus on what the business can realistically execute right now, rejecting expensive agency ideals (like $10k software or massive retainers) in favor of practical, accessible tools that actually move the needle in their business.',
           platform_native_utility: 'Strategic direction on choosing the right channel for actual user habits. Use the right tool the right way for its intended purpose. Not every platform is an ad engine, and you dont need to be on every platform. Stop blasting the same promo everywhere. Focus on creative ways to expand reach by engaging in real communities both in and beyond major social media sites.'
         },
         deliverables: [
@@ -485,7 +485,7 @@
           explanation: 'When drivers come to you for $35 inspections and oil changes, they already believe you are honest. They only return to the dealership for brakes and diagnostics because the dealer hands them a structured maintenance roadmap while independent shops hand them a paper receipt.'
         },
         making_media_matter: {
-          core_shift: 'Stop trying to advertise routine maintenance. Use visual shop-floor storytelling and physical service records to demystify what happens on the lift so vehicle owners see your diagnostic expertise before a warning light ever comes on.',
+          core_shift: 'Stop trying to advertise routine maintenance. Use visual behind-the-scenes storytelling and physical service records to demystify what happens on the lift so vehicle owners see your diagnostic expertise before a warning light ever comes on.',
           social_play: {
             format_tag: 'BAY BENCHMARK PHOTO BREAKDOWN',
             title: 'What $35 State Inspections Actually Catch on New England Undercarriages',
@@ -524,7 +524,7 @@
       return stripEmDashes({
         blueprint_title: 'Modernizing RFQ Trust for Next-Generation Procurement Engineers',
         reality_check: {
-          headline: 'Retaining core OEM accounts for years proves your tolerances and floor execution are rock solid. Your digital presence just needs to match the precision of your shop floor.',
+          headline: 'Retaining core OEM accounts for years proves your tolerances and shop execution are rock solid. Your digital presence just needs to match the precision of your shop.',
           explanation: 'Younger procurement engineers do not cold-call shops to ask what machines they run. They vet 5 vendors silently online in 90 seconds, and an outdated site makes a high-precision shop look like a capacity risk.'
         },
         making_media_matter: {
@@ -570,7 +570,7 @@
         explanation: 'When a business has strong pockets of demand alongside frustrating dead zones or margin squeeze, more generic social posting rarely fixes it. The real unlock is restructuring how customers move through your space and giving regulars a reason to anchor your off-peak windows.'
       },
       making_media_matter: {
-        core_shift: 'Stop treating media like a digital megaphone begging for visits. Combine purposeful content creation, local marketing, and physical floor touchpoints so customers feel like insiders rather than targets of a discount promotion.',
+        core_shift: 'Stop treating media like a digital megaphone begging for visits. Combine purposeful content creation, local marketing, and in-person touchpoints so customers feel like insiders rather than targets of a discount promotion.',
         social_play: {
           format_tag: 'BEHIND-THE-COUNTER FIELD DISPATCH',
           title: 'The Off-Peak Insider Window: What We Build & Prep When the Rush Clears',
@@ -590,7 +590,7 @@
           why_it_works: 'Shifts existing foot traffic into dead hours without devaluing your core pricing.'
         },
         {
-          title: 'Countertop & Entryway Floor Flow Map',
+          title: 'Countertop & Entryway Flow Map',
           medium_tag: 'PHYSICAL + DIGITAL SIGNAGE',
           how_it_works: 'A clear visual menu and table-tent system at your point of sale that highlights your highest-margin packages and guides customers to their next step in 5 seconds.',
           why_it_works: 'Turns passive foot traffic into higher average ticket value without extra staff pitching.'

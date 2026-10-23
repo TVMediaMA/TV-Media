@@ -85,17 +85,6 @@
   color: #ffffff;
 }
 
-/* Tagline Callout (#d6d4a0 on #1b264d = 9.63:1 AAA) */
-#intro .hero-tagline {
-  font-family: var(--font-display, 'Gambarino', Georgia, serif);
-  font-size: 1.5rem;
-  color: #d6d4a0;
-  margin-top: 1.75rem;
-  margin-bottom: 1.85rem;
-  padding-top: 1.5rem;
-  border-top: 2px dashed #d6d4a0;
-}
-
 .hero-actions {
   display: flex;
   justify-content: center;
@@ -295,6 +284,26 @@
   letter-spacing: 0.01em;
   color: #ffffff;
   margin: 0 0 0.75rem;
+}
+
+/* "In development" badge (#ffffff on #ca054d = 5.77:1 AA) */
+.product-image .card-badge {
+  position: absolute;
+  top: 2.6rem;
+  right: 1.1rem;
+  max-width: 9.5rem;
+  padding: 0.3rem 0.6rem;
+  background-color: #ca054d;
+  color: #ffffff;
+  border: 2px solid #000000;
+  border-radius: 6px;
+  box-shadow: 2px 2px 0 #000000;
+  font-size: 0.66rem;
+  font-weight: 900;
+  line-height: 1.25;
+  letter-spacing: 0.06em;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 /* Card Description (#d6d4a0 on #1b264d = 9.63:1 AAA) */

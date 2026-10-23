@@ -65,7 +65,7 @@
         {
           lead: "Pillar 2 (Operational Reality and Intuitive Flow):",
           detail:
-            "Grounded in real floor capacity and timing constraints, highlighting clear 6:30 to 8:30 PM event hours."
+            "Grounded in real on-site capacity and timing constraints, highlighting clear 6:30 to 8:30 PM event hours."
         },
         {
           lead: "The Capstone (Intentional Community Growth):",
