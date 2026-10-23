@@ -75,10 +75,11 @@
 
   <main>
     <!-- Contact Section -->
-    <section id="contact">
-      <h1>Let’s Make Your Media Matter</h1>
-      <p>
-        Based in Boxborough, MA, working with independent businesses across Massachusetts. Whether you want to book a monthly partnership, scope a project sprint, or talk through an operational bottleneck, reach out directly or send an inquiry below.
+    <section id="contact" aria-labelledby="contact-title">
+      <span class="contact-kicker">DIRECT TRANSMISSION CONSOLE</span>
+      <h1 id="contact-title">Let’s Make Your Media Matter</h1>
+      <p class="contact-lead">
+        Based in Boxborough, MA, working with independent businesses across Massachusetts and beyond. Whether you want to book a monthly partnership, scope a project sprint, or talk through an operational bottleneck, reach out directly or send an inquiry below.
       </p>
 
       <div class="contact-direct-bar">
@@ -87,18 +88,187 @@
         <span class="contact-pill">📍 Boxborough, MA</span>
       </div>
 
-      <div class="google-form-container">
-        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSc-ybyg7N4rs8axQnT19/viewform?embedded=true"
-                width="640" height="720"
-                loading="lazy"
-                title="TV Media Project Inquiry Form">Loading…</iframe>
+      <!-- Native Studio Intake Form Console -->
+      <div class="contact-form-window" id="intake-console">
+        <div class="form-window-titlebar">
+          <span class="window-title-text">TV_MEDIA // INTAKE_DISPATCH_CONSOLE</span>
+          <span class="window-dots" aria-hidden="true">
+            <i class="dot-orange"></i>
+            <i class="dot-teal"></i>
+            <i class="dot-crimson"></i>
+          </span>
+        </div>
+
+        <form id="contact-form" class="studio-form" novalidate>
+          <!-- Section 01: Service Chips -->
+          <fieldset class="form-fieldset">
+            <legend class="fieldset-legend">
+              <span class="legend-badge">01</span>
+              <span>Select Services Needed <span class="legend-hint">(Click to Select All That Apply)</span></span>
+            </legend>
+            <div class="service-chips-grid" role="group" aria-label="Select services needed">
+              <label class="service-chip">
+                <input type="checkbox" name="services" value="Consulting" />
+                <span class="chip-label">
+                  <span class="chip-check" aria-hidden="true">✓</span>
+                  Consulting
+                </span>
+              </label>
+
+              <label class="service-chip">
+                <input type="checkbox" name="services" value="Social Media Strategy" />
+                <span class="chip-label">
+                  <span class="chip-check" aria-hidden="true">✓</span>
+                  Social Media Strategy
+                </span>
+              </label>
+
+              <label class="service-chip">
+                <input type="checkbox" name="services" value="Launch Sprints" />
+                <span class="chip-label">
+                  <span class="chip-check" aria-hidden="true">✓</span>
+                  Launch Sprints
+                </span>
+              </label>
+
+              <label class="service-chip">
+                <input type="checkbox" name="services" value="Content Creation" />
+                <span class="chip-label">
+                  <span class="chip-check" aria-hidden="true">✓</span>
+                  Content Creation
+                </span>
+              </label>
+
+              <label class="service-chip">
+                <input type="checkbox" name="services" value="Brand Audits" />
+                <span class="chip-label">
+                  <span class="chip-check" aria-hidden="true">✓</span>
+                  Brand Audits
+                </span>
+              </label>
+
+              <label class="service-chip">
+                <input type="checkbox" name="services" value="Team Workshops" />
+                <span class="chip-label">
+                  <span class="chip-check" aria-hidden="true">✓</span>
+                  Team Workshops
+                </span>
+              </label>
+            </div>
+          </fieldset>
+
+          <!-- Section 02: Client Contact Details -->
+          <fieldset class="form-fieldset">
+            <legend class="fieldset-legend">
+              <span class="legend-badge">02</span>
+              <span>Your Details</span>
+            </legend>
+            <div class="form-grid-2col">
+              <div class="form-field">
+                <label for="contact-name" class="field-label">Your Name <span class="req" aria-label="required">*</span></label>
+                <input type="text" id="contact-name" name="name" required placeholder="Peter Parker" autocomplete="name" class="form-input" />
+                <span class="field-error" id="name-error" aria-live="polite"></span>
+              </div>
+
+              <div class="form-field">
+                <label for="contact-email" class="field-label">Email Address <span class="req" aria-label="required">*</span></label>
+                <input type="email" id="contact-email" name="email" required placeholder="name@business.com" autocomplete="email" class="form-input" />
+                <span class="field-error" id="email-error" aria-live="polite"></span>
+              </div>
+            </div>
+
+            <div class="form-field form-field-full">
+              <label for="contact-business" class="field-label">Business / Website <span class="optional">(Optional)</span></label>
+              <input type="text" id="contact-business" name="business" placeholder="Acme Roasters · acmeroasters.com" autocomplete="organization" class="form-input" />
+            </div>
+          </fieldset>
+
+          <!-- Section 03: Notes & Bottlenecks -->
+          <fieldset class="form-fieldset">
+            <legend class="fieldset-legend">
+              <span class="legend-badge">03</span>
+              <span>Notes &amp; Current Bottlenecks</span>
+            </legend>
+            <div class="form-field form-field-full">
+              <label for="contact-notes" class="field-label">What does your business do, and what is your biggest bottleneck right now? <span class="req" aria-label="required">*</span></label>
+              <textarea id="contact-notes" name="notes" rows="5" required placeholder="Tell us about what you do, who your regulars are, where your audience or team feels stuck, or any specific timeline you are aiming for..." class="form-textarea"></textarea>
+              <span class="field-error" id="notes-error" aria-live="polite"></span>
+            </div>
+          </fieldset>
+
+          <!-- Section 04: Newsletter Opt-In -->
+          <div class="form-newsletter-row">
+            <label class="newsletter-toggle">
+              <input type="checkbox" id="contact-newsletter" name="newsletter" value="true" checked class="newsletter-checkbox" />
+              <span class="custom-checkbox" aria-hidden="true">✓</span>
+              <span class="newsletter-caption">
+                <strong>Subscribe to the TV Media Newsletter.</strong>
+                Practical field notes on digital strategy, actionable mini growth spurts, and real-world tactics. No spam, ever.
+              </span>
+            </label>
+          </div>
+
+          <!-- Submit Row -->
+          <div class="form-submit-row">
+            <button type="submit" id="submit-btn" class="btn-submit-inquiry">
+              <span class="btn-submit-text">Send Inquiry Dispatch -&gt;</span>
+              <span class="btn-submit-loader" aria-hidden="true"></span>
+            </button>
+            <p class="form-assurance-note">
+              🔒 Direct studio dispatch. No automated sales pitches. Tyler will personally review your brief and reply in 1 - 2 business days.
+            </p>
+          </div>
+
+          <div id="form-error-banner" class="form-error-banner" role="alert" aria-live="polite" hidden></div>
+        </form>
       </div>
 
-      <p>
+      <p class="contact-fallback-text">
         Prefer email? Message Tyler directly at
         <a href="mailto:tvmediama@gmail.com">tvmediama@gmail.com</a> or call <a href="tel:+19785013526">978-501-3526</a>.
       </p>
     </section>
+
+    <!-- Confirmation Modal Dialog -->
+    <div id="contact-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+      <div class="modal-backdrop" id="modal-backdrop"></div>
+      <div class="modal-card">
+        <div class="modal-stripe" aria-hidden="true"></div>
+        <div class="modal-header">
+          <div class="modal-titlebar">
+            <span class="modal-dots" aria-hidden="true">
+              <i class="dot-orange"></i>
+              <i class="dot-teal"></i>
+              <i class="dot-crimson"></i>
+            </span>
+            <span class="modal-titlebar-text">TV_MEDIA // DISPATCH CONFIRMED</span>
+          </div>
+          <button type="button" class="modal-close-btn" id="modal-close-btn" aria-label="Close confirmation dialog">[X]</button>
+        </div>
+
+        <div class="modal-body">
+          <div class="modal-pill-status">
+            <span class="lamp-pulse" aria-hidden="true"></span>
+            <span>TRANSMISSION RECEIVED // DISPATCH LOGGED</span>
+          </div>
+
+          <h2 id="modal-title">Thank You! Your Inquiry Is In the Queue.</h2>
+
+          <p class="modal-lead">
+            Your project brief has been received and logged directly into our studio intake queue. Tyler will personally review your notes and reach out within 1 - 2 business days to discuss next steps.
+          </p>
+
+          <div class="modal-recap" id="modal-recap">
+            <!-- Injected via JavaScript -->
+          </div>
+
+          <div class="modal-actions">
+            <button type="button" class="btn-modal-close" id="modal-dismiss-btn">Back to Studio Console -&gt;</button>
+            <a href="strategy.html" class="btn-modal-lab">Test Your Strategy in the Lab -&gt;</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
 
   <!-- Global Footer -->
@@ -137,5 +307,6 @@
   </footer>
 
   <script src="java/script.js"></script>
+  <script src="java/contact.js"></script>
 </body>
 </html>
