@@ -200,7 +200,7 @@
       console.error('Submission failed:', err);
       if (errorBanner) {
         errorBanner.hidden = false;
-        errorBanner.textContent = 'Dispatch transmission interrupted. Please check your connection or email Tyler directly at tvmediama@gmail.com.';
+        errorBanner.textContent = 'Dispatch transmission interrupted. Please check your connection or email us directly at tvmediama@gmail.com.';
       }
     } finally {
       if (submitBtn) {
