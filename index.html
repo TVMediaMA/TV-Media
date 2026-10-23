@@ -13,12 +13,19 @@
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   "@id": "https://www.tvmediasolutions.com/#organization",
-  "name": "TV Media Solutions",
-  "alternateName": "TV Media",
+  "name": "TV Media",
+  "alternateName": "TV Media Solutions",
   "url": "https://www.tvmediasolutions.com/",
-  "telephone": "+1-978-501-3526",
-  "email": "tvmediama@gmail.com",
-  "priceRange": "$$$",
+  "logo": "https://www.tvmediasolutions.com/images/logo.png",
+  "image": "https://www.tvmediasolutions.com/images/logo.png",
+  "description": "Independent digital communications and marketing studio specializing in social media strategy, launch sprints, commercial content creation, and brand audits for businesses nationwide.",
+  "founder": {
+    "@type": "Person",
+    "@id": "https://www.tvmediasolutions.com/#founder",
+    "name": "Tyler Valois",
+    "jobTitle": "Founder & Communications Strategist",
+    "url": "https://www.tvmediasolutions.com/about.html"
+  },
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Boxborough",
@@ -27,19 +34,82 @@
     "addressCountry": "US"
   },
   "areaServed": [
-    "Boxborough",
-    "Acton",
-    "Littleton",
-    "Concord",
-    "Westford",
-    "Maynard",
-    "Stow",
-    "MetroWest MA"
+    {
+      "@type": "AdministrativeArea",
+      "name": "Massachusetts"
+    },
+    {
+      "@type": "Country",
+      "name": "United States"
+    }
   ],
-  "founder": {
-    "@type": "Person",
-    "name": "Tyler Valois",
-    "jobTitle": "Founder & Media Director"
+  "priceRange": "$300 - $2,000",
+  "telephone": "+1-978-501-3526",
+  "email": "tvmediama@gmail.com",
+  "sameAs": [
+    "https://www.facebook.com/tvmediama"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+1-978-501-3526",
+    "contactType": "customer service",
+    "email": "tvmediama@gmail.com",
+    "areaServed": [
+      "US",
+      "MA"
+    ],
+    "availableLanguage": "en"
+  },
+  "knowsAbout": [
+    "Communications & Marketing Consulting",
+    "Social Media Strategy",
+    "Event & Product Launch Sprints",
+    "Brand Audits & Strategy",
+    "Commercial Content Creation",
+    "Local Search Optimization (SEO)"
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Marketing & Communications Services",
+    "url": "https://www.tvmediasolutions.com/services.html",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "url": "https://www.tvmediasolutions.com/services.html#monthly",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Communications & Marketing Consulting",
+          "description": "Monthly digital communications, local marketing strategy, and hands-on studio direction."
+        }
+      },
+      {
+        "@type": "Offer",
+        "url": "https://www.tvmediasolutions.com/services.html#monthly",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Social Media Strategy",
+          "description": "Platform-native social media management, creative campaign development, and local audience growth."
+        }
+      },
+      {
+        "@type": "Offer",
+        "url": "https://www.tvmediasolutions.com/services.html#sprints",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Event & Product Launch Sprints",
+          "description": "Fixed-fee 2-week to 4-week execution sprints for product launches, websites, commercial photography, and live events."
+        }
+      },
+      {
+        "@type": "Offer",
+        "url": "https://www.tvmediasolutions.com/services.html#audits",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Brand Audits & Strategy",
+          "description": "Deep-dive evaluations of digital footprint, local search rankings, customer conversion flow, and brand positioning."
+        }
+      }
+    ]
   }
 }
   </script>
