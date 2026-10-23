@@ -55,7 +55,11 @@
   }
 
   function validateEmail(email) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    if (!email || email.length > 80) return false;
+    const basicFormat = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!basicFormat.test(email)) return false;
+    // Validate email ends in standard domains (.com, .org, .edu, .net, .io, .co)
+    return /\.(com|org|edu|net|io|co)$/i.test(email.trim());
   }
 
   function escapeHtml(str) {
@@ -71,12 +75,14 @@
   // Modal helpers
   function openModal(data) {
     if (!modal) return;
+    const fullName = `${data.firstName || ''} ${data.lastName || ''}`.trim() || data.name || 'Anonymous';
     if (modalRecap) {
       modalRecap.innerHTML = `
         <div class="recap-row"><strong>Selected Services:</strong> <span>${escapeHtml(data.services || 'Consulting')}</span></div>
-        <div class="recap-row"><strong>Name:</strong> <span>${escapeHtml(data.name)}</span></div>
+        <div class="recap-row"><strong>Name:</strong> <span>${escapeHtml(fullName)}</span></div>
         <div class="recap-row"><strong>Email:</strong> <span>${escapeHtml(data.email)}</span></div>
-        ${data.business ? `<div class="recap-row"><strong>Business / Website:</strong> <span>${escapeHtml(data.business)}</span></div>` : ''}
+        ${data.businessName ? `<div class="recap-row"><strong>Business Name:</strong> <span>${escapeHtml(data.businessName)}</span></div>` : ''}
+        ${data.website ? `<div class="recap-row"><strong>Website:</strong> <span>${escapeHtml(data.website)}</span></div>` : ''}
         <div class="recap-row"><strong>TV Media Newsletter:</strong> <span>${data.newsletter ? 'Subscribed' : 'Not opted in'}</span></div>
       `;
     }
@@ -108,35 +114,54 @@
     e.preventDefault();
     clearErrors();
 
-    const nameInput = document.getElementById('contact-name');
+    const firstNameInput = document.getElementById('contact-first-name');
+    const lastNameInput = document.getElementById('contact-last-name');
     const emailInput = document.getElementById('contact-email');
-    const notesInput = document.getElementById('contact-notes');
     const businessInput = document.getElementById('contact-business');
+    const websiteInput = document.getElementById('contact-website');
+    const notesInput = document.getElementById('contact-notes');
     const newsletterInput = document.getElementById('contact-newsletter');
+    const botTrapInput = document.getElementById('studio-bot-trap');
+    const confessionalInput = document.getElementById('ai-confessional-booth');
 
-    const name = (nameInput?.value || '').trim();
+    const firstName = (firstNameInput?.value || '').trim();
+    const lastName = (lastNameInput?.value || '').trim();
     const email = (emailInput?.value || '').trim();
+    const businessName = (businessInput?.value || '').trim();
+    const website = (websiteInput?.value || '').trim();
     const notes = (notesInput?.value || '').trim();
-    const business = (businessInput?.value || '').trim();
     const newsletter = newsletterInput?.checked ? 'true' : 'false';
+    const studioBotTrap = (botTrapInput?.value || '').trim();
+    const aiConfessionalBooth = (confessionalInput?.value || '').trim();
 
     let hasErrors = false;
 
-    if (!name) {
-      showError('contact-name', 'name-error', 'Please enter your name.');
+    if (!firstName) {
+      showError('contact-first-name', 'first-name-error', 'Please enter your first name.');
+      hasErrors = true;
+    }
+
+    if (!lastName) {
+      showError('contact-last-name', 'last-name-error', 'Please enter your last name.');
       hasErrors = true;
     }
 
     if (!email) {
       showError('contact-email', 'email-error', 'Please enter your email address.');
       hasErrors = true;
+    } else if (email.length > 80) {
+      showError('contact-email', 'email-error', 'Email address must be 80 characters or fewer.');
+      hasErrors = true;
     } else if (!validateEmail(email)) {
-      showError('contact-email', 'email-error', 'Please provide a valid email format (e.g. name@domain.com).');
+      showError('contact-email', 'email-error', 'Please provide a valid email ending in standard domains (.com, .org, .edu, .net, .io, .co).');
       hasErrors = true;
     }
 
     if (!notes) {
       showError('contact-notes', 'notes-error', 'Please describe your business and the bottleneck you would like to solve.');
+      hasErrors = true;
+    } else if (notes.length > 1000) {
+      showError('contact-notes', 'notes-error', 'Notes cannot exceed 1000 characters.');
       hasErrors = true;
     }
 
@@ -154,12 +179,18 @@
 
     // Prepare FormData payload for Google Apps Script Web App
     const formData = new FormData();
-    formData.append('name', name);
+    formData.append('firstName', firstName);
+    formData.append('lastName', lastName);
+    formData.append('name', `${firstName} ${lastName}`.trim()); // Fallback alias
+    formData.append('businessName', businessName);
+    formData.append('business', businessName); // Fallback alias
+    formData.append('website', website);
     formData.append('email', email);
-    formData.append('business', business);
     formData.append('services', servicesString);
     formData.append('notes', notes);
     formData.append('newsletter', newsletter);
+    formData.append('studio_bot_trap', studioBotTrap);
+    formData.append('ai_confessional_booth', aiConfessionalBooth);
     formData.append('timestamp', new Date().toISOString());
     formData.append('source', 'tvmediasolutions.com/contact');
 
@@ -182,9 +213,11 @@
 
       // Show confirmation modal with summary
       openModal({
-        name,
+        firstName,
+        lastName,
         email,
-        business,
+        businessName,
+        website,
         services: servicesString,
         notes,
         newsletter: newsletterInput?.checked

@@ -318,6 +318,34 @@ a.contact-pill:focus {
   margin-bottom: 1rem;
 }
 
+.form-grid-sub {
+  margin-top: 1rem;
+  margin-bottom: 0;
+}
+
+/* Security Honeypot System (Offscreen Traps) */
+.security-honeypot-wrap {
+  opacity: 0 !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: -9999px !important;
+  height: 0 !important;
+  width: 0 !important;
+  overflow: hidden !important;
+  pointer-events: none !important;
+  z-index: -10 !important;
+}
+
+.security-honeypot-wrap input,
+.security-honeypot-wrap textarea {
+  opacity: 0 !important;
+  position: absolute !important;
+  left: -9999px !important;
+  height: 0 !important;
+  width: 0 !important;
+  pointer-events: none !important;
+}
+
 .form-field {
   display: flex;
   flex-direction: column;
