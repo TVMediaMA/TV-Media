@@ -20,21 +20,76 @@
   // Handle URL query parameters to pre-check service chips (e.g., ?type=workshop)
   const urlParams = new URLSearchParams(window.location.search);
   const typeParam = (urlParams.get('type') || urlParams.get('service') || '').toLowerCase();
-  if (typeParam) {
+  const fromParam = (urlParams.get('from') || '').toLowerCase();
+  if (typeParam || fromParam === 'strategy') {
+    const effectiveType = typeParam || 'consulting';
     const chips = form.querySelectorAll('input[name="services"]');
     chips.forEach(chip => {
       const val = chip.value.toLowerCase();
       if (
-        (typeParam === 'workshop' && val.includes('workshop')) ||
-        (typeParam === 'consulting' && val.includes('consulting')) ||
-        (typeParam === 'social' && val.includes('social')) ||
-        (typeParam === 'sprint' && val.includes('sprint')) ||
-        (typeParam === 'content' && val.includes('content')) ||
-        (typeParam === 'audit' && val.includes('audit'))
+        (effectiveType === 'workshop' && val.includes('workshop')) ||
+        (effectiveType === 'consulting' && val.includes('consulting')) ||
+        (effectiveType === 'social' && val.includes('social')) ||
+        (effectiveType === 'sprint' && val.includes('sprint')) ||
+        (effectiveType === 'content' && val.includes('content')) ||
+        (effectiveType === 'audit' && val.includes('audit'))
       ) {
         chip.checked = true;
       }
     });
+  }
+
+  // Hydrate bottleneck, context, and generated blueprint from sessionStorage (Strategy Generator handoff)
+  const notesTextarea = document.getElementById('contact-notes');
+  const hiddenBlueprintInput = document.getElementById('contact-generated-blueprint');
+
+  function buildCombinedBlueprintPayload() {
+    try {
+      const storedBlueprint = (sessionStorage.getItem('tvmedia_generated_blueprint') || '').trim();
+      const storedContextRaw = (sessionStorage.getItem('tvmedia_context') || '').trim();
+      let contextSummary = '';
+      if (storedContextRaw) {
+        try {
+          const parsed = JSON.parse(storedContextRaw);
+          if (parsed && typeof parsed === 'object') {
+            contextSummary = [
+              parsed.bandwidth ? `Bandwidth: ${parsed.bandwidth}` : '',
+              parsed.investment ? `Investment: ${parsed.investment}` : '',
+              parsed.mindset ? `Mindset: ${parsed.mindset}` : ''
+            ]
+              .filter(Boolean)
+              .join(' | ');
+          } else {
+            contextSummary = storedContextRaw;
+          }
+        } catch (_) {
+          contextSummary = storedContextRaw;
+        }
+      }
+
+      if (!storedBlueprint && !contextSummary) {
+        return '';
+      }
+      if (storedBlueprint && contextSummary && !storedBlueprint.includes(contextSummary)) {
+        return `Selected Context: ${contextSummary}\n\n${storedBlueprint}`;
+      }
+      return storedBlueprint || `Selected Context: ${contextSummary}`;
+    } catch (_) {
+      return '';
+    }
+  }
+
+  try {
+    const storedBottleneck = (sessionStorage.getItem('tvmedia_bottleneck') || '').trim();
+    if (storedBottleneck && notesTextarea && !notesTextarea.value.trim()) {
+      notesTextarea.value = storedBottleneck.slice(0, 1000);
+    }
+    const combinedBlueprint = buildCombinedBlueprintPayload();
+    if (combinedBlueprint && hiddenBlueprintInput) {
+      hiddenBlueprintInput.value = combinedBlueprint;
+    }
+  } catch (_) {
+    // Ignore sessionStorage access errors
   }
 
   // Field validation helpers
@@ -180,6 +235,20 @@
     ).map(cb => cb.value);
     const servicesString = selectedChips.length > 0 ? selectedChips.join(', ') : 'Consulting';
 
+    // Retrieve hidden generated blueprint + context payload (if present)
+    const generatedBlueprintInput = document.getElementById('contact-generated-blueprint');
+    const generatedBlueprintPayload = (
+      (generatedBlueprintInput && generatedBlueprintInput.value) ||
+      buildCombinedBlueprintPayload() ||
+      ''
+    ).trim();
+
+    // Failsafe: append the generated blueprint & context block to the FormData notes payload
+    // while keeping the visible #contact-notes textarea clean for the user
+    const notesPayloadForDispatch = generatedBlueprintPayload
+      ? `${notes}\n\n=== ATTACHED STRATEGY BLUEPRINT & CONTEXT ===\n${generatedBlueprintPayload}`
+      : notes;
+
     // Prepare FormData payload for Google Apps Script Web App
     const formData = new FormData();
     formData.append('firstName', firstName);
@@ -190,7 +259,8 @@
     formData.append('website', website);
     formData.append('email', email);
     formData.append('services', servicesString);
-    formData.append('notes', notes);
+    formData.append('notes', notesPayloadForDispatch);
+    formData.append('generatedBlueprint', generatedBlueprintPayload);
     formData.append('optin_newsletter', newsletter);
     formData.append('optin_promos', studioPromos);
     formData.append('newsletter', newsletter);
@@ -198,7 +268,7 @@
     formData.append('studio_bot_trap', studioBotTrap);
     formData.append('ai_confessional_booth', aiConfessionalBooth);
     formData.append('timestamp', new Date().toISOString());
-    formData.append('source', 'tvmediasolutions.com/contact');
+    formData.append('source', fromParam === 'strategy' ? 'tvmediasolutions.com/contact?from=strategy' : 'tvmediasolutions.com/contact');
 
     // UI Loading state
     if (submitBtn) {
@@ -230,8 +300,20 @@
         studioPromos: promosInput?.checked
       });
 
+      // Clear Strategy Generator sessionStorage keys after successful submission
+      try {
+        sessionStorage.removeItem('tvmedia_bottleneck');
+        sessionStorage.removeItem('tvmedia_context');
+        sessionStorage.removeItem('tvmedia_generated_blueprint');
+      } catch (_) {
+        // Ignore sessionStorage errors
+      }
+
       // Reset form
       form.reset();
+      if (generatedBlueprintInput) {
+        generatedBlueprintInput.value = '';
+      }
 
       // Ensure newsletter defaults to checked after reset
       if (newsletterInput) newsletterInput.checked = true;
@@ -239,8 +321,9 @@
     } catch (err) {
       console.error('Submission failed:', err);
       if (errorBanner) {
+        const contactEmail = (window.TVMEDIA_CONTACT && window.TVMEDIA_CONTACT.email) || 'tvmediama@gmail.com';
         errorBanner.hidden = false;
-        errorBanner.textContent = 'Dispatch transmission interrupted. Please check your connection or email us directly at tvmediama@gmail.com.';
+        errorBanner.textContent = `Dispatch transmission interrupted. Please check your connection or email us directly at ${contactEmail}.`;
       }
     } finally {
       if (submitBtn) {

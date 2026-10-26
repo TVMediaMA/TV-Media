@@ -14,15 +14,7 @@
   const formError = document.getElementById('form-error');
   const loadingPanel = document.getElementById('loading-panel');
   const resultsSection = document.getElementById('blueprint-results');
-
-  // Lead Capture Elements
-  const emailBlueprintBtn = document.getElementById('email-blueprint-btn');
-  const emailCapturePanel = document.getElementById('email-capture-panel');
-  const leadNameInput = document.getElementById('lead-name-input');
-  const leadEmailInput = document.getElementById('lead-email-input');
-  const sendBlueprintEmailBtn = document.getElementById('send-blueprint-email-btn');
-  const cancelEmailBtn = document.getElementById('cancel-email-btn');
-  const emailFeedback = document.getElementById('email-feedback');
+  const bookStrategyReviewBtn = document.getElementById('book-strategy-review-btn');
 
   const VALID_BANDWIDTHS = [
     'Solo Owner',
@@ -149,6 +141,24 @@
   let lastRandomIndex = -1;
   let lastRenderedBriefText = '';
   let lastRenderedTitle = '';
+  let lastRawBottleneck = '';
+  let lastSelectedContext = null;
+
+  function persistBlueprintToSessionStorage(bottleneck, context, formattedBlueprintText) {
+    try {
+      if (typeof bottleneck === 'string' && bottleneck.trim()) {
+        sessionStorage.setItem('tvmedia_bottleneck', bottleneck.trim());
+      }
+      if (context && typeof context === 'object') {
+        sessionStorage.setItem('tvmedia_context', JSON.stringify(context));
+      }
+      if (typeof formattedBlueprintText === 'string' && formattedBlueprintText.trim()) {
+        sessionStorage.setItem('tvmedia_generated_blueprint', formattedBlueprintText.trim());
+      }
+    } catch (_) {
+      // Ignore sessionStorage quota or privacy-mode restrictions
+    }
+  }
 
   function resolveClientKey(config) {
     if (config && config.GROQ_API_KEY && config.GROQ_API_KEY.trim()) {
@@ -429,11 +439,15 @@
       '- NEVER suggest "posting more consistently on social media" as a primary fix.',
       '- NEVER suggest generic margin-killing discounts, BOGO deals, or free inventory giveaways.',
       '- NEVER use corporate marketing jargon (e.g. "magnetic pull", "synergy", "must-visit hub", "elevate your brand", "omnichannel", "deep-dive").',
+      '- NEVER use sycophantic filler ("That\'s a great question!", "It\'s completely understandable!", "You\'re already doing so much right!").',
       '- NEVER summarize or parrot the user prompt back to them in the output.',
-      '- NEVER use em dashes or en dashes anywhere. Use commas, periods, or clean simple hyphens " - "., or bulleted or numbered lists, or any type of list.',
+      '- NEVER use em dashes or en dashes anywhere. Use commas, periods, or clean simple hyphens " - ", and do not use bulleted or numbered lists.',
       '',
       'OUTPUT SECTION CONTEXT:',
-      '1. The Reality Check: A frank, validating diagnosis of the misconception or operational bottleneck keeping them stuck, challenging standard marketing assumptions.',
+      '1. SECTION 01 // THE REALITY CHECK (STRICT PERSONA & TONE INSTRUCTIONS):',
+      '   - Voice & Vibe: A sharp, grounded New Englander who is genuinely happy to help you fix your business, but is going to tell you straight up why what you have been doing makes no sense.',
+      '   - Tone Balance: Blunt, candid, and allergic to corporate BS - like a neighbor or local shop vet leaning across the counter saying, "Look, I am more than happy to help you fix this, and almost everybody falls into this trap - but doing X while expecting Y is killing your week."',
+      '   - Guardrails: Keep it work-appropriate and constructive (not mean or insulting), briefly normalize that it is a super common mistake local owners make (1 short clause max - do not dwell on coddling them or over-explaining why it is common), and spend 85% of the paragraph calling out the exact operational/marketing contradiction in their bottleneck and what actually needs to happen instead. Ban all sycophantic filler ("That\'s a great question!", "It\'s completely understandable!", "You\'re already doing so much right!").',
       '2. Making Media Matter: The foundation on how they can provide genuine upfront value to customers before asking for a transaction. Includes exactly 1 concrete media play.',
       '3. The Three Pillars: Diagnostic strategic direction across Acquisition AND Loyalty (protecting margin while rewarding retention), Operational Reality & Intuitive Flow (fixing physical or digital friction), and Platform Native Utility (using tools for their intended purpose).',
       '4. What We Could Actually Build: Exactly 3 dynamic, practical operational tools or collateral pieces tailored to the problem (not generic social post bundles).',
@@ -442,8 +456,8 @@
       JSON.stringify({
         blueprint_title: 'Concise, relevant strategy title',
         reality_check: {
-          headline: 'Direct truth addressing the underlying misconception',
-          explanation: '2 to 3 sentences diagnosing the real operational friction without fluff.'
+          headline: 'Blunt, grounded 1-sentence truth calling out the core operational or marketing contradiction without coddling',
+          explanation: '2 to 3 sharp, candid sentences in a grounded New Englander voice: 1 brief clause maximum normalizing that plenty of local owners fall into this trap, and 85% of the paragraph calling out why their current setup makes no sense and what actually has to change instead.'
         },
         making_media_matter: {
           core_shift: 'Strategic guidance on delivering utility before asking for a sale. Focused on content delivery that provides value to the consumer',
@@ -502,8 +516,8 @@
       return stripEmDashes({
         blueprint_title: 'Reclaiming Lift Hours & Shifting Drivers to High-Margin Bay Work',
         reality_check: {
-          headline: 'Your packed schedule proves local drivers already trust your keys in your hands. You do not have a traffic problem, you have a bay-allocation problem.',
-          explanation: 'When drivers come to you for $35 inspections and oil changes, they already believe you are honest. They only return to the dealership for brakes and diagnostics because the dealer hands them a structured maintenance roadmap while independent shops hand them a paper receipt.'
+          headline: 'Look, almost every independent garage falls into this trap - but letting $35 state inspections and bargain oil changes eat your prime morning lift hours while expecting high-margin brake work to magically walk in makes zero sense.',
+          explanation: 'We are more than happy to help you fix this, and plenty of shop owners do the exact same thing, but right now you are running your bays like a quick-lube charity. Your customers only take their $1,200 suspension and diagnostic jobs back to the dealership because the dealer hands them a printed 60,000-mile maintenance roadmap while you hand them a paper receipt and send them on their way. You need to fence off your morning bay hours for real repair work and put a physical service roadmap on every passenger seat.'
         },
         making_media_matter: {
           core_shift: 'Stop trying to advertise routine maintenance. Use visual behind-the-scenes storytelling and physical service records to demystify what happens on the lift so vehicle owners see your diagnostic expertise before a warning light ever comes on.',
@@ -545,8 +559,8 @@
       return stripEmDashes({
         blueprint_title: 'Modernizing RFQ Trust for Next-Generation Procurement Engineers',
         reality_check: {
-          headline: 'Retaining core OEM accounts for years proves your tolerances and shop execution are rock solid. Your digital presence just needs to match the precision of your shop.',
-          explanation: 'Younger procurement engineers do not cold-call shops to ask what machines they run. They vet 5 vendors silently online in 90 seconds, and an outdated site makes a high-precision shop look like a capacity risk.'
+          headline: 'Look, half the machine shops in Central Mass make this exact mistake - but expecting a 28-year-old procurement engineer to trust your tight tolerances when your website looks like a 2009 brochure is costing you six-figure RFQs.',
+          explanation: 'We are glad to help you fix this, and plenty of great shops coast on word-of-mouth for too long, but relying on three aging OEM accounts while your digital footprint collects dust is a massive capacity risk. Younger buyers do not cold-call to ask what spindles or CMM rigs you run - they vet five vendors silently online in 90 seconds and cross you off the list before your phone ever rings. You need your online spec sheet and RFQ intake to match the actual precision of your shop.'
         },
         making_media_matter: {
           core_shift: 'In B2B manufacturing, media matters when it removes engineering friction. Replace generic company descriptions with concrete proof of your tolerances, inspection rigs, and lead-time reliability.',
@@ -587,8 +601,8 @@
     return stripEmDashes({
       blueprint_title: 'Turning Peak-Hour Trust Into Steady, Margin-Protected Momentum',
       reality_check: {
-        headline: 'You have already done the hardest part of local business: proving that people genuinely want what you offer when they walk through the door.',
-        explanation: 'When a business has strong pockets of demand alongside frustrating dead zones or margin squeeze, more generic social posting rarely fixes it. The real unlock is restructuring how customers move through your space and giving regulars a reason to anchor your off-peak windows.'
+        headline: 'Look, almost every local owner around here falls into this trap - but hoping random social media posts will magically fill your dead hours while your peak-hour regulars walk out the door with zero reason to come back mid-week is burning your week.',
+        explanation: 'We are more than happy to help you straighten this out, and plenty of independent shops get stuck in this exact cycle, but right now you are treating your busiest rush like a one-off transaction instead of a retention engine. When you have packed windows alongside dead zones or margin squeeze, posting more online will not fix an operational flow problem. You have to restructure how customers move through your space and give your existing regulars a concrete, high-margin reason to anchor your slower windows.'
       },
       making_media_matter: {
         core_shift: 'Stop treating media like a digital megaphone begging for visits. Combine purposeful content creation, local marketing, and in-person touchpoints so customers feel like insiders rather than targets of a discount promotion.',
@@ -745,12 +759,12 @@
       delivGrid.appendChild(article);
     });
 
-    // Build formatted plain-text brief for Email Lead Capture
+    // Build formatted plain-text brief for Contact Intake & Session Persistence
     const lines = [
       `TV MEDIA STRATEGY BLUEPRINT: ${lastRenderedTitle}`,
       `Studio: TV Media (Boxborough, MA)`,
       `Bottleneck Inquiry: ${stripEmDashes(bottleneck)}`,
-      `Context: ${context.bandwidth} | ${context.investment} | ${context.mindset}`,
+      `Context: Bandwidth: ${context.bandwidth} | Budget: ${context.investment} | Mindset: ${context.mindset}`,
       '',
       '1. THE REALITY CHECK',
       `${rc.headline || ''}`,
@@ -773,15 +787,26 @@
           `   0${i + 1}. ${d.title} (${d.medium_tag || 'Asset'}): ${d.how_it_works} Impact: ${d.why_it_works}`
       ),
       '',
-      'Next Step: Book a 15-minute strategy review at https://www.tvmediasolutions.com/contact.html'
+      'Next Step: Book a 15-minute strategy review at https://www.tvmediasolutions.com/contact.html?type=consulting&from=strategy'
     ];
     lastRenderedBriefText = stripEmDashes(lines.filter(Boolean).join('\n'));
+    lastRawBottleneck = stripEmDashes(bottleneck);
+    lastSelectedContext = context;
+
+    // Persist bottleneck, selected context, and generated blueprint into sessionStorage
+    persistBlueprintToSessionStorage(lastRawBottleneck, lastSelectedContext, lastRenderedBriefText);
 
     resultsSection.hidden = false;
-    if (emailCapturePanel) emailCapturePanel.hidden = true;
-    if (emailBlueprintBtn) emailBlueprintBtn.setAttribute('aria-expanded', 'false');
-    if (emailFeedback) emailFeedback.hidden = true;
     resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // Ensure clicking "Book a 15-Minute Strategy Review ->" syncs latest state to sessionStorage
+  if (bookStrategyReviewBtn) {
+    bookStrategyReviewBtn.addEventListener('click', () => {
+      const currentBottleneck = (bottleneckInput?.value || lastRawBottleneck || '').trim();
+      const currentContext = lastSelectedContext || getSelectedContext();
+      persistBlueprintToSessionStorage(currentBottleneck, currentContext, lastRenderedBriefText);
+    });
   }
 
   // Form Submission
@@ -817,7 +842,7 @@
             'You have reached the studio limit of 5 Strategy Blueprint runs per 48 hours.') + ' '
         );
         const reviewLink = document.createElement('a');
-        reviewLink.href = 'contact.html';
+        reviewLink.href = 'contact.html?type=consulting&from=strategy';
         reviewLink.textContent = 'Book a 15-Minute Strategy Review ->';
         formError.append(badge, textNode, reviewLink);
         formError.hidden = false;
@@ -833,76 +858,4 @@
       loadingPanel.hidden = true;
     }
   });
-
-  // Lead Capture Trigger ("Email Me This Blueprint")
-  if (emailBlueprintBtn && emailCapturePanel) {
-    emailBlueprintBtn.addEventListener('click', () => {
-      const isHidden = emailCapturePanel.hidden;
-      emailCapturePanel.hidden = !isHidden;
-      emailBlueprintBtn.setAttribute('aria-expanded', String(isHidden));
-      if (isHidden && leadEmailInput) {
-        leadEmailInput.focus();
-      }
-    });
-  }
-
-  if (cancelEmailBtn && emailCapturePanel) {
-    cancelEmailBtn.addEventListener('click', () => {
-      emailCapturePanel.hidden = true;
-      if (emailBlueprintBtn) emailBlueprintBtn.setAttribute('aria-expanded', 'false');
-    });
-  }
-
-  if (sendBlueprintEmailBtn) {
-    sendBlueprintEmailBtn.addEventListener('click', async () => {
-      const email = (leadEmailInput?.value || '').trim();
-      const nameOrBiz = (leadNameInput?.value || '').trim();
-
-      if (!email || !email.includes('@')) {
-        if (emailFeedback) {
-          emailFeedback.textContent = 'Please enter a valid email address so we can send your blueprint.';
-          emailFeedback.hidden = false;
-        }
-        leadEmailInput?.focus();
-        return;
-      }
-
-      // Copy brief to clipboard as a seamless convenience backup
-      try {
-        if (lastRenderedBriefText && navigator.clipboard) {
-          await navigator.clipboard.writeText(lastRenderedBriefText);
-        }
-      } catch (_) {
-        // Ignore clipboard errors
-      }
-
-      const subject = encodeURIComponent(
-        stripEmDashes(
-          `TV Media Strategy Blueprint: ${lastRenderedTitle || 'Diagnostic Breakdown'}${nameOrBiz ? ' (' + nameOrBiz + ')' : ''}`
-        )
-      );
-      const intro = [
-        `Hi Tyler,`,
-        '',
-        `Please send me a copy of my Strategy Blueprint and let's discuss how this applies to my business.`,
-        `My Email: ${email}`,
-        nameOrBiz ? `Name / Business: ${nameOrBiz}` : '',
-        '',
-        '--- GENERATED BLUEPRINT ---',
-        lastRenderedBriefText
-      ]
-        .filter((line) => line !== null)
-        .join('\n');
-
-      const body = encodeURIComponent(stripEmDashes(intro));
-      const cc = encodeURIComponent(email);
-      window.location.href = `mailto:tvmediama@gmail.com?cc=${cc}&subject=${subject}&body=${body}`;
-
-      if (emailFeedback) {
-        emailFeedback.textContent =
-          'Opening your email client with your full blueprint addressed to you and Tyler (and copied to your clipboard as a backup).';
-        emailFeedback.hidden = false;
-      }
-    });
-  }
 })();

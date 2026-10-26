@@ -572,9 +572,7 @@ body {
 
 .blueprint-results[hidden],
 .loading-panel[hidden],
-.form-error[hidden],
-.copy-feedback[hidden],
-.email-capture-panel[hidden] {
+.form-error[hidden] {
   display: none !important;
 }
 
@@ -979,72 +977,36 @@ body {
 .disclaimer-actions {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   flex-wrap: wrap;
   gap: 1.25rem;
 }
 
 .btn-book-review {
-  display: inline-block;
-  background-color: #ff6600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #FF6600;
   color: #000000;
-  border: 1.5px solid #000000;
+  border: 2px solid #000000;
   border-radius: 2px;
-  padding: 0.85rem 1.85rem;
-  font-weight: 800;
-  font-size: 0.95rem;
+  padding: 0.95rem 2.25rem;
+  font-family: var(--font-sans, 'Work Sans', sans-serif);
+  font-weight: 900;
+  font-size: 1rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   text-decoration: none;
-  box-shadow: 3px 3px 0 #d6d4a0;
+  box-shadow: 3px 3px 0px #000000;
   transition: background-color 0.15s ease, transform 0.12s ease, box-shadow 0.12s ease;
 }
 
 .btn-book-review:hover,
 .btn-book-review:focus {
-  background-color: #d6d4a0;
-  color: #000000;
-  transform: translate(-2px, -2px);
-  box-shadow: 7px 7px 0 #ca054d;
-}
-
-.email-trigger-group {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.45rem;
-}
-
-.btn-email-blueprint {
-  display: inline-block;
   background-color: #EFF1C5;
   color: #1B264D;
-  border: 2px solid #000000;
-  border-radius: 2px;
-  padding: 0.85rem 1.85rem;
-  font-family: var(--font-sans, 'Work Sans', sans-serif);
-  font-weight: 700;
-  font-size: 0.95rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  cursor: pointer;
-  box-shadow: 3px 3px 0px #000000;
-  transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.15s ease;
-}
-
-.btn-email-blueprint:hover,
-.btn-email-blueprint:focus {
-  background-color: #FAF7EE;
-  color: #000000;
-  transform: translate(-2px, -2px);
-  box-shadow: 7px 7px 0 #ff6600;
-}
-
-.email-trigger-subtext {
-  font-size: 0.82rem;
-  font-weight: 700;
-  color: #d6d4a0; /* 9.63:1 on #1b264d (AAA) */
-  letter-spacing: 0.02em;
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0px #000000;
 }
 
 .ai-boilerplate-notice {
@@ -1053,120 +1015,6 @@ body {
   font-weight: 600;
   color: #d6d4a0; /* 9.63:1 on #1b264d (AAA) */
   opacity: 0.95;
-}
-
-/* Interactive Lead-Capture Drawer inside Section 5 */
-.email-capture-panel {
-  max-width: 680px;
-  margin: 1.75rem auto 0;
-  background-color: #d6d4a0;
-  color: #000000;
-  border: 3px solid #000000;
-  border-radius: 12px;
-  padding: 1.65rem 1.75rem;
-  box-shadow: 6px 6px 0 #000000;
-  text-align: left;
-}
-
-.email-capture-header h4 {
-  font-family: var(--font-display, 'Gambarino', Georgia, serif);
-  font-size: 1.5rem;
-  color: #1b264d;
-  margin: 0 0 0.35rem;
-}
-
-.email-capture-header p {
-  font-size: 0.94rem;
-  color: #000000;
-  margin: 0 0 1.15rem;
-  line-height: 1.5;
-}
-
-.email-capture-fields {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
-  margin-bottom: 1.15rem;
-}
-
-.email-field-col label {
-  display: block;
-  font-size: 0.82rem;
-  font-weight: 800;
-  color: #1b264d;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  margin-bottom: 0.35rem;
-}
-
-.email-field-col input {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 0.68rem 0.85rem;
-  font-family: var(--font-sans, 'Work Sans', sans-serif);
-  font-size: 0.95rem;
-  background-color: #FAF7EE;
-  color: #000000;
-  border: 2px solid #000000;
-  border-radius: 8px;
-  box-shadow: 3px 3px 0 #000000;
-}
-
-.email-field-col input:focus {
-  outline: none;
-  border-color: #1b264d;
-  box-shadow: 4px 4px 0 #ff6600;
-}
-
-.email-capture-actions {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 0.85rem;
-}
-
-.btn-send-blueprint {
-  background-color: #ff6600;
-  color: #000000;
-  border: 2px solid #000000;
-  border-radius: 999px;
-  padding: 0.68rem 1.45rem;
-  font-family: var(--font-sans, 'Work Sans', sans-serif);
-  font-weight: 900;
-  font-size: 0.94rem;
-  cursor: pointer;
-  box-shadow: 4px 4px 0 #1b264d;
-  transition: background-color 0.15s ease, transform 0.15s ease;
-}
-
-.btn-send-blueprint:hover {
-  background-color: #1b264d;
-  color: #FAF7EE;
-  transform: translate(-1px, -1px);
-}
-
-.btn-cancel-email {
-  background-color: #FAF7EE;
-  color: #000000;
-  border: 2px solid #000000;
-  border-radius: 999px;
-  padding: 0.65rem 1.15rem;
-  font-family: var(--font-sans, 'Work Sans', sans-serif);
-  font-weight: 700;
-  font-size: 0.9rem;
-  cursor: pointer;
-}
-
-.copy-feedback {
-  margin: 1rem 0 0;
-  display: inline-block;
-  background-color: #FAF7EE;
-  color: #000000;
-  border: 2px solid #000000;
-  border-radius: 8px;
-  padding: 0.55rem 1rem;
-  font-weight: 800;
-  font-size: 0.9rem;
 }
 
 /* ===== Responsive Breakpoints ===== */
@@ -1194,16 +1042,14 @@ body {
     padding: 1.65rem 1.25rem;
   }
 
-  .selector-options-mindset,
-  .email-capture-fields {
+  .selector-options-mindset {
     grid-template-columns: 1fr;
   }
 
   .btn-generate,
-  .btn-book-review,
-  .btn-email-blueprint,
-  .email-trigger-group {
+  .btn-book-review {
     width: 100%;
     text-align: center;
+    box-sizing: border-box;
   }
 }

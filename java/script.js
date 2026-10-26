@@ -1,3 +1,36 @@
+// 0. Centralized Global Studio Contact Configuration (Single Source of Truth)
+(() => {
+  const cfg = window.TVMEDIA_CONFIG || {};
+  const contactConfig = Object.assign(
+    {
+      email: cfg.CONTACT_EMAIL || 'tvmediama@gmail.com',
+      phone: cfg.CONTACT_PHONE || '978-501-3526',
+      phoneHref: cfg.CONTACT_PHONE_HREF || 'tel:+19785013526'
+    },
+    window.TVMEDIA_CONTACT || {}
+  );
+  window.TVMEDIA_CONTACT = contactConfig;
+
+  function syncStudioContactLinks() {
+    const activeEmail = (window.TVMEDIA_CONTACT && window.TVMEDIA_CONTACT.email) || 'tvmediama@gmail.com';
+    document.querySelectorAll('a[href^="mailto:"]').forEach((link) => {
+      const currentHref = link.getAttribute('href') || '';
+      if (currentHref.toLowerCase().startsWith('mailto:tvmediama@gmail.com')) {
+        link.setAttribute('href', `mailto:${activeEmail}`);
+        if (link.textContent.includes('tvmediama@gmail.com')) {
+          link.textContent = link.textContent.replace(/tvmediama@gmail\.com/gi, activeEmail);
+        }
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', syncStudioContactLinks);
+  } else {
+    syncStudioContactLinks();
+  }
+})();
+
 // 1. Mobile Navigation Menu Toggle (Null-safe & Accessible)
 (() => {
   const menuToggle = document.getElementById('mobile-menu');

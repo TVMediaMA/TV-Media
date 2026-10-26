@@ -5,6 +5,8 @@ window.TVMEDIA_CONFIG = {
   PROXY_ENDPOINT: '/api/strategy',
   GROQ_ENDPOINT: 'https://api.groq.com/openai/v1/chat/completions',
   GROQ_MODEL: 'llama-3.3-70b-versatile',
-  GROQ_API_KEY: '' // Set in git-ignored java/config.local.js or server-side .env
+  GROQ_API_KEY: '', // Set in git-ignored java/config.local.js or server-side .env
+  CONTACT_EMAIL: 'tvmediama@gmail.com',
+  CONTACT_PHONE: '978-501-3526'
 };
 
