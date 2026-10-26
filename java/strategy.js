@@ -218,7 +218,7 @@
   });
 
   // Shared low-level LLM JSON caller (supports proxy + direct fallback)
-  async function callGroqJson(messages, maxTokens = 2048, temperature = 0.68) {
+  async function callGroqJson(messages, maxTokens = 2048, temperature = 0.68, requestType = 'blueprint') {
     const config = window.TVMEDIA_CONFIG || {};
     const proxyEndpoint = config.PROXY_ENDPOINT || '/api/strategy';
     const groqEndpoint = config.GROQ_ENDPOINT || 'https://api.groq.com/openai/v1/chat/completions';
@@ -230,16 +230,34 @@
       messages,
       temperature,
       max_tokens: maxTokens,
+      request_type: requestType,
       response_format: { type: 'json_object' }
     };
 
     // 1. Try local/serverless proxy endpoint first (/api/strategy)
+    let rateLimitError = null;
     try {
       const proxyResp = await fetch(proxyEndpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(requestPayload)
       });
+
+      if (proxyResp.status === 429) {
+        let errMessage =
+          'You have reached the studio limit of 5 Strategy Blueprint runs per 48 hours. Ready to turn these diagnostics into a working plan? Book a 15-minute strategy review on our Contact page.';
+        try {
+          const errJson = await proxyResp.json();
+          if (errJson && errJson.message) {
+            errMessage = errJson.message;
+          }
+        } catch (_) {
+          // Keep default rate-limit message
+        }
+        rateLimitError = new Error(errMessage);
+        rateLimitError.status = 429;
+        throw rateLimitError;
+      }
 
       if (proxyResp.ok) {
         const data = await proxyResp.json();
@@ -248,7 +266,10 @@
           return stripEmDashes(JSON.parse(content));
         }
       }
-    } catch (_) {
+    } catch (err) {
+      if (err && err.status === 429) {
+        throw err;
+      }
       // Proxy unavailable; proceed to direct call
     }
 
@@ -318,7 +339,7 @@
       }
     ];
 
-    return await callGroqJson(messages, 650, 0.85);
+    return await callGroqJson(messages, 650, 0.85, 'scenario');
   }
 
   function applyScenarioToForm(chosen, isLiveGenerated = false) {
@@ -608,8 +629,11 @@
   async function requestGroqBlueprint(bottleneck, context) {
     const messages = buildGroqMessages(bottleneck, context);
     try {
-      return await callGroqJson(messages, 2048, 0.65);
-    } catch (_) {
+      return await callGroqJson(messages, 2048, 0.65, 'blueprint');
+    } catch (err) {
+      if (err && err.status === 429) {
+        throw err;
+      }
       // Smoothly fall back to our tailored practitioner blueprint if live API cannot be reached
       return buildOfflineFallbackBlueprint(bottleneck, context);
     }
@@ -783,6 +807,26 @@
       const context = getSelectedContext();
       const blueprint = await requestGroqBlueprint(bottleneck, context);
       renderBlueprint(blueprint, bottleneck, context);
+    } catch (err) {
+      if (err && err.status === 429) {
+        formError.innerHTML = '';
+        const badge = document.createElement('strong');
+        badge.textContent = '[ RATE LIMIT REACHED // 5 RUNS PER 48 HOURS ] ';
+        const textNode = document.createTextNode(
+          (err.message ||
+            'You have reached the studio limit of 5 Strategy Blueprint runs per 48 hours.') + ' '
+        );
+        const reviewLink = document.createElement('a');
+        reviewLink.href = 'contact.html';
+        reviewLink.textContent = 'Book a 15-Minute Strategy Review ->';
+        formError.append(badge, textNode, reviewLink);
+        formError.hidden = false;
+      } else {
+        formError.textContent =
+          (err && err.message) ||
+          'Unable to generate your blueprint right now. Please try again or reach out via our Contact page.';
+        formError.hidden = false;
+      }
     } finally {
       generateBtn.disabled = false;
       generateBtnText.textContent = 'Build My Strategy Blueprint ->';

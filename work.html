@@ -99,6 +99,7 @@
         <li><a href="services.html">Services</a></li>
         <li><a href="work.html" class="active">Portfolio</a></li>
         <li><a href="strategy.html">Strategy Generator</a></li>
+        <li><a href="newsletter.html">Newsletter</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
     </nav>
@@ -111,14 +112,10 @@
       <p class="tuner-subhead">Real campaigns, real print runs, real results</p>
     </section>
 
-    <!-- 3. Broadcast Tuner Control Bar (Full-Width 4-Color Stripe + ON AIR + Channel Push-Buttons) -->
+    <!-- 3. Broadcast Tuner Control Bar (Full-Width 4-Color Stripe + Channel Push-Buttons) -->
     <section class="tuner-control-strip" aria-label="Broadcast Tuner Channel Controls">
       <div class="broadcast-stripe-track" aria-hidden="true"></div>
       <div class="tuner-control-inner">
-        <div class="on-air-housing" aria-live="polite">
-          <span class="on-air-lamp">ON AIR</span>
-        </div>
-
         <div class="channel-push-group" role="tablist" aria-label="Portfolio Channels">
           <button
             type="button"
@@ -217,13 +214,22 @@
           </div>
         </div>
         <div class="crt-base-stand" aria-hidden="true"></div>
+
+        <!-- Compact Conversion Callout Nested Directly Under CRT Monitor -->
+        <div class="conversion-deck-bar">
+          <p class="conversion-deck-prompt">Ready to solve the bottlenecks in your own business?</p>
+          <div class="conversion-deck-actions">
+            <a href="strategy.html" class="btn-deck-orange">Run Strategy Generator -&gt;</a>
+            <a href="contact.html" class="btn-deck-cream">Book a 15-Minute Review</a>
+          </div>
+        </div>
       </div>
 
       <!-- Right Deck: The Retro OS Telemetry Terminal -->
       <article class="telemetry-window" aria-labelledby="telemetry-window-title">
         <!-- Top Title Bar -->
         <div class="telemetry-titlebar">
-          <span id="telemetry-window-title" class="telemetry-title-text">TELEMETRY</span>
+          <span id="telemetry-window-title" class="telemetry-title-text">CASE BRIEF</span>
           <div class="telemetry-os-dots" aria-hidden="true">
             <span class="os-dot os-dot-orange"></span>
             <span class="os-dot os-dot-teal"></span>
@@ -416,8 +422,8 @@
       </article>
     </section>
 
-    <!-- 5. Bottom Conversion Deck -->
-    <section class="conversion-deck-section" aria-label="Next Step Conversion">
+    <!-- 5. Mobile-Only Bottom Conversion Deck (< 768px fallback) -->
+    <section class="conversion-deck-section mobile-only-conversion" aria-label="Next Step Conversion">
       <div class="conversion-deck-bar">
         <p class="conversion-deck-prompt">Ready to solve the bottlenecks in your own business?</p>
         <div class="conversion-deck-actions">
@@ -444,6 +450,7 @@
           <li><a href="services.html">Services</a></li>
           <li><a href="work.html">Portfolio</a></li>
           <li><a href="strategy.html">Strategy Generator</a></li>
+          <li><a href="newsletter.html">Newsletter</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </div>
@@ -459,7 +466,7 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <p>&copy; 2026 TV Media · Boxborough, Massachusetts. All rights reserved.</p>
+      <p>&copy; 2026 TV Media Solutions. All rights reserved.</p>
     </div>
   </footer>
 

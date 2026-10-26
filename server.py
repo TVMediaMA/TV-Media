@@ -7,9 +7,31 @@ that reads GROQ_API_KEY from `.env` so API keys are never exposed in public code
 import json
 import os
 import ssl
+import threading
+import time
 import urllib.error
 import urllib.request
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
+
+# In-memory IP rate limiter: max 5 blueprint runs per IP address every 48 hours
+RATE_LIMIT_MAX_RUNS = 5
+RATE_LIMIT_WINDOW_SECONDS = 48 * 3600
+RATE_LIMIT_LOCK = threading.Lock()
+IP_BLUEPRINT_RUNS = {}
+
+
+def check_and_record_rate_limit(client_ip):
+    now = time.time()
+    cutoff = now - RATE_LIMIT_WINDOW_SECONDS
+    with RATE_LIMIT_LOCK:
+        history = [ts for ts in IP_BLUEPRINT_RUNS.get(client_ip, []) if ts > cutoff]
+        if len(history) >= RATE_LIMIT_MAX_RUNS:
+            IP_BLUEPRINT_RUNS[client_ip] = history
+            return False, len(history)
+        history.append(now)
+        IP_BLUEPRINT_RUNS[client_ip] = history
+        return True, len(history)
+
 
 
 def open_groq_request(req, timeout=45):
@@ -87,6 +109,28 @@ class TVMediaHandler(SimpleHTTPRequestHandler):
         if not isinstance(messages, list) or not messages:
             self._send_json(400, {"error": "Request must include a messages array."})
             return
+
+        # Extract client IP (respecting X-Forwarded-For if behind a reverse proxy)
+        forwarded_for = self.headers.get("X-Forwarded-For", "").split(",")[0].strip()
+        client_ip = forwarded_for or (self.client_address[0] if self.client_address else "unknown")
+
+        # Enforce 5 blueprint runs per IP per 48 hours
+        if payload.get("request_type") != "scenario":
+            allowed, run_count = check_and_record_rate_limit(client_ip)
+            if not allowed:
+                self._send_json(
+                    429,
+                    {
+                        "error": "rate_limit_exceeded",
+                        "message": (
+                            "You have reached the studio limit of 5 Strategy Blueprint runs per 48 hours. "
+                            "Ready to turn these diagnostics into a working plan? Book a 15-minute strategy review with our team on the Contact page."
+                        ),
+                        "limit": RATE_LIMIT_MAX_RUNS,
+                        "window_hours": 48,
+                    },
+                )
+                return
 
         primary_model = payload.get("model") or model
         fallback_models = [

@@ -83,7 +83,8 @@
         <div class="recap-row"><strong>Email:</strong> <span>${escapeHtml(data.email)}</span></div>
         ${data.businessName ? `<div class="recap-row"><strong>Business Name:</strong> <span>${escapeHtml(data.businessName)}</span></div>` : ''}
         ${data.website ? `<div class="recap-row"><strong>Website:</strong> <span>${escapeHtml(data.website)}</span></div>` : ''}
-        <div class="recap-row"><strong>TV Media Newsletter:</strong> <span>${data.newsletter ? 'Subscribed' : 'Not opted in'}</span></div>
+        <div class="recap-row"><strong>Monthly Newsletter:</strong> <span>${data.newsletter ? 'Subscribed' : 'Not opted in'}</span></div>
+        <div class="recap-row"><strong>Studio Promos ($100 Off):</strong> <span>${data.studioPromos ? 'Claimed' : 'Not selected'}</span></div>
       `;
     }
     modal.hidden = false;
@@ -120,7 +121,8 @@
     const businessInput = document.getElementById('contact-business');
     const websiteInput = document.getElementById('contact-website');
     const notesInput = document.getElementById('contact-notes');
-    const newsletterInput = document.getElementById('contact-newsletter');
+    const newsletterInput = document.getElementById('optin_newsletter') || document.getElementById('contact-newsletter');
+    const promosInput = document.getElementById('optin_promos') || document.getElementById('contact-promos');
     const botTrapInput = document.getElementById('studio-bot-trap');
     const confessionalInput = document.getElementById('ai-confessional-booth');
 
@@ -130,7 +132,8 @@
     const businessName = (businessInput?.value || '').trim();
     const website = (websiteInput?.value || '').trim();
     const notes = (notesInput?.value || '').trim();
-    const newsletter = newsletterInput?.checked ? 'true' : 'false';
+    const newsletter = newsletterInput?.checked ? 'yes' : 'no';
+    const studioPromos = promosInput?.checked ? 'yes' : 'no';
     const studioBotTrap = (botTrapInput?.value || '').trim();
     const aiConfessionalBooth = (confessionalInput?.value || '').trim();
 
@@ -188,7 +191,10 @@
     formData.append('email', email);
     formData.append('services', servicesString);
     formData.append('notes', notes);
+    formData.append('optin_newsletter', newsletter);
+    formData.append('optin_promos', studioPromos);
     formData.append('newsletter', newsletter);
+    formData.append('studioPromos', studioPromos);
     formData.append('studio_bot_trap', studioBotTrap);
     formData.append('ai_confessional_booth', aiConfessionalBooth);
     formData.append('timestamp', new Date().toISOString());
@@ -220,7 +226,8 @@
         website,
         services: servicesString,
         notes,
-        newsletter: newsletterInput?.checked
+        newsletter: newsletterInput?.checked,
+        studioPromos: promosInput?.checked
       });
 
       // Reset form

@@ -1,0 +1,687 @@
+/* ============================================================
+   TV MEDIA - NEWSLETTER HUB & ISSUE DISPATCH STYLES
+   Tactile Broadcast Console Aesthetic
+   ============================================================ */
+
+.newsletter-page {
+  width: 100%;
+  max-width: var(--max-width, 1280px);
+  margin: 0 auto;
+  padding: 2.5rem 24px 5rem;
+}
+
+/* ============================================================
+   1. MASTHEAD & TELEMETRY HEADER
+   ============================================================ */
+.newsletter-masthead {
+  background-color: #1B264D;
+  color: #f8f9fa;
+  border: 1.5px solid #000000;
+  border-radius: 2px;
+  box-shadow: 4px 4px 0px #000000;
+  padding: 2.75rem 2.5rem;
+  margin-bottom: 3rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.newsletter-masthead::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(
+    90deg,
+    #ff6600 0% 25%,
+    #ca054d 25% 50%,
+    #148888 50% 75%,
+    #e6af2e 75% 100%
+  );
+  border-bottom: 2px solid #000000;
+}
+
+.masthead-telemetry-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.telemetry-badge {
+  display: inline-block;
+  background-color: #ff6600;
+  color: #0b0f19;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.3rem 0.7rem;
+  border: 1.5px solid #000000;
+  border-radius: 2px;
+  box-shadow: 2px 2px 0px #000000;
+}
+
+.telemetry-meta {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: #cbd5e1;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.newsletter-masthead h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4.2vw, 3.1rem);
+  font-weight: 800;
+  color: #FAF7EE;
+  line-height: 1.12;
+  margin: 0 0 1rem;
+  letter-spacing: -0.02em;
+}
+
+.newsletter-masthead-lead {
+  font-size: 1.08rem;
+  line-height: 1.65;
+  color: #e2e8f0;
+  max-width: 780px;
+  margin: 0 0 1.5rem;
+}
+
+.masthead-subscribe-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.85rem;
+  padding-top: 1.15rem;
+  border-top: 1px dashed rgba(255, 255, 255, 0.2);
+}
+
+.masthead-perk-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background-color: #0f1629;
+  color: #e6af2e;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.45rem 0.85rem;
+  border: 1.5px solid #000000;
+  border-radius: 2px;
+}
+
+/* ============================================================
+   2. DIRECTORY GRID (HUB-AND-SPOKE ARCHIVE)
+   ============================================================ */
+.archive-section-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.65rem;
+  border-bottom: 1.5px solid #000000;
+}
+
+.archive-section-header h2 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #1B264D;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+}
+
+.archive-count-label {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #1B264D;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.dispatch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 1.75rem;
+}
+
+.dispatch-card {
+  background-color: #1B264D;
+  color: #f8f9fa;
+  border: 1.5px solid #000000;
+  border-radius: 2px;
+  box-shadow: 4px 4px 0px #000000;
+  padding: 1.85rem 1.65rem 1.65rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.dispatch-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(
+    90deg,
+    #ff6600 0% 25%,
+    #ca054d 25% 50%,
+    #148888 50% 75%,
+    #e6af2e 75% 100%
+  );
+  border-bottom: 2px solid #000000;
+}
+
+.dispatch-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px #000000;
+}
+
+.dispatch-card-upcoming {
+  opacity: 0.9;
+  background-color: #172038;
+}
+
+.dispatch-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.issue-pill {
+  display: inline-block;
+  background-color: #148888;
+  color: #FAF7EE;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  padding: 0.25rem 0.6rem;
+  border: 1.5px solid #000000;
+  border-radius: 2px;
+  box-shadow: 2px 2px 0px #000000;
+}
+
+.issue-pill-upcoming {
+  background-color: #ca054d;
+}
+
+.dispatch-date-read {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  color: #cbd5e1;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.dispatch-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 800;
+  line-height: 1.25;
+  color: #FAF7EE;
+  margin: 0 0 0.75rem;
+}
+
+.dispatch-card h3 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.dispatch-card h3 a:hover {
+  color: #ff6600;
+}
+
+.dispatch-excerpt {
+  font-size: 0.96rem;
+  line-height: 1.6;
+  color: #cbd5e1;
+  margin: 0 0 1.5rem;
+}
+
+.dispatch-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.dispatch-read-time {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: #e6af2e;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.btn-dispatch-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background-color: #ff6600;
+  color: #0b0f19;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  padding: 0.5rem 0.9rem;
+  border: 1.5px solid #000000;
+  border-radius: 2px;
+  box-shadow: 2px 2px 0px #000000;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background-color 0.12s ease;
+}
+
+.btn-dispatch-link:hover {
+  background-color: #ff771a;
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0px #000000;
+}
+
+.dispatch-status-tag {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* ============================================================
+   3. INDIVIDUAL ISSUE ARTICLE & PREVIEW GATE
+   ============================================================ */
+.issue-breadcrumb-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.breadcrumb-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #000000;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background-color: #EFF1C5;
+  padding: 0.45rem 0.85rem;
+  border: 2px solid #000000;
+  border-radius: 2px;
+  box-shadow: 2px 2px 0px #000000;
+}
+
+.breadcrumb-back-link:hover {
+  background-color: #ff6600;
+  color: #0b0f19;
+}
+
+.issue-article-shell {
+  background-color: #1B264D;
+  color: #f8f9fa;
+  border: 1.5px solid #000000;
+  border-radius: 2px;
+  box-shadow: 4px 4px 0px #000000;
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.issue-article-shell::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(
+    90deg,
+    #ff6600 0% 25%,
+    #ca054d 25% 50%,
+    #148888 50% 75%,
+    #e6af2e 75% 100%
+  );
+  border-bottom: 2px solid #000000;
+}
+
+.issue-article-header {
+  padding: 2.5rem 2.5rem 1.75rem;
+  border-bottom: 1.5px solid #000000;
+  background-color: #0f1629;
+}
+
+.issue-header-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.issue-article-header h1 {
+  font-family: var(--font-display);
+  font-size: clamp(1.85rem, 3.6vw, 2.65rem);
+  font-weight: 800;
+  color: #FAF7EE;
+  line-height: 1.15;
+  margin: 0 0 0.85rem;
+}
+
+.issue-article-subtitle {
+  font-size: 1.08rem;
+  line-height: 1.6;
+  color: #cbd5e1;
+  margin: 0;
+}
+
+.issue-article-content {
+  padding: 2.25rem 2.5rem 2.75rem;
+}
+
+.article-open-preview p,
+.gated-article-body p {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: #e2e8f0;
+  margin: 0 0 1.35rem;
+}
+
+.article-open-preview h2,
+.gated-article-body h2 {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #FAF7EE;
+  margin: 2rem 0 0.85rem;
+  letter-spacing: -0.01em;
+}
+
+.article-callout-box {
+  background-color: #0f1629;
+  border: 1.5px solid #000000;
+  border-left: 4px solid #ff6600;
+  border-radius: 2px;
+  padding: 1.15rem 1.35rem;
+  margin: 1.5rem 0;
+}
+
+.article-callout-box strong {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #ff6600;
+  margin-bottom: 0.35rem;
+}
+
+/* Gated Content Wrapper & Blur State */
+.gated-section-wrapper {
+  position: relative;
+  margin-top: 1.5rem;
+}
+
+.gated-article-body.is-locked {
+  filter: blur(5px);
+  user-select: none;
+  pointer-events: none;
+  max-height: 420px;
+  overflow: hidden;
+  opacity: 0.45;
+  transition: filter 0.3s ease, opacity 0.3s ease, max-height 0.35s ease;
+}
+
+.gated-article-body.is-unlocked {
+  filter: none;
+  user-select: auto;
+  pointer-events: auto;
+  max-height: none;
+  opacity: 1;
+  transition: filter 0.3s ease;
+}
+
+.monthly-loyalty-perk-box {
+  margin-top: 2rem;
+  background-color: #0f1629;
+  border: 1.5px solid #00A3A6;
+  border-left: 4px solid #FF6600;
+  border-radius: 2px;
+  box-shadow: 3px 3px 0px #0A0E1A;
+  padding: 1.5rem 1.65rem;
+}
+
+.monthly-loyalty-perk-box h3 {
+  font-family: var(--font-sans);
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #FAF7EE;
+  margin: 0.75rem 0 0.5rem;
+}
+
+.monthly-loyalty-perk-box p {
+  font-size: 0.96rem;
+  line-height: 1.6;
+  color: #cbd5e1;
+  margin: 0 0 1.15rem;
+}
+
+.monthly-loyalty-perk-box code {
+  font-family: var(--font-mono);
+  background-color: #161F36;
+  color: #E5C158;
+  padding: 0.15rem 0.45rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+}
+
+/* Gate Overlay Card */
+.gate-overlay-container {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 10;
+}
+
+.gate-overlay-container[hidden] {
+  display: none !important;
+}
+
+.gate-overlay-card {
+  background-color: #FAF7EE;
+  color: #1B264D;
+  border: 1.5px solid #000000;
+  border-radius: 2px;
+  box-shadow: 4px 4px 0px #000000;
+  padding: 2rem 1.85rem;
+  max-width: 540px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.gate-overlay-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(
+    90deg,
+    #ff6600 0% 25%,
+    #ca054d 25% 50%,
+    #148888 50% 75%,
+    #e6af2e 75% 100%
+  );
+  border-bottom: 2px solid #000000;
+}
+
+.gate-overlay-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #1B264D;
+  margin: 0.65rem 0 0.55rem;
+  line-height: 1.2;
+}
+
+.gate-overlay-card p {
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: #1e293b;
+  margin: 0 0 1.15rem;
+}
+
+.gate-perk-banner {
+  background-color: #1B264D;
+  color: #e6af2e;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 700;
+  padding: 0.55rem 0.75rem;
+  border: 1.5px solid #000000;
+  border-radius: 2px;
+  margin-bottom: 1.15rem;
+  line-height: 1.4;
+}
+
+.gate-unlock-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.gate-input-row {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.gate-email-input {
+  flex: 1;
+  padding: 0.7rem 0.85rem;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: #0f172a;
+  background-color: #FAF7EE;
+  border: 1.5px solid #000000;
+  border-radius: 2px;
+}
+
+.gate-email-input:focus {
+  outline: 2px solid #ff6600;
+  outline-offset: 0;
+}
+
+.btn-gate-unlock {
+  background-color: #ff6600;
+  color: #0b0f19;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.75rem 1.2rem;
+  border: 1.5px solid #000000;
+  border-radius: 2px;
+  box-shadow: 3px 3px 0px #000000;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background-color 0.12s ease;
+}
+
+.btn-gate-unlock:hover {
+  background-color: #ff771a;
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0px #000000;
+}
+
+.gate-error-msg {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  color: #ca054d;
+  font-weight: 700;
+  margin: 0;
+}
+
+.gate-privacy-note {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: #475569;
+  margin: 0.25rem 0 0;
+}
+
+.unlocked-status-banner {
+  background-color: #0f1629;
+  border: 1.5px solid #148888;
+  border-radius: 2px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: #5eead4;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.unlocked-status-banner[hidden] {
+  display: none !important;
+}
+
+@media (max-width: 768px) {
+  .newsletter-masthead,
+  .issue-article-header,
+  .issue-article-content {
+    padding: 1.65rem 1.25rem;
+  }
+
+  .dispatch-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gate-input-row {
+    flex-direction: column;
+  }
+
+  .btn-gate-unlock {
+    width: 100%;
+    text-align: center;
+  }
+}
+

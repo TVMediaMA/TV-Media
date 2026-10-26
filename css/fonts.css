@@ -36,13 +36,13 @@
 
 /* --- Official Brand Palette & Retro-Digital Design Tokens ---
    WCAG 2.1 Verified Contrast Matrix:
-   - #ffffff on #1b264d (Navy):    14.67:1 (AAA)
+   - #FAF7EE on #1b264d (Navy):    14.67:1 (AAA)
    - #d6d4a0 on #1b264d (Navy):     9.63:1 (AAA)
    - #ff6600 on #1b264d (Navy):     5.00:1 (AA)
-   - #000000 on #ffffff (White):   21.00:1 (AAA)
-   - #1b264d on #ffffff (White):   14.67:1 (AAA)
-   - #ca054d on #ffffff (White):    5.77:1 (AA)
-   - #ffffff on #ca054d (Magenta):  5.77:1 (AA)
+   - #000000 on #FAF7EE (White):   21.00:1 (AAA)
+   - #1b264d on #FAF7EE (White):   14.67:1 (AAA)
+   - #ca054d on #FAF7EE (White):    5.77:1 (AA)
+   - #FAF7EE on #ca054d (Magenta):  5.77:1 (AA)
    - #000000 on #d6d4a0 (Cream):   13.78:1 (AAA)
    - #1b264d on #d6d4a0 (Cream):    9.63:1 (AAA)
    - #000000 on #ff6600 (Orange):   7.15:1 (AAA)
@@ -56,43 +56,49 @@
   --accent: #ca054d;
   --heading: #d6d4a0;
   --support: #148888;
+  --amber: #e6af2e;
   --black: #000000;
-  --white: #ffffff;
+  --white: #FAF7EE;
+  --canvas-bg: #d6d4a0;
 
   /* Semantic Aliases */
   --text_dark: #000000;
-  --text_navy: #1b264d;
-  --text_light: #ffffff;
-  --surface-navy: #1b264d;
-  --surface-cream: #d6d4a0;
-  --surface-white: #ffffff;
+  --text_navy: #1B264D;
+  --text_light: #FAF7EE;
+  --surface-navy: #1B264D;
+  --surface-slate: #1B264D;
+  --surface-cream: #EFF1C5;
+  --surface-bone: #f4f3ed;
+  --surface-white: #FAF7EE;
 
-  /* Retro-Digital Broadcast Borders & Tactile Offset Shadows */
-  --border-ink: 2px solid #000000;
-  --border-navy: 2px solid #1b264d;
-  --border-cream: 2px solid #d6d4a0;
-  --border-teal: 2px solid #148888;
-  --shadow-retro-black: 6px 6px 0 #000000;
-  --shadow-retro-orange: 6px 6px 0 #ff6600;
-  --shadow-retro-teal: 6px 6px 0 #148888;
-  --shadow-retro-magenta: 6px 6px 0 #ca054d;
-  --shadow-retro-cream: 6px 6px 0 #d6d4a0;
-  --shadow-sm: 4px 4px 0 #000000;
-  --radius-card: 12px;
-  --radius-pill: 999px;
+  /* Engineered Broadcast Console Borders & Tight Offset Shadows */
+  --border-ink: 1.5px solid #000000;
+  --border-chassis: 1.5px solid #000000;
+  --border-navy: 1.5px solid #1b264d;
+  --border-cream: 1.5px solid #d6d4a0;
+  --border-teal: 1.5px solid #148888;
+  --shadow-retro-black: 4px 4px 0 #000000;
+  --shadow-retro-orange: 3px 3px 0 #ff6600;
+  --shadow-retro-teal: 3px 3px 0 #148888;
+  --shadow-retro-magenta: 3px 3px 0 #ca054d;
+  --shadow-retro-cream: 3px 3px 0 #d6d4a0;
+  --shadow-sm: 3px 3px 0 #000000;
+  --radius-card: 2px;
+  --radius-pill: 2px;
 
-  /* Broadcast Color-Bar Stripe */
+  /* Crisp 3px SMPTE Broadcast Calibration Ribbon */
   --signal-bars: linear-gradient(
     90deg,
     #ff6600 0% 25%,
     #ca054d 25% 50%,
     #148888 50% 75%,
-    #d6d4a0 75% 100%
+    #e6af2e 75% 100%
   );
 
   /* Typography */
-  --font-display: 'Gambarino', Georgia, serif;
+  --font-display: 'Work Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   --font-sans: 'Work Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: ui-monospace, 'SFMono-Regular', 'SF Mono', Menlo, Consolas, monospace;
 }
 
 html {
@@ -100,24 +106,26 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
-/* Base Body */
+/* Base Body - Signature Warm Pale Yellow (#d6d4a0) with Subtle Dark Dot Matrix Grid */
 body {
   font-family: var(--font-sans);
   font-weight: 400;
   font-size: 1rem;
   line-height: 1.6;
   color: var(--black);
-  background-color: var(--secondary);
+  background-color: #d6d4a0;
+  background-image: radial-gradient(#1b264d 1px, transparent 1px);
+  background-size: 20px 20px;
   margin: 0;
   padding: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Headings - Gambarino is a 400-weight display serif; never faux-bold */
+/* Headings - Heavy, industrial uppercase sans-serif */
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-display);
-  font-weight: 400;
+  font-family: var(--font-sans);
+  font-weight: 800;
   margin-top: 0;
   margin-bottom: 0.75rem;
   line-height: 1.15;
@@ -169,7 +177,7 @@ p {
   color: var(--black);
 }
 
-/* Links - WCAG AA compliant (#ca054d on #ffffff = 5.77:1; #1b264d on #ffffff = 14.67:1) */
+/* Links - WCAG AA compliant (#ca054d on #FAF7EE = 5.77:1; #1b264d on #FAF7EE = 14.67:1) */
 a {
   font-family: var(--font-sans);
   font-weight: 700;

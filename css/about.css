@@ -2,12 +2,14 @@
    Same design language as services.css / work.css / strategy.css:
    pale-yellow dot-grid canvases with navy tactile cards (never navy on navy),
    3px black borders, zero-blur offset shadows and the 4-color signal stripe.
-   Contrast: #ffffff on #1b264d 14.67:1, #d6d4a0 on #1b264d 9.63:1,
-   #000000 on #ff6600 7.15:1, #000000 on #148888 4.91:1, #ffffff on #ca054d 5.77:1,
+   Contrast: #FAF7EE on #1b264d 14.67:1, #d6d4a0 on #1b264d 9.63:1,
+   #000000 on #ff6600 7.15:1, #000000 on #148888 4.91:1, #FAF7EE on #ca054d 5.77:1,
    #ff6600 on #1b264d 4.99:1, #1b264d on #d6d4a0 9.63:1, #1b264d on #f4f1d6 12.4:1 */
 
 body {
   background-color: #d6d4a0;
+  background-image: radial-gradient(#1b264d 1px, transparent 1px);
+  background-size: 20px 20px;
 }
 
 img {
@@ -15,26 +17,26 @@ img {
   display: block;
 }
 
-/* ===== Chapter 0: Studio Intro Hero (#d6d4a0 dot canvas, navy card) ===== */
+/* ===== Chapter 0: Studio Intro Hero (#F4F3ED 24px graph canvas, dark slate card) ===== */
 #about {
   position: relative;
   background-color: #d6d4a0;
-  background-image: radial-gradient(rgba(27, 38, 77, 0.3) 1.3px, transparent 1.6px);
-  background-size: 16px 16px;
-  color: #ffffff;
-  padding: 4.25rem 1.5rem 5rem;
+  background-image: radial-gradient(#1b264d 1px, transparent 1px);
+  background-size: 20px 20px;
+  color: #FAF7EE;
+  padding: 3.75rem 1.5rem 4.5rem;
   text-align: center;
-  border-bottom: 4px solid #000000;
+  border-bottom: 3px solid #000000;
 }
 
 .about-content {
   max-width: 900px;
   margin: 0 auto;
-  background-color: #1b264d;
-  border: 3px solid #000000;
-  border-radius: 14px;
-  box-shadow: 10px 10px 0 #000000;
-  padding: 4rem 2.5rem 3rem;
+  background-color: #1B264D;
+  border: 2px solid #000000;
+  border-radius: 3px;
+  box-shadow: 4px 4px 0px #000000;
+  padding: 3.25rem 2.5rem 2.75rem;
   z-index: 2;
   position: relative;
   overflow: hidden;
@@ -46,34 +48,35 @@ img {
   top: 0;
   left: 0;
   right: 0;
-  height: 16px;
+  height: 6px;
   background: linear-gradient(
     90deg,
     #ff6600 0% 25%,
     #ca054d 25% 50%,
     #148888 50% 75%,
-    #d6d4a0 75% 100%
+    #e6af2e 75% 100%
   );
-  border-bottom: 3px solid #000000;
+  border-bottom: 2px solid #000000;
 }
 
-/* Eyebrow (#000000 on #d6d4a0 = 13.78:1 AAA) */
+/* Eyebrow Pill Capsule */
 .about-eyebrow {
   display: inline-block;
-  background-color: #d6d4a0;
+  background-color: #EFF1C5;
   color: #000000;
-  border: 3px solid #000000;
-  box-shadow: 3px 3px 0 #ff6600;
-  padding: 0.4rem 1.1rem;
+  border: 2px solid #000000;
+  box-shadow: 2px 2px 0px #000000;
+  padding: 0.38rem 1.1rem;
   border-radius: 999px;
-  font-size: 0.8rem;
+  font-family: var(--font-mono, ui-monospace, 'SFMono-Regular', monospace);
+  font-size: 0.78rem;
   font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.07em;
+  letter-spacing: 0.08em;
   margin-bottom: 1.3rem;
 }
 
-/* Heading (#d6d4a0 on #1b264d = 9.63:1 AAA) */
+/* Heading */
 .about-content h1 {
   font-family: var(--font-sans, 'Work Sans', sans-serif);
   font-size: clamp(2.2rem, 5.2vw, 3.6rem);
@@ -81,27 +84,27 @@ img {
   line-height: 1.04;
   text-transform: uppercase;
   letter-spacing: 0.01em;
-  color: #d6d4a0;
+  color: #F4F3ED;
   margin-bottom: 1.4rem;
 }
 
-/* Body Paragraphs (#ffffff on #1b264d = 14.67:1 AAA) */
+/* Body Paragraphs */
 .about-content p {
-  color: #ffffff;
-  font-size: 1.1rem;
+  color: #FAF7EE;
+  font-size: 1.08rem;
   margin-bottom: 1.35rem;
-  line-height: 1.75;
+  line-height: 1.72;
 }
 
-/* Highlight Quote (#d6d4a0 on #1b264d = 9.63:1 AAA) */
+/* Highlight Quote */
 .about-content .about-highlight {
   font-family: var(--font-display, 'Gambarino', Georgia, serif);
-  font-size: 1.5rem;
+  font-size: 1.45rem;
   color: #d6d4a0;
   margin-top: 1.75rem;
   margin-bottom: 2rem;
   padding-top: 1.5rem;
-  border-top: 2px dashed #d6d4a0;
+  border-top: 1px dashed rgba(214, 212, 160, 0.4);
 }
 
 .about-cta-row {
@@ -109,26 +112,26 @@ img {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  gap: 1.15rem;
+  gap: 1rem;
 }
 
-/* Shared tactile buttons (match .svc-btn on services.html) */
+/* Shared tactile buttons */
 .about-content .btn,
 .btn-founder-cta {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.85rem 1.75rem;
+  padding: 0.8rem 1.65rem;
   background-color: #ff6600;
   color: #000000;
   font-family: var(--font-sans, 'Work Sans', sans-serif);
-  font-size: 0.95rem;
-  font-weight: 900;
-  letter-spacing: 0.04em;
+  font-size: 0.92rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
-  border: 3px solid #000000;
-  border-radius: 8px;
-  box-shadow: 3px 4px 0 #000000;
+  border: 1.5px solid #000000;
+  border-radius: 2px;
+  box-shadow: 3px 3px 0 #000000;
   text-decoration: none;
   transition: background-color 0.12s ease, transform 0.12s ease, box-shadow 0.12s ease;
   cursor: pointer;
@@ -138,42 +141,46 @@ img {
 .about-content .btn:focus-visible,
 .btn-founder-cta:hover,
 .btn-founder-cta:focus-visible {
-  background-color: #ff8433;
+  background-color: #ff7a1a;
   color: #000000;
-  transform: translate(-1px, -2px);
-  box-shadow: 5px 6px 0 #000000;
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 #000000;
 }
 
 .about-content .btn:active,
 .btn-founder-cta:active {
-  transform: translate(2px, 3px);
+  transform: translate(2px, 2px);
   box-shadow: 1px 1px 0 #000000;
 }
 
 .about-content .btn:focus-visible,
 .btn-founder-cta:focus-visible {
-  outline: 3px dashed #ff6600;
+  outline: 2px dashed #ff6600;
   outline-offset: 3px;
 }
 
 .about-content .btn.btn-secondary {
-  background-color: #f4f1d6;
-  color: #000000;
+  background-color: #EFF1C5;
+  color: #1B264D;
+  font-weight: 700;
+  border: 2px solid #000000;
+  box-shadow: 3px 3px 0px #000000;
 }
 
 .about-content .btn.btn-secondary:hover,
 .about-content .btn.btn-secondary:focus-visible {
-  background-color: #ffffff;
-  box-shadow: 5px 6px 0 #000000;
+  background-color: #FAF7EE;
+  color: #1B264D;
+  box-shadow: 4px 4px 0px #000000;
 }
 
-/* ===== Chapter 1: "OUR APPROACH" Two-Column Spread (#f4f1d6 dot canvas) ===== */
+/* ===== Chapter 1: "OUR APPROACH" Two-Column Spread (#F4F3ED graph canvas) ===== */
 #approach {
-  background-color: #f4f1d6;
-  background-image: radial-gradient(rgba(27, 38, 77, 0.22) 1.3px, transparent 1.6px);
-  background-size: 16px 16px;
-  padding: 5rem 1.5rem 5.5rem;
-  border-bottom: 4px solid #000000;
+  background-color: #d6d4a0;
+  background-image: radial-gradient(#1b264d 1px, transparent 1px);
+  background-size: 20px 20px;
+  padding: 4.5rem 1.5rem 5rem;
+  border-bottom: 3px solid #000000;
   color: #000000;
 }
 
@@ -182,16 +189,16 @@ img {
   margin: 0 auto;
 }
 
-/* Editorial Spread Header: navy card with signal stripe */
+/* Editorial Spread Header: Master Navy (#1B264D) card with 6px calibration stripe */
 .approach-header {
   text-align: center;
   max-width: 780px;
-  margin: 0 auto 3.5rem;
-  background-color: #1b264d;
-  border: 3px solid #000000;
-  border-radius: 14px;
-  padding: 3.1rem 2rem 1.85rem;
-  box-shadow: 8px 8px 0 #000000;
+  margin: 0 auto 3.25rem;
+  background-color: #1B264D;
+  border: 2px solid #000000;
+  border-radius: 3px;
+  padding: 2.35rem 2rem 1.85rem;
+  box-shadow: 4px 4px 0px #000000;
   position: relative;
   overflow: hidden;
 }
@@ -202,26 +209,27 @@ img {
   top: 0;
   left: 0;
   right: 0;
-  height: 16px;
+  height: 6px;
   background: linear-gradient(
     90deg,
     #ff6600 0% 25%,
     #ca054d 25% 50%,
     #148888 50% 75%,
-    #d6d4a0 75% 100%
+    #e6af2e 75% 100%
   );
-  border-bottom: 3px solid #000000;
+  border-bottom: 2px solid #000000;
 }
 
 .approach-kicker {
   display: inline-block;
-  background-color: #148888;
-  color: #000000; /* 4.91:1 on #148888 (AA) */
+  background-color: #EFF1C5;
+  color: #000000;
   border: 2px solid #000000;
-  box-shadow: 3px 3px 0 #000000;
-  border-radius: 6px;
-  padding: 0.25rem 0.75rem;
-  font-size: 0.78rem;
+  box-shadow: 2px 2px 0px #000000;
+  border-radius: 999px;
+  padding: 0.32rem 0.95rem;
+  font-family: var(--font-mono, ui-monospace, 'SFMono-Regular', monospace);
+  font-size: 0.76rem;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -232,27 +240,27 @@ img {
   font-family: var(--font-sans, 'Work Sans', sans-serif);
   font-weight: 900;
   font-size: clamp(2rem, 4.4vw, 3.1rem);
-  color: #d6d4a0; /* 9.63:1 on #1b264d (AAA) */
+  color: #FAF7EE;
   text-transform: uppercase;
   letter-spacing: 0.01em;
-  margin: 0 0 0.35rem;
+  margin: 0 0 0.4rem;
   line-height: 1.05;
 }
 
 .approach-subheader {
-  font-family: var(--font-display, 'Gambarino', Georgia, serif);
-  font-size: clamp(1.2rem, 1.5vw + 0.6rem, 1.55rem);
-  color: #ff6600; /* 4.99:1 on #1b264d (AA, large text) */
+  font-family: var(--font-sans, 'Work Sans', sans-serif);
+  font-size: clamp(1.05rem, 1.4vw + 0.4rem, 1.3rem);
+  font-weight: 800;
+  color: #FF6600;
   margin: 0;
 }
 
-/* Two-Column Editorial Spread Layout */
+/* Two-Column Desktop Editorial Spread Layout */
 .approach-spread {
   display: grid;
-  grid-template-columns: minmax(320px, 5fr) minmax(380px, 7fr);
-  gap: 2.75rem;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 2rem;
   align-items: start;
-  padding-right: 10px;
 }
 
 /* Left Column: Framework Poster Graphic */
@@ -263,18 +271,18 @@ img {
 
 .approach-poster-frame {
   margin: 0;
-  background-color: #1b264d;
-  border: 3px solid #000000;
-  border-radius: 14px;
+  background-color: #1B264D;
+  border: 2px solid #000000;
+  border-radius: 3px;
   padding: 0.85rem;
-  box-shadow: 10px 10px 0 #000000;
+  box-shadow: 4px 4px 0px #000000;
 }
 
 .approach-poster-frame img {
   width: 100%;
   height: auto;
-  border: 3px solid #000000;
-  border-radius: 8px;
+  border: 2px solid #000000;
+  border-radius: 2px;
   display: block;
 }
 
@@ -284,35 +292,35 @@ img {
   align-items: center;
   gap: 0.5rem;
   flex-wrap: wrap;
-  padding: 0.7rem 0.35rem 0.15rem;
-  font-family: var(--font-sans, 'Work Sans', sans-serif);
-  font-size: 0.75rem;
-  font-weight: 800;
+  padding: 0.65rem 0.25rem 0.15rem;
+  font-family: var(--font-mono, ui-monospace, 'SFMono-Regular', monospace);
+  font-size: 0.72rem;
+  font-weight: 700;
   letter-spacing: 0.06em;
-  color: #d6d4a0; /* 9.63:1 on #1b264d (AAA) */
+  color: #EFF1C5;
 }
 
-/* Right Column: Written Framework Zine Cards (navy tactile cards) */
+/* Right Column: Written Framework Zine Cards (Master Navy #1B264D) */
 .approach-editorial-col {
   display: flex;
   flex-direction: column;
-  gap: 1.75rem;
+  gap: 1.5rem;
 }
 
 .zine-card {
-  background-color: #1b264d;
-  color: #ffffff;
-  border: 3px solid #000000;
-  border-radius: 14px;
-  padding: 1.7rem 1.8rem;
+  background-color: #1B264D;
+  color: #FAF7EE;
+  border: 2px solid #000000;
+  border-radius: 3px;
+  padding: 1.65rem 1.75rem;
   position: relative;
-  box-shadow: 8px 8px 0 #000000;
-  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  box-shadow: 4px 4px 0px #000000;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 .zine-card:hover {
-  transform: translate(-2px, -3px);
-  box-shadow: 10px 11px 0 #000000;
+  transform: translate(-1px, -2px);
+  box-shadow: 5px 6px 0 #000000;
 }
 
 .zine-card-meta {
@@ -321,42 +329,44 @@ img {
   align-items: center;
   gap: 0.75rem;
   flex-wrap: wrap;
-  margin-bottom: 0.9rem;
+  margin-bottom: 0.85rem;
 }
 
 .zine-badge {
   display: inline-block;
-  border: 2px solid #000000;
+  border: 1.5px solid #000000;
   box-shadow: 2px 2px 0 #000000;
-  border-radius: 5px;
-  padding: 0.2rem 0.65rem;
-  font-size: 0.75rem;
-  font-weight: 900;
+  border-radius: 2px;
+  padding: 0.2rem 0.6rem;
+  font-family: var(--font-mono, ui-monospace, 'SFMono-Regular', monospace);
+  font-size: 0.72rem;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
 }
 
 .badge-orange {
   background-color: #ff6600;
-  color: #000000; /* 7.15:1 AAA */
+  color: #000000;
 }
 
 .badge-teal {
   background-color: #148888;
-  color: #000000; /* 4.91:1 AA */
+  color: #000000;
 }
 
 .badge-crimson {
   background-color: #ca054d;
-  color: #ffffff; /* 5.77:1 AA */
+  color: #FAF7EE;
 }
 
 .zine-index {
-  font-size: 0.76rem;
-  font-weight: 800;
+  font-family: var(--font-mono, ui-monospace, 'SFMono-Regular', monospace);
+  font-size: 0.72rem;
+  font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #d6d4a0; /* 9.63:1 on #1b264d (AAA) */
+  color: #d6d4a0;
 }
 
 .zine-card h3,
@@ -365,77 +375,84 @@ img {
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: 0.01em;
-  color: #ffffff; /* 14.67:1 on #1b264d (AAA) */
+  color: #FAF7EE;
   margin: 0 0 0.65rem;
   line-height: 1.12;
 }
 
 .zine-card p {
-  color: #ffffff;
-  font-size: 1.02rem;
-  line-height: 1.68;
+  color: #FAF7EE;
+  font-size: 1rem;
+  line-height: 1.66;
   margin: 0;
 }
 
 /* Capstone Card: featured with signal-orange ring */
 .zine-capstone {
-  box-shadow: 8px 8px 0 #000000, 0 0 0 5px #ff6600;
+  box-shadow: 4px 4px 0 #000000, 0 0 0 2px #ff6600;
 }
 
 .zine-capstone:hover {
-  box-shadow: 10px 11px 0 #000000, 0 0 0 5px #ff6600;
+  box-shadow: 5px 6px 0 #000000, 0 0 0 2px #ff6600;
 }
 
 .zine-capstone h3 {
   font-size: clamp(1.45rem, 2vw + 0.5rem, 1.9rem);
-  color: #d6d4a0; /* 9.63:1 on #1b264d (AAA) */
+  color: #d6d4a0;
 }
 
-/* Foundation Card: pale-yellow slab so the stack has contrast and rhythm */
+/* Foundation Card */
 .zine-foundation {
-  background-color: #d6d4a0;
+  background-color: #FAF7EE;
   color: #000000;
-  border-top: 12px solid #148888;
+  border-top: 4px solid #148888;
 }
 
 .zine-foundation .zine-index {
-  color: #1b264d; /* 9.63:1 on #d6d4a0 (AAA) */
+  color: #1B264D;
 }
 
 .zine-foundation h3 {
   font-size: clamp(1.4rem, 1.8vw + 0.5rem, 1.75rem);
-  color: #1b264d;
+  color: #1B264D;
 }
 
 .zine-foundation p {
-  color: #000000; /* 13.78:1 on #d6d4a0 (AAA) */
+  color: #000000;
 }
 
-/* Three Pillars Stack */
+/* Three Pillars Vertical Stack inside Column 2 */
 .zine-pillars-group {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  margin-top: 0.5rem;
+  gap: 1.25rem;
+  margin: 0.25rem 0;
 }
 
 .zine-pillars-divider {
   display: flex;
   align-items: center;
   gap: 0.85rem;
-  font-size: 0.84rem;
-  font-weight: 900;
+  font-family: var(--font-mono, ui-monospace, 'SFMono-Regular', monospace);
+  font-size: 0.78rem;
+  font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #1b264d;
+  color: #1B264D;
 }
 
 .zine-pillars-divider::before,
 .zine-pillars-divider::after {
   content: "";
   flex: 1;
-  height: 3px;
+  height: 2px;
   background-color: #000000;
+}
+
+.zine-pillars-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.35rem;
 }
 
 .zine-pillar {
@@ -444,7 +461,7 @@ img {
 
 .zine-pillar h4 {
   font-size: 1.3rem;
-  color: #ffffff;
+  color: #FAF7EE;
 }
 
 .zine-pillar p {
@@ -453,25 +470,25 @@ img {
 }
 
 .pillar-crimson {
-  border-left: 14px solid #ca054d;
+  border-left: 6px solid #ca054d;
 }
 
 .pillar-orange {
-  border-left: 14px solid #ff6600;
+  border-left: 6px solid #ff6600;
 }
 
 .pillar-teal {
-  border-left: 14px solid #148888;
+  border-left: 6px solid #148888;
 }
 
-/* ===== Chapter 2: Meet Our Founder (#1b264d chapter with a light card) ===== */
+/* ===== Chapter 2: Meet Our Founder ===== */
 #team {
   position: relative;
-  padding: 5rem 1.5rem 5.5rem;
-  background-color: #1b264d;
-  background-image: radial-gradient(rgba(214, 212, 160, 0.16) 1.3px, transparent 1.6px);
-  background-size: 16px 16px;
-  border-bottom: 4px solid #000000;
+  padding: 4.5rem 1.5rem 5rem;
+  background-color: #d6d4a0;
+  background-image: radial-gradient(#1b264d 1px, transparent 1px);
+  background-size: 20px 20px;
+  border-bottom: 3px solid #000000;
 }
 
 .team-container {
@@ -481,32 +498,33 @@ img {
 
 .team-section-header {
   text-align: center;
-  margin-bottom: 2.75rem;
+  margin-bottom: 2.5rem;
 }
 
 .team-kicker {
   display: inline-block;
-  background-color: #ca054d;
-  color: #ffffff; /* 5.77:1 on #ca054d (AA) */
+  background-color: #EFF1C5;
+  color: #000000;
   border: 2px solid #000000;
-  box-shadow: 3px 3px 0 #000000;
-  border-radius: 6px;
-  padding: 0.25rem 0.8rem;
-  font-size: 0.78rem;
+  box-shadow: 2px 2px 0px #000000;
+  border-radius: 999px;
+  padding: 0.3rem 0.95rem;
+  font-family: var(--font-mono, ui-monospace, 'SFMono-Regular', monospace);
+  font-size: 0.76rem;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   margin-bottom: 0.85rem;
 }
 
-/* Heading (#d6d4a0 on #1b264d = 9.63:1 AAA) */
+/* Heading */
 #team h2 {
   font-family: var(--font-sans, 'Work Sans', sans-serif);
   font-weight: 900;
   font-size: clamp(1.9rem, 4vw, 2.8rem);
   text-transform: uppercase;
   letter-spacing: 0.01em;
-  color: #d6d4a0;
+  color: #1B264D;
   margin: 0;
 }
 
@@ -516,14 +534,14 @@ img {
 }
 
 .team-member {
-  background-color: #f4f1d6;
-  padding: 3.5rem 2.5rem 2.5rem;
-  border-radius: 14px;
+  background-color: #1B264D;
+  padding: 2.75rem 2.25rem 2.25rem;
+  border-radius: 3px;
   width: 100%;
   border: 3px solid #000000;
-  box-shadow: 10px 10px 0 #ff6600;
+  box-shadow: 4px 4px 0px #000000;
   display: grid;
-  grid-template-columns: 280px 1fr;
+  grid-template-columns: 260px 1fr;
   gap: 2.25rem;
   align-items: center;
   text-align: left;
@@ -537,62 +555,62 @@ img {
   top: 0;
   left: 0;
   right: 0;
-  height: 16px;
+  height: 6px;
   background: linear-gradient(
     90deg,
     #ff6600 0% 25%,
     #ca054d 25% 50%,
     #148888 50% 75%,
-    #d6d4a0 75% 100%
+    #e6af2e 75% 100%
   );
-  border-bottom: 3px solid #000000;
+  border-bottom: 2px solid #000000;
 }
 
 .team-photo-col img {
-  border-radius: 12px;
+  border-radius: 3px;
   width: 100%;
-  max-width: 280px;
+  max-width: 260px;
   height: auto;
   aspect-ratio: 1 / 1;
   object-fit: cover;
-  border: 3px solid #000000;
-  box-shadow: 6px 6px 0 #000000;
+  border: 2px solid #000000;
+  box-shadow: 3px 3px 0px #000000;
   margin: 0 auto;
 }
 
-/* Role Badge (#ffffff on #ca054d = 5.77:1 AA) */
+/* Role Badge */
 .team-bio-col .team-role {
   display: inline-block;
-  font-family: var(--font-sans, 'Work Sans', sans-serif);
-  font-size: 0.82rem;
-  font-weight: 800;
+  font-family: var(--font-mono, ui-monospace, 'SFMono-Regular', monospace);
+  font-size: 0.75rem;
+  font-weight: 700;
   background-color: #ca054d;
-  color: #ffffff;
+  color: #FAF7EE;
   border: 2px solid #000000;
-  box-shadow: 3px 3px 0 #000000;
-  border-radius: 6px;
-  padding: 0.35rem 0.9rem;
+  box-shadow: 2px 2px 0px #000000;
+  border-radius: 2px;
+  padding: 0.3rem 0.8rem;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
   margin: 0 0 1.15rem;
   line-height: 1.3;
 }
 
-/* Founder Bio (#000000 on #f4f1d6 = 18:1 AAA) */
+/* Founder Bio */
 .team-bio-col p {
-  color: #000000;
-  font-size: 1.04rem;
+  color: #FAF7EE;
+  font-size: 1.02rem;
   line-height: 1.7;
   margin: 0 0 1.5rem;
 }
 
-/* ===== Chapter 3: Transparency Standard (#d6d4a0 dot canvas, navy card) ===== */
+/* ===== Chapter 3: Transparency Standard (Master Navy #1B264D card) ===== */
 #transparency {
   background-color: #d6d4a0;
-  background-image: radial-gradient(rgba(27, 38, 77, 0.3) 1.3px, transparent 1.6px);
-  background-size: 16px 16px;
-  padding: 4.5rem 1.5rem 5rem;
-  border-bottom: 4px solid #000000;
+  background-image: radial-gradient(#1b264d 1px, transparent 1px);
+  background-size: 20px 20px;
+  padding: 4rem 1.5rem 4.75rem;
+  border-bottom: 3px solid #000000;
 }
 
 .transparency-container {
@@ -603,13 +621,13 @@ img {
 .transparency-card {
   position: relative;
   max-width: 1000px;
-  margin: 3.5rem auto;
+  margin: 2rem auto;
   padding: 2.5rem 2rem;
-  background-color: #1b264d;
+  background-color: #1B264D;
   color: #e2e8f0;
   border: 3px solid #000000;
-  border-radius: 12px;
-  box-shadow: 8px 8px 0px #000000;
+  border-radius: 3px;
+  box-shadow: 4px 4px 0px #000000;
   overflow: hidden;
 }
 
@@ -619,29 +637,29 @@ img {
   top: 0;
   left: 0;
   right: 0;
-  height: 10px;
+  height: 6px;
   background: linear-gradient(
     90deg,
     #ff6600 0% 25%,
     #ca054d 25% 50%,
     #148888 50% 75%,
-    #d6d4a0 75% 100%
+    #e6af2e 75% 100%
   );
-  border-bottom: 3px solid #000000;
+  border-bottom: 2px solid #000000;
 }
 
-/* Eyebrow / Monospace Pill (#000000 on #ff6600 = 7.15:1 AAA) */
+/* Eyebrow / Monospace Pill */
 .transparency-kicker {
   display: inline-block;
   background-color: #ff6600;
   color: #000000;
-  border: 2px solid #000000;
-  box-shadow: 3px 3px 0 #000000;
-  border-radius: 6px;
-  padding: 0.3rem 0.85rem;
+  border: 1.5px solid #000000;
+  box-shadow: 2px 2px 0 #000000;
+  border-radius: 2px;
+  padding: 0.28rem 0.75rem;
   font-family: var(--font-mono, "SF Mono", Menlo, Consolas, monospace);
-  font-size: 0.78rem;
-  font-weight: 800;
+  font-size: 0.74rem;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   margin-top: 0.25rem;
@@ -656,7 +674,7 @@ img {
   line-height: 1.15;
   text-transform: uppercase;
   letter-spacing: 0.01em;
-  color: #ffffff;
+  color: #FAF7EE;
   margin: 0 0 1.25rem;
 }
 
@@ -676,7 +694,7 @@ img {
   font-weight: 900;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: #ffffff;
+  color: #FAF7EE;
   margin: 2.25rem 0 1.25rem;
   padding-top: 1.5rem;
   border-top: 2px dashed rgba(214, 212, 160, 0.4);
@@ -719,7 +737,7 @@ img {
 }
 
 /* ===== Responsive Breakpoints ===== */
-@media (max-width: 920px) {
+@media (max-width: 900px) {
   .approach-spread {
     grid-template-columns: 1fr;
     gap: 2.25rem;

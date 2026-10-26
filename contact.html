@@ -68,6 +68,7 @@
         <li><a href="services.html">Services</a></li>
         <li><a href="work.html">Portfolio</a></li>
         <li><a href="strategy.html">Strategy Generator</a></li>
+        <li><a href="newsletter.html">Newsletter</a></li>
         <li><a href="contact.html" class="active">Contact</a></li>
       </ul>
     </nav>
@@ -76,8 +77,8 @@
   <main>
     <!-- Contact Section -->
     <section id="contact" aria-labelledby="contact-title">
-      <span class="contact-kicker">DIRECT TRANSMISSION CONSOLE</span>
-      <h1 id="contact-title">Let’s Make Your Media Matter</h1>
+      <span class="contact-kicker">DIRECT STUDIO INTAKE</span>
+      <h1 id="contact-title"><span style="color: #ff6600;">LET’S MAKE</span> YOUR MEDIA MATTER</h1>
       <p class="contact-lead">
         Based in Boxborough, MA, working with independent businesses across Massachusetts and beyond. Whether you want to book a monthly partnership, scope a project sprint, or talk through an operational bottleneck, reach out directly or send an inquiry below.
       </p>
@@ -214,16 +215,21 @@
             </div>
           </fieldset>
 
-          <!-- Section 04: Newsletter Opt-In -->
-          <div class="form-newsletter-row">
-            <label class="newsletter-toggle">
-              <input type="checkbox" id="contact-newsletter" name="newsletter" value="true" checked class="newsletter-checkbox" />
-              <span class="custom-checkbox" aria-hidden="true">✓</span>
-              <span class="newsletter-caption">
-                <strong>Subscribe to the TV Media Newsletter.</strong>
-                Practical field notes on digital strategy, actionable mini growth spurts, and real-world tactics. No spam, ever.
-              </span>
-            </label>
+          <!-- Section 04: Split Newsletter & Studio Promo Opt-In -->
+          <div class="form-newsletter-group">
+            <div class="form-newsletter-row">
+              <div class="newsletter-toggle">
+                <input type="checkbox" id="optin_newsletter" name="optin_newsletter" value="yes" checked />
+                <label for="optin_newsletter"><strong>TV Media Monthly Newsletter</strong>: Actionable industry updates, platform algorithm shifts, and subscriber-only studio perks.</label>
+              </div>
+            </div>
+
+            <div class="form-newsletter-row promo-row">
+              <div class="newsletter-toggle">
+                <input type="checkbox" id="optin_promos" name="optin_promos" value="yes" />
+                <label for="optin_promos"><strong>Studio Announcements &amp; Promos</strong>: Check this box for $100 off your first project sprint or onboarding fee.</label>
+              </div>
+            </div>
           </div>
 
           <!-- Security Honeypot System (Dumb Bot Trap & AI Confessional Trap) -->
@@ -314,6 +320,7 @@
           <li><a href="services.html">Services</a></li>
           <li><a href="work.html">Portfolio</a></li>
           <li><a href="strategy.html">Strategy Generator</a></li>
+          <li><a href="newsletter.html">Newsletter</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </div>
@@ -329,7 +336,7 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <p>&copy; 2026 TV Media · Boxborough, Massachusetts. All rights reserved.</p>
+      <p>&copy; 2026 TV Media Solutions. All rights reserved.</p>
     </div>
   </footer>
 
