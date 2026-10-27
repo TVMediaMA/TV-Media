@@ -99,8 +99,8 @@ STRATEGY_SYSTEM_PROMPT = "\n".join(
         "  2. Trust-Building Media: Authentic on-location photography and video walkthroughs of real work instead of stock photos.",
         "  3. Customer Retention: Service reminder tags, VIP maintenance clubs, and localized review engines.",
         "",
-        "DE-PARAPHRASING THE REALITY CHECK & DYNAMIC DIAGNOSTIC STRUCTURE (THE 4 MANIFESTO TIERS):",
-        '1. THE REALITY CHECK (why_stuck): Do NOT merely reword the user\'s prompt and add "agencies won\'t fix this." Provide an actual analytical diagnostic breakthrough: call out the underlying structural flaw behind the symptom (e.g. "You are treating emergency dispatch and scheduled installs as the same pipeline. Without an intake triage filter, unpredictable emergencies cannibalize your high-margin scheduled work.") and point out the hidden financial or time leak (hours spent playing phone tag after 7 PM, lost revenue from unassigned crews, or high ad spend hitting a leaky website).',
+        "DE-PARAPHRASING THE MARKETING SECRET & DYNAMIC DIAGNOSTIC STRUCTURE (THE 4 MANIFESTO TIERS):",
+        '1. THE MARKETING SECRET (why_stuck): Do NOT merely reword the user\'s prompt and add "agencies won\'t fix this." Provide an actual analytical diagnostic breakthrough: call out the underlying structural flaw behind the symptom (e.g. "You are treating emergency dispatch and scheduled installs as the same pipeline. Without an intake triage filter, unpredictable emergencies cannibalize your high-margin scheduled work.") and point out the hidden financial or time leak (hours spent playing phone tag after 7 PM, lost revenue from unassigned crews, or high ad spend hitting a leaky website).',
         "2. MAKING MEDIA MATTER (what_matters & what_to_ignore): What actually matters for their customer relationship, what distractions/busywork they need to ignore completely, and 1 concrete media or hospitality play.",
         "3. THE THREE PILLARS:",
         "   - Pillar 1 (Acquisition & Loyalty): A specific play calibrated to their industry ticket size to reward existing customers and turn retention into their primary engine.",
@@ -172,7 +172,24 @@ def sanitize_text_obj(obj):
     return obj
 
 
+def extract_and_parse_json(raw_text):
+    if not raw_text or not isinstance(raw_text, str):
+        raise ValueError("Empty LLM response text")
+    cleaned = re.sub(r"<think>[\s\S]*?</think>", "", raw_text, flags=re.IGNORECASE)
+    cleaned = re.sub(r"```json\s*|```\s*", "", cleaned, flags=re.IGNORECASE).strip()
+    try:
+        return sanitize_text_obj(json.loads(cleaned))
+    except Exception:
+        first_brace = cleaned.find("{")
+        last_brace = cleaned.rfind("}")
+        if first_brace != -1 and last_brace > first_brace:
+            return sanitize_text_obj(json.loads(cleaned[first_brace : last_brace + 1]))
+        raise
+
+
 def check_and_record_rate_limit(client_ip):
+    if client_ip in ("127.0.0.1", "::1", "localhost") and os.environ.get("ENFORCE_LOCAL_RATE_LIMIT") != "1":
+        return True, 0
     now = time.time()
     cutoff = now - RATE_LIMIT_WINDOW_SECONDS
     with RATE_LIMIT_LOCK:
@@ -202,7 +219,7 @@ def open_groq_request(req, timeout=45):
 
 
 
-def load_dotenv(dotenv_path=".env"):
+def load_dotenv(dotenv_path=".env", override=False):
     if not os.path.exists(dotenv_path):
         return
     with open(dotenv_path, "r", encoding="utf-8") as f:
@@ -213,7 +230,7 @@ def load_dotenv(dotenv_path=".env"):
             key, val = line.split("=", 1)
             key = key.strip()
             val = val.strip().strip("'").strip('"')
-            if key and key not in os.environ:
+            if key and (override or key not in os.environ):
                 os.environ[key] = val
 
 
@@ -245,11 +262,14 @@ class TVMediaHandler(SimpleHTTPRequestHandler):
             self.send_error(404, "Endpoint Not Found")
             return
 
+        load_dotenv(override=True)
         api_key = os.environ.get("GROQ_API_KEY", "").strip()
         endpoint = os.environ.get(
             "GROQ_ENDPOINT", "https://api.groq.com/openai/v1/chat/completions"
         ).strip()
         model = os.environ.get("GROQ_MODEL", "openai/gpt-oss-120b").strip()
+        if model == "llama-3.3-70b-versatile":
+            model = "openai/gpt-oss-120b"
 
         if not api_key:
             self._send_json(
@@ -297,10 +317,13 @@ class TVMediaHandler(SimpleHTTPRequestHandler):
             messages = [{"role": "system", "content": STRATEGY_SYSTEM_PROMPT}] + user_messages
 
         primary_model = payload.get("model") or model
+        if primary_model == "llama-3.3-70b-versatile":
+            primary_model = "openai/gpt-oss-120b"
         fallback_models = [
             primary_model,
             "openai/gpt-oss-120b",
             "openai/gpt-oss-20b",
+            "qwen/qwen3.8-27b",
         ]
         candidate_models = []
         for m in fallback_models:
@@ -309,13 +332,14 @@ class TVMediaHandler(SimpleHTTPRequestHandler):
 
         last_http_err = None
         last_err_body = ""
+        req_max_tokens = max(int(payload.get("max_tokens", 4096) or 4096), 2400)
 
         for candidate_model in candidate_models:
             groq_body = {
                 "model": candidate_model,
                 "messages": messages,
                 "temperature": payload.get("temperature", 0.65),
-                "max_tokens": payload.get("max_tokens", 2048),
+                "max_tokens": req_max_tokens,
                 "response_format": {"type": "json_object"},
             }
 
@@ -333,21 +357,30 @@ class TVMediaHandler(SimpleHTTPRequestHandler):
             try:
                 with open_groq_request(req, timeout=45) as resp:
                     resp_bytes = resp.read()
-                    self.send_response(resp.status)
+                    raw_data = json.loads(resp_bytes.decode("utf-8"))
+                    content_str = (
+                        raw_data.get("choices", [{}])[0]
+                        .get("message", {})
+                        .get("content", "")
+                    )
+                    # Validate JSON is parseable before returning
+                    parsed = extract_and_parse_json(content_str)
+                    raw_data["choices"][0]["message"]["content"] = json.dumps(parsed)
+                    out_bytes = json.dumps(raw_data).encode("utf-8")
+                    self.send_response(200)
                     self.send_header("Content-Type", "application/json; charset=utf-8")
                     self.send_header("Access-Control-Allow-Origin", "*")
+                    self.send_header("Content-Length", str(len(out_bytes)))
                     self.end_headers()
-                    self.wfile.write(resp_bytes)
+                    self.wfile.write(out_bytes)
                     return
             except urllib.error.HTTPError as http_err:
                 last_http_err = http_err
                 last_err_body = http_err.read().decode("utf-8", errors="replace")
-                if http_err.code == 404 and "model_not_found" in last_err_body:
-                    continue
-                break
+                continue
             except Exception as exc:
-                self._send_json(502, {"error": f"Upstream request failed: {exc}"})
-                return
+                last_err_body = str(exc)
+                continue
 
         if last_http_err is not None:
             self._send_json(
@@ -357,13 +390,18 @@ class TVMediaHandler(SimpleHTTPRequestHandler):
                     "details": last_err_body,
                 },
             )
+        else:
+            self._send_json(502, {"error": f"Upstream request failed: {last_err_body}"})
 
     def _handle_generate_scenario(self):
+        load_dotenv(override=True)
         api_key = os.environ.get("GROQ_API_KEY", "").strip()
         endpoint = os.environ.get(
             "GROQ_ENDPOINT", "https://api.groq.com/openai/v1/chat/completions"
         ).strip()
         model = os.environ.get("GROQ_MODEL", "openai/gpt-oss-120b").strip()
+        if model == "llama-3.3-70b-versatile":
+            model = "openai/gpt-oss-120b"
 
         if not api_key:
             self._send_json(
@@ -382,7 +420,7 @@ class TVMediaHandler(SimpleHTTPRequestHandler):
         ]
 
         candidate_models = []
-        for m in [model, "openai/gpt-oss-120b", "openai/gpt-oss-20b"]:
+        for m in ["openai/gpt-oss-20b", "qwen/qwen3.8-27b", "openai/gpt-oss-120b", model]:
             if m and m not in candidate_models:
                 candidate_models.append(m)
 
@@ -393,8 +431,8 @@ class TVMediaHandler(SimpleHTTPRequestHandler):
             groq_body = {
                 "model": candidate_model,
                 "messages": messages,
-                "temperature": 0.88,
-                "max_tokens": 1024,
+                "temperature": 0.85,
+                "max_tokens": 2048,
                 "response_format": {"type": "json_object"},
             }
             req = urllib.request.Request(
@@ -415,10 +453,12 @@ class TVMediaHandler(SimpleHTTPRequestHandler):
                         .get("message", {})
                         .get("content", "{}")
                     )
-                    clean_str = re.sub(r"```json\s*|```\s*", "", content_str, flags=re.IGNORECASE).strip()
-                    parsed = sanitize_text_obj(json.loads(clean_str))
+                    parsed = extract_and_parse_json(content_str)
+                    bottleneck_val = str(parsed.get("bottleneck") or parsed.get("text") or "").strip()
+                    if not bottleneck_val:
+                        continue
                     scenario_out = {
-                        "bottleneck": str(parsed.get("bottleneck") or parsed.get("text") or "").strip(),
+                        "bottleneck": bottleneck_val,
                         "bandwidth": str(parsed.get("bandwidth") or "small").strip().lower(),
                         "investment": str(parsed.get("investment") or "scrappy").strip().lower(),
                         "mindset": str(parsed.get("mindset") or "stretched").strip().lower(),
@@ -428,12 +468,10 @@ class TVMediaHandler(SimpleHTTPRequestHandler):
             except urllib.error.HTTPError as http_err:
                 last_http_err = http_err
                 last_err_body = http_err.read().decode("utf-8", errors="replace")
-                if http_err.code == 404 and "model_not_found" in last_err_body:
-                    continue
-                break
+                continue
             except Exception as exc:
-                self._send_json(502, {"error": f"Scenario generation failed: {exc}"})
-                return
+                last_err_body = str(exc)
+                continue
 
         if last_http_err is not None:
             self._send_json(
@@ -443,6 +481,8 @@ class TVMediaHandler(SimpleHTTPRequestHandler):
                     "details": last_err_body,
                 },
             )
+        else:
+            self._send_json(502, {"error": f"Scenario generation failed: {last_err_body}"})
 
     def _send_json(self, status_code, data):
         body = json.dumps(data).encode("utf-8")

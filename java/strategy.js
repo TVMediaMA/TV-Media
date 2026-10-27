@@ -210,34 +210,120 @@
   let lastScenarioSeedIndex = -1;
 
   function parseGroqJson(rawContent) {
-    const clean = String(rawContent || '').replace(/```json\s*|```\s*/gi, '').trim();
-    const data = JSON.parse(clean);
-    return stripEmDashes(data);
+    const clean = String(rawContent || '')
+      .replace(/<think>[\s\S]*?<\/think>/gi, '')
+      .replace(/```json\s*|```\s*/gi, '')
+      .trim();
+    try {
+      const data = JSON.parse(clean);
+      return stripEmDashes(data);
+    } catch (_) {
+      const firstBrace = clean.indexOf('{');
+      const lastBrace = clean.lastIndexOf('}');
+      if (firstBrace !== -1 && lastBrace > firstBrace) {
+        const sliced = clean.slice(firstBrace, lastBrace + 1);
+        return stripEmDashes(JSON.parse(sliced));
+      }
+      throw new Error('Could not parse valid JSON object from LLM response.');
+    }
   }
 
-  // Shared low-level LLM JSON caller (supports proxy + direct fallback)
-  async function callGroqJson(messages, maxTokens = 2048, temperature = 0.68) {
+  function resolveCandidateModels(preferredModel, isFastScenario = false) {
+    const cleanPreferred =
+      preferredModel && preferredModel !== 'llama-3.3-70b-versatile'
+        ? preferredModel
+        : 'openai/gpt-oss-120b';
+    const order = isFastScenario
+      ? ['openai/gpt-oss-20b', 'qwen/qwen3.8-27b', 'openai/gpt-oss-120b', cleanPreferred]
+      : [cleanPreferred, 'openai/gpt-oss-120b', 'openai/gpt-oss-20b', 'qwen/qwen3.8-27b'];
+    return Array.from(new Set(order.filter(Boolean)));
+  }
+
+  // Shared low-level LLM JSON caller (supports direct multi-model Groq + proxy fallback)
+  async function callGroqJson(messages, maxTokens = 4096, temperature = 0.65) {
     const config = window.TVMEDIA_CONFIG || {};
     const proxyEndpoint = config.PROXY_ENDPOINT || '/api/strategy';
     const groqEndpoint = config.GROQ_ENDPOINT || 'https://api.groq.com/openai/v1/chat/completions';
-    const model = config.GROQ_MODEL || 'openai/gpt-oss-120b';
+    const candidateModels = resolveCandidateModels(config.GROQ_MODEL, false);
     const apiKey = resolveClientKey(config);
+    const effectiveMaxTokens = Math.max(Number(maxTokens) || 4096, 2400);
 
-    const requestPayload = {
-      model,
-      messages,
-      temperature,
-      max_tokens: maxTokens,
-      response_format: { type: 'json_object' }
-    };
+    let lastErrorText = '';
+    let lastStatus = 0;
 
-    // 1. Try local/serverless proxy endpoint first (/api/strategy)
-    let rateLimitError = null;
+    // 1. Direct call across all active Groq models first so stale local proxies never block generation
+    for (const candidateModel of candidateModels) {
+      for (const useJsonFormat of [true, false]) {
+        try {
+          const payload = {
+            model: candidateModel,
+            messages,
+            temperature,
+            max_tokens: effectiveMaxTokens
+          };
+          if (useJsonFormat) {
+            payload.response_format = { type: 'json_object' };
+          }
+
+          const directResp = await fetch(groqEndpoint, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${apiKey}`
+            },
+            body: JSON.stringify(payload)
+          });
+
+          if (directResp.ok) {
+            const directData = await directResp.json();
+            const rawContent = directData?.choices?.[0]?.message?.content;
+            if (rawContent) {
+              const parsed = parseGroqJson(rawContent);
+              if (parsed && typeof parsed === 'object') {
+                return parsed;
+              }
+            }
+          } else {
+            lastStatus = directResp.status;
+            lastErrorText = await directResp.text();
+            // If Groq returned 400 json_validate_failed, salvage failed_generation if present
+            if (lastStatus === 400 && lastErrorText.includes('failed_generation')) {
+              try {
+                const errObj = JSON.parse(lastErrorText);
+                const failedGen = errObj?.error?.failed_generation;
+                if (failedGen) {
+                  const salvaged = parseGroqJson(failedGen);
+                  if (salvaged && typeof salvaged === 'object') {
+                    return salvaged;
+                  }
+                }
+              } catch (_) {
+                // Continue to non-json_object retry or next model
+              }
+              continue;
+            }
+            // For non-400 errors (e.g. 404, 429, 503), move straight to the next model
+            break;
+          }
+        } catch (err) {
+          lastErrorText = err?.message || String(err);
+          break;
+        }
+      }
+    }
+
+    // 2. Fallback to local/serverless proxy endpoint (/api/strategy) if direct browser requests were blocked
     try {
       const proxyResp = await fetch(proxyEndpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(requestPayload)
+        body: JSON.stringify({
+          model: candidateModels[0],
+          messages,
+          temperature,
+          max_tokens: effectiveMaxTokens,
+          response_format: { type: 'json_object' }
+        })
       });
 
       if (proxyResp.status === 429) {
@@ -251,7 +337,7 @@
         } catch (_) {
           // Keep default rate-limit message
         }
-        rateLimitError = new Error(errMessage);
+        const rateLimitError = new Error(errMessage);
         rateLimitError.status = 429;
         throw rateLimitError;
       }
@@ -267,44 +353,6 @@
       if (err && err.status === 429) {
         throw err;
       }
-      // Proxy unavailable; proceed to direct call
-    }
-
-    // 2. Direct call with automatic model fallback
-    const candidateModels = Array.from(
-      new Set([model, 'openai/gpt-oss-120b', 'openai/gpt-oss-20b'])
-    );
-    let lastErrorText = '';
-    let lastStatus = 0;
-
-    for (const candidateModel of candidateModels) {
-      const directResp = await fetch(groqEndpoint, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${apiKey}`
-        },
-        body: JSON.stringify({
-          ...requestPayload,
-          model: candidateModel
-        })
-      });
-
-      if (directResp.ok) {
-        const directData = await directResp.json();
-        const rawContent = directData?.choices?.[0]?.message?.content;
-        if (!rawContent) {
-          throw new Error('The diagnostic service returned an empty response.');
-        }
-        return parseGroqJson(rawContent);
-      }
-
-      lastStatus = directResp.status;
-      lastErrorText = await directResp.text();
-      if (lastStatus === 404 && lastErrorText.includes('model_not_found')) {
-        continue;
-      }
-      break;
     }
 
     throw new Error(`Service returned HTTP ${lastStatus}: ${lastErrorText}`);
@@ -314,7 +362,7 @@
   async function fetchDynamicScenario() {
     const config = window.TVMEDIA_CONFIG || {};
     const groqEndpoint = config.GROQ_ENDPOINT || 'https://api.groq.com/openai/v1/chat/completions';
-    const configuredModel = config.GROQ_MODEL || 'openai/gpt-oss-120b';
+    const candidateModels = resolveCandidateModels(config.GROQ_MODEL, true);
     const apiKey = resolveClientKey(config);
 
     let seedIndex = Math.floor(Math.random() * SCENARIO_SEEDS.length);
@@ -345,56 +393,105 @@
       }
     ];
 
-    const candidateModels = Array.from(
-      new Set(['openai/gpt-oss-120b', 'openai/gpt-oss-20b', configuredModel])
-    );
-
     let lastStatus = 0;
     let lastErrorText = '';
 
     for (const candidateModel of candidateModels) {
-      const resp = await fetch(groqEndpoint, {
+      for (const useJsonFormat of [true, false]) {
+        try {
+          const payload = {
+            model: candidateModel,
+            messages,
+            temperature: 0.85,
+            max_tokens: 2048
+          };
+          if (useJsonFormat) {
+            payload.response_format = { type: 'json_object' };
+          }
+
+          const resp = await fetch(groqEndpoint, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${apiKey}`
+            },
+            body: JSON.stringify(payload)
+          });
+
+          if (resp.ok) {
+            const result = await resp.json();
+            const rawContent = result?.choices?.[0]?.message?.content;
+            if (!rawContent) {
+              continue;
+            }
+            const clean = rawContent.replace(/```json\s*|```\s*/gi, '').trim();
+            const data = parseGroqJson(clean);
+            const bottleneckText = (data.bottleneck || data.text || '').trim();
+            if (!bottleneckText) {
+              continue;
+            }
+            return {
+              label: 'Live Route 2 / MetroWest Scenario',
+              text: bottleneckText,
+              bandwidth: data.bandwidth || 'small',
+              investment: data.investment || 'scrappy',
+              mindset: data.mindset || 'stretched'
+            };
+          }
+
+          lastStatus = resp.status;
+          lastErrorText = await resp.text();
+          if (lastStatus === 400 && lastErrorText.includes('failed_generation')) {
+            try {
+              const errObj = JSON.parse(lastErrorText);
+              const failedGen = errObj?.error?.failed_generation;
+              if (failedGen) {
+                const salvaged = parseGroqJson(failedGen);
+                const bottleneckText = (salvaged.bottleneck || salvaged.text || '').trim();
+                if (bottleneckText) {
+                  return {
+                    label: 'Live Route 2 / MetroWest Scenario',
+                    text: bottleneckText,
+                    bandwidth: salvaged.bandwidth || 'small',
+                    investment: salvaged.investment || 'scrappy',
+                    mindset: salvaged.mindset || 'stretched'
+                  };
+                }
+              }
+            } catch (_) {
+              // Retry without json_object or move to next model
+            }
+            continue;
+          }
+          break;
+        } catch (err) {
+          lastErrorText = err?.message || String(err);
+          break;
+        }
+      }
+    }
+
+    // Fallback to local /api/generate-scenario if direct browser fetch was blocked
+    try {
+      const proxyResp = await fetch('/api/generate-scenario', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${apiKey}`
-        },
-        body: JSON.stringify({
-          model: candidateModel,
-          messages,
-          temperature: 0.88,
-          max_tokens: 1024,
-          response_format: { type: 'json_object' }
-        })
+        headers: { 'Content-Type': 'application/json' }
       });
-
-      if (resp.ok) {
-        const result = await resp.json();
-        const rawContent = result?.choices?.[0]?.message?.content;
-        if (!rawContent) {
-          throw new Error('Groq returned an empty scenario content payload.');
+      if (proxyResp.ok) {
+        const proxyData = await proxyResp.json();
+        const bottleneckText = (proxyData.bottleneck || proxyData.text || '').trim();
+        if (bottleneckText) {
+          return stripEmDashes({
+            label: 'Live Route 2 / MetroWest Scenario',
+            text: bottleneckText,
+            bandwidth: proxyData.bandwidth || 'small',
+            investment: proxyData.investment || 'scrappy',
+            mindset: proxyData.mindset || 'stretched'
+          });
         }
-        const clean = rawContent.replace(/```json\s*|```\s*/gi, '').trim();
-        const data = stripEmDashes(JSON.parse(clean));
-        const bottleneckText = (data.bottleneck || data.text || '').trim();
-        if (!bottleneckText) {
-          throw new Error('Groq scenario JSON was missing a bottleneck string.');
-        }
-        return {
-          label: 'Live Route 2 / MetroWest Scenario',
-          text: bottleneckText,
-          bandwidth: data.bandwidth || 'small',
-          investment: data.investment || 'scrappy',
-          mindset: data.mindset || 'stretched'
-        };
       }
-
-      lastStatus = resp.status;
-      lastErrorText = await resp.text();
-      if (lastStatus === 404 && lastErrorText.includes('model_not_found')) {
-        continue;
-      }
-      break;
+    } catch (_) {
+      // Ignore proxy error
     }
 
     throw new Error(`Groq scenario request failed (HTTP ${lastStatus}): ${lastErrorText}`);
@@ -579,8 +676,8 @@
       '  2. Trust-Building Media: Authentic on-location photography and video walkthroughs of real work instead of stock photos.',
       '  3. Customer Retention: Service reminder tags, VIP maintenance clubs, and localized review engines.',
       '',
-      'DE-PARAPHRASING THE REALITY CHECK & DYNAMIC DIAGNOSTIC STRUCTURE (THE 4 MANIFESTO TIERS):',
-      '1. THE REALITY CHECK (why_stuck): Do NOT merely reword the user\'s prompt and add "agencies won\'t fix this." Provide an actual analytical diagnostic breakthrough: call out the underlying structural flaw behind the symptom (e.g. "You are treating emergency dispatch and scheduled installs as the same pipeline. Without an intake triage filter, unpredictable emergencies cannibalize your high-margin scheduled work.") and point out the hidden financial or time leak (hours spent playing phone tag after 7 PM, lost revenue from unassigned crews, or high ad spend hitting a leaky website).',
+      'DE-PARAPHRASING THE MARKETING SECRET & DYNAMIC DIAGNOSTIC STRUCTURE (THE 4 MANIFESTO TIERS):',
+      '1. THE MARKETING SECRET (why_stuck): Do NOT merely reword the user\'s prompt and add "agencies won\'t fix this." Provide an actual analytical diagnostic breakthrough: call out the underlying structural flaw behind the symptom (e.g. "You are treating emergency dispatch and scheduled installs as the same pipeline. Without an intake triage filter, unpredictable emergencies cannibalize your high-margin scheduled work.") and point out the hidden financial or time leak (hours spent playing phone tag after 7 PM, lost revenue from unassigned crews, or high ad spend hitting a leaky website).',
       '2. MAKING MEDIA MATTER (what_matters & what_to_ignore): What actually matters for their customer relationship, what distractions/busywork they need to ignore completely, and 1 concrete media or hospitality play.',
       '3. THE THREE PILLARS:',
       '   - Pillar 1 (Acquisition & Loyalty): A specific play calibrated to their industry ticket size to reward existing customers and turn retention into their primary engine.',
@@ -795,7 +892,7 @@
   async function requestGroqBlueprint(bottleneck, context) {
     const messages = buildGroqMessages(bottleneck, context);
     try {
-      return await callGroqJson(messages, 2400, 0.65);
+      return await callGroqJson(messages, 4096, 0.65);
     } catch (err) {
       console.error('Groq Blueprint Error:', err);
       if (err && err.status === 429) {
@@ -826,8 +923,8 @@
     document.getElementById('results-inquiry-echo').textContent =
       `Diagnostic Bottleneck: "${stripEmDashes(bottleneck)}"`;
 
-    // Section 1: The Reality Check
-    const rc = blueprint.reality_check || {};
+    // Section 1: The Marketing Secret
+    const rc = blueprint.the_marketing_secret || blueprint.reality_check || {};
     const realityHeadline = rc.headline || '';
     const realityBody = rc.why_stuck || rc.explanation || blueprint.why_stuck || '';
     document.getElementById('reality-headline').textContent = realityHeadline;
@@ -945,7 +1042,7 @@
       `Bottleneck Inquiry: ${stripEmDashes(bottleneck)}`,
       `Context: Bandwidth: ${context.bandwidth} | Budget: ${context.investment} | Mindset: ${context.mindset}`,
       '',
-      '1. THE REALITY CHECK',
+      '1. THE MARKETING SECRET',
       `${realityHeadline}`,
       `${realityBody}`,
       '',
