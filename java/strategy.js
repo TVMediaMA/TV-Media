@@ -77,68 +77,26 @@
     }
   };
 
-  // Diverse preset scenario pool for graceful fallback if live API is unreachable
-  const RANDOM_POOL = [
-    {
-      label: 'Independent Hardware & Feed Store',
-      text: 'We own a family hardware and garden supply store competing with big-box chains 15 minutes away. Homeowners come to us only when they need a single $2 bolt and 10 minutes of free advice, then buy their $400 power tools and seasonal mulch pallets at the big-box store.',
-      bandwidth: 'Small Team',
-      investment: 'Scrappy ($100 - $800)',
-      mindset: 'Stretched Thin / High Traffic, Zero Margin'
+  const SCENARIO_SHORTHAND_MAP = {
+    bandwidth: {
+      solo: 'Solo Owner',
+      small: 'Small Team',
+      dedicated: 'Established Crew'
     },
-    {
-      label: 'Design-Build Landscape Crew',
-      text: 'We run a 6-person hardscaping and native landscaping crew in MetroWest. Every spring our phone rings off the hook with tire-kickers asking for free backyard quotes on $800 patch jobs, burning 12 hours a week of estimator time when we want $15k+ patio and drainage projects.',
-      bandwidth: 'Established Crew',
-      investment: 'Focused ($800 - $2,500)',
-      mindset: 'Pragmatic & Direct (Cut the fluff, show me what moves the needle)'
+    investment: {
+      hard: 'Hard Mode ($0 Budget)',
+      scrappy: 'Scrappy ($100 - $800)',
+      growth: 'Focused ($800 - $2,500)'
     },
-    {
-      label: 'Local Orchard & Farm Stand',
-      text: 'We operate a seasonal orchard and farm store. October weekends are chaotic with traffic backups and long register lines, but weekday farm-stand produce and CSA shares lag behind and rainy weekends wipe out our margin.',
-      bandwidth: 'Small Team',
-      investment: 'Focused ($800 - $2,500)',
-      mindset: 'Ready to Experiment (Open to bold, unconventional local plays)'
-    },
-    {
-      label: 'Solo Specialty Physical Therapist',
-      text: 'I run a solo cash-based sports physical therapy practice for runners and lifters. Patients love the results and get fixed in 4 visits, which means I constantly have to replace my caseload and new residents confuse me with high-volume insurance mills.',
-      bandwidth: 'Solo Owner',
-      investment: 'Scrappy ($100 - $800)',
-      mindset: 'Overwhelmed by Ad Jargon'
-    },
-    {
-      label: 'Independent Bicycle Fit & Repair Studio',
-      text: 'We see a massive surge in bike tune-ups every April that backs up our repair stand for 3 weeks, but riders buy their high-margin wheelsets and custom frames online because they only view us as a quick flat-tire fix shop.',
-      bandwidth: 'Small Team',
-      investment: 'Scrappy ($100 - $800)',
-      mindset: 'Word-of-Mouth Plateau (Great regulars, invisible to new residents)'
-    },
-    {
-      label: 'Custom Millwork & Cabinetry Shop',
-      text: 'We build custom architectural millwork and mudroom built-ins. General contractors love our craftsmanship, but homeowners ghost our proposals after we spend 6 hours drawing custom CAD layouts for free during the initial consult.',
-      bandwidth: 'Small Team',
-      investment: 'Focused ($800 - $2,500)',
-      mindset: 'Stretched Thin / High Traffic, Zero Margin'
+    mindset: {
+      stretched: 'Stretched Thin / High Traffic, Zero Margin',
+      jargon: 'Overwhelmed by Ad Jargon',
+      flatlined: 'Word-of-Mouth Plateau (Great regulars, invisible to new residents)',
+      agency: 'Burned Out on Social (Posting into the void with zero ROI)'
     }
-  ];
+  };
 
-  const RANDOM_INDUSTRY_SEEDS = [
-    'an independent bicycle repair and fitting shop',
-    'a family-owned commercial printing and sign shop',
-    'a local specialty butcher and prepared foods market',
-    'an independent veterinary clinic or dog day-training facility',
-    'a residential HVAC or plumbing service contractor',
-    'a local martial arts academy or independent strength gym',
-    'a custom cabinetmaker and architectural millwork studio',
-    'a neighborhood independent bookstore and event space',
-    'a local music school and instrument rental shop',
-    'a specialty dry cleaner and tailoring workshop',
-    'an independent garden center and native plant nursery',
-    'a regional B2B industrial equipment calibration service'
-  ];
-
-  let lastRandomIndex = -1;
+  let lastFallbackKey = '';
   let lastRenderedBriefText = '';
   let lastRenderedTitle = '';
   let lastRawBottleneck = '';
@@ -198,9 +156,13 @@
   // Helper to set radio group value and update visual active state
   function setRadioGroupValue(name, targetValue) {
     const radios = Array.from(form.querySelectorAll(`input[name="${name}"]`));
-    let matched = radios.find((r) => r.value === targetValue);
-    if (!matched && typeof targetValue === 'string') {
-      const prefix = targetValue.split('(')[0].trim().toLowerCase();
+    const rawKey = typeof targetValue === 'string' ? targetValue.trim().toLowerCase() : '';
+    const mappedValue =
+      (SCENARIO_SHORTHAND_MAP[name] && SCENARIO_SHORTHAND_MAP[name][rawKey]) || targetValue;
+
+    let matched = radios.find((r) => r.value === mappedValue);
+    if (!matched && typeof mappedValue === 'string') {
+      const prefix = mappedValue.split('(')[0].trim().toLowerCase();
       matched = radios.find((r) => r.value.toLowerCase().includes(prefix));
     }
     if (!matched && radios.length > 0) {
@@ -323,42 +285,74 @@
     throw new Error(`Service returned HTTP ${lastStatus}: ${lastErrorText}`);
   }
 
-  // Dynamic LLM Scenario Generator for the "Random Scenario" button
-  async function generateRandomScenarioOnTheFly() {
-    const seed =
-      RANDOM_INDUSTRY_SEEDS[Math.floor(Math.random() * RANDOM_INDUSTRY_SEEDS.length)];
-    const messages = [
-      {
-        role: 'system',
-        content: [
-          'You generate realistic, grounded first-person business bottleneck scenarios for independent local businesses in New England.',
-          'STRICT RULE: NEVER use em dashes or en dashes anywhere. Use commas or periods.',
-          'Return ONLY valid JSON matching this exact schema:',
-          JSON.stringify({
-            label: 'Short 3 to 4 word business label',
-            text: '2 to 3 realistic first-person sentences describing what the business does and the specific operational, margin, or customer bottleneck keeping them stuck right now.',
-            bandwidth: 'Must be one of: ' + VALID_BANDWIDTHS.join(' | '),
-            investment: 'Must be one of: ' + VALID_INVESTMENTS.join(' | '),
-            mindset: 'Must be one of: ' + VALID_MINDSETS.join(' | ')
-          })
-        ].join('\n')
-      },
-      {
-        role: 'user',
-        content: `Invent a specific, realistic operational and marketing dilemma for ${seed}. Avoid clichés and never use em dashes.`
+  // Fetch a real-time dynamic scenario from /api/generate-scenario (with direct Groq fallback if static)
+  async function fetchDynamicScenario() {
+    try {
+      const resp = await fetch('/api/generate-scenario', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' }
+      });
+      if (resp.ok) {
+        const data = await resp.json();
+        const bottleneckText = data.bottleneck || data.text;
+        if (bottleneckText) {
+          return stripEmDashes({
+            label: 'Live Route 2 / MetroWest Scenario',
+            text: bottleneckText,
+            bandwidth: data.bandwidth || 'small',
+            investment: data.investment || 'scrappy',
+            mindset: data.mindset || 'stretched'
+          });
+        }
       }
-    ];
+    } catch (_) {
+      // Proceed to direct Groq call if local /api/generate-scenario endpoint is not running
+    }
 
-    return await callGroqJson(messages, 650, 0.85, 'scenario');
+    const scenarioPrompt = [
+      'Generate a realistic, specific operational bottleneck dilemma for an independent business along the Route 2 corridor or MetroWest Massachusetts (e.g. coffee shop, auto repair, bakery, gym, trades, craft brewery, dental, boutique retail, pet care).',
+      "Write strictly from the owner's perspective.",
+      'Return valid JSON with:',
+      '{',
+      '  "bottleneck": "2-3 sentences explaining their business, what is happening on the ground, and why they are stuck.",',
+      '  "bandwidth": "solo" | "small" | "dedicated",',
+      '  "investment": "hard" | "scrappy" | "growth",',
+      '  "mindset": "stretched" | "jargon" | "flatlined" | "agency"',
+      '}',
+      'Rules: No em-dashes (-). No generic marketing fluff. Ground it in tangible operational friction (quiet Tuesdays, no repeat customers, ad money burning with no tracking, booking confusion).'
+    ].join('\n');
+
+    const directData = await callGroqJson(
+      [
+        { role: 'system', content: scenarioPrompt },
+        {
+          role: 'user',
+          content:
+            'Generate a fresh, specific operational bottleneck dilemma for an independent Route 2 or MetroWest business now.'
+        }
+      ],
+      450,
+      0.88,
+      'scenario'
+    );
+
+    return stripEmDashes({
+      label: 'Live Route 2 / MetroWest Scenario',
+      text: directData.bottleneck || directData.text || '',
+      bandwidth: directData.bandwidth || 'small',
+      investment: directData.investment || 'scrappy',
+      mindset: directData.mindset || 'stretched'
+    });
   }
 
   function applyScenarioToForm(chosen, isLiveGenerated = false) {
-    if (!chosen || !chosen.text) return;
-    bottleneckInput.value = stripEmDashes(chosen.text);
+    const bottleneckText = chosen && (chosen.bottleneck || chosen.text);
+    if (!bottleneckText) return;
+    bottleneckInput.value = stripEmDashes(bottleneckText);
     setRadioGroupValue('bandwidth', chosen.bandwidth);
     setRadioGroupValue('investment', chosen.investment);
     setRadioGroupValue('mindset', chosen.mindset);
-    const cleanLabel = (chosen.label || 'Custom Business Dilemma')
+    const cleanLabel = (chosen.label || 'Route 2 / MetroWest Dilemma')
       .replace(/_/g, ' ')
       .replace(/\b\w/g, (c) => c.toUpperCase());
     const prefix = isLiveGenerated ? 'Generated live scenario' : 'Loaded scenario';
@@ -378,29 +372,28 @@
       pill.classList.add('active');
 
       if (key === 'random') {
-        const originalLabel = pill.textContent;
         pill.disabled = true;
-        pill.textContent = '⚡ Generating Scenario...';
-        scenarioStatus.textContent = 'Generating a realistic business dilemma on the fly...';
+        pill.textContent = 'TUNING...';
+        scenarioStatus.textContent = 'Tuning into a fresh Route 2 / MetroWest business scenario...';
         try {
-          const liveScenario = await generateRandomScenarioOnTheFly();
-          if (liveScenario && liveScenario.text) {
+          const liveScenario = await fetchDynamicScenario();
+          if (liveScenario && (liveScenario.text || liveScenario.bottleneck)) {
             applyScenarioToForm(liveScenario, true);
             return;
           }
         } catch (_) {
-          // Smoothly default to diverse preset scenarios without throwing an error
+          // Fallback to one of the 5 quick starters only if offline/server fails
+          const keys = Object.keys(SCENARIOS);
+          let fallbackKey = keys[Math.floor(Math.random() * keys.length)];
+          if (fallbackKey === lastFallbackKey && keys.length > 1) {
+            fallbackKey = keys[(keys.indexOf(fallbackKey) + 1) % keys.length];
+          }
+          lastFallbackKey = fallbackKey;
+          applyScenarioToForm(SCENARIOS[fallbackKey], false);
         } finally {
           pill.disabled = false;
-          pill.textContent = originalLabel;
+          pill.textContent = 'Random Scenario';
         }
-
-        let idx = Math.floor(Math.random() * RANDOM_POOL.length);
-        if (idx === lastRandomIndex) {
-          idx = (idx + 1) % RANDOM_POOL.length;
-        }
-        lastRandomIndex = idx;
-        applyScenarioToForm(RANDOM_POOL[idx], false);
         return;
       }
 
@@ -431,65 +424,68 @@
 
   function buildGroqMessages(bottleneck, context) {
     const systemPrompt = [
-      'You are the Lead Strategist at TV Media, an independent digital communications agency in Boxborough, Massachusetts.',
-      'Agency Expertise: Ground-level operational communications, event strategy, high-utility digital content, and retention mechanics for independent businesses, trades, and local spaces.',
-      'Agency Tone: Direct, pragmatic, and anti-corporate. You evaluate business problems from the perspective of an experienced operator, not a traditional marketing firm.',
+      'PERSONA:',
+      'You are Tyler Valois, Founder of TV Media Solutions (Boxborough, MA).',
       '',
-      'WHAT NOT TO DO (STRICT NEGATIVE CONSTRAINTS):',
-      '- NEVER suggest "posting more consistently on social media" as a primary fix.',
-      '- NEVER suggest generic margin-killing discounts, BOGO deals, or free inventory giveaways.',
-      '- NEVER use corporate marketing jargon (e.g. "magnetic pull", "synergy", "must-visit hub", "elevate your brand", "omnichannel", "deep-dive").',
-      '- NEVER use sycophantic filler ("That\'s a great question!", "It\'s completely understandable!", "You\'re already doing so much right!").',
-      '- NEVER summarize or parrot the user prompt back to them in the output.',
-      '- NEVER use em dashes or en dashes anywhere. Use commas, periods, or clean simple hyphens " - ", and do not use bulleted or numbered lists.',
+      'VOICE GUIDELINES (AUTHENTIC TV MEDIA BRAND VOICE):',
+      '- Straightforward, anti-corporate New England operator.',
+      '- You are glad to help, but you do not blow smoke, you do not use corporate buzzwords, and you do not talk like a gentle HR consultant.',
+      '- You tell the owner exactly where they are going wrong and why their current approach is bleeding cash or wasting hours.',
+      '- No formulaic openings like "Look, you think you need X, but you should do Y."',
+      '- No corporate buzzwords ("synergy", "elevate", "delve", "tapestry", "seamless", "thrive", "magnetic pull", "omnichannel").',
+      '- Ground every recommendation in real-world friction: quiet weekday shifts, ad spend with zero conversion tracking, websites that take 8 seconds to load on mobile, neglecting regulars to chase cold clicks.',
       '',
-      'OUTPUT SECTION CONTEXT:',
-      '1. SECTION 01 // THE REALITY CHECK (STRICT PERSONA & TONE INSTRUCTIONS):',
-      '   - Voice & Vibe: A sharp, grounded New Englander who is genuinely happy to help you fix your business, but is going to tell you straight up why what you have been doing makes no sense.',
-      '   - Tone Balance: Blunt, candid, and allergic to corporate BS - like a neighbor or local shop vet leaning across the counter saying, "Look, I am more than happy to help you fix this, and almost everybody falls into this trap - but doing X while expecting Y is killing your week."',
-      '   - Guardrails: Keep it work-appropriate and constructive (not mean or insulting), briefly normalize that it is a super common mistake local owners make (1 short clause max - do not dwell on coddling them or over-explaining why it is common), and spend 85% of the paragraph calling out the exact operational/marketing contradiction in their bottleneck and what actually needs to happen instead. Ban all sycophantic filler ("That\'s a great question!", "It\'s completely understandable!", "You\'re already doing so much right!").',
-      '2. Making Media Matter: The foundation on how they can provide genuine upfront value to customers before asking for a transaction. Includes exactly 1 concrete media play.',
-      '3. The Three Pillars: Diagnostic strategic direction across Acquisition AND Loyalty (protecting margin while rewarding retention), Operational Reality & Intuitive Flow (fixing physical or digital friction), and Platform Native Utility (using tools for their intended purpose).',
-      '4. What We Could Actually Build: Exactly 3 dynamic, practical operational tools or collateral pieces tailored to the problem (not generic social post bundles).',
+      'REQUIRED OUTPUT STRUCTURE (THE 4 MANIFESTO TIERS):',
+      '1. THE REALITY CHECK: The blunt truth about their situation. Acknowledge what they are up against, call out the mistake they are making, and explain why standard agency advice is burning their money.',
+      '2. MAKING MEDIA MATTER: The foundation. How to earn trust and give customers something tangible to care about before asking them to spend a dollar. Includes 1 concrete media play.',
+      '3. THE THREE PILLARS:',
+      '   - Pillar 1 (Acquisition & Loyalty): How to stop chasing cold leads and start turning the customers already walking through the door into repeat revenue.',
+      '   - Pillar 2 (Operational Reality): Removing friction in their real-world booking, buying, or visit process.',
+      '   - Pillar 3 (Platform Native Utility): Using digital channels for what they actually do best instead of posting generic noise across everything.',
+      '4. WHAT WE COULD BUILD: 3 concrete, realistic physical or digital deliverables (e.g. on-site QR table loops, local Google Profile overhaul, print-ready promo kits, custom intake flows).',
+      '',
+      'STRICT GUARDRAILS:',
+      '- ZERO em-dashes or en-dashes anywhere in output. Use hyphens (-), colons (:), commas, or periods.',
+      '- ZERO occurrences of "turnkey" or marketing uses of "floor".',
       '',
       'Return ONLY valid JSON matching this schema:',
       JSON.stringify({
-        blueprint_title: 'Concise, relevant strategy title',
+        blueprint_title: 'Concise, punchy TV Media strategy title',
         reality_check: {
-          headline: 'Blunt, grounded 1-sentence truth calling out the core operational or marketing contradiction without coddling',
-          explanation: '2 to 3 sharp, candid sentences in a grounded New Englander voice: 1 brief clause maximum normalizing that plenty of local owners fall into this trap, and 85% of the paragraph calling out why their current setup makes no sense and what actually has to change instead.'
+          headline: 'Blunt, straightforward 1-sentence truth calling out where they are going wrong without formulaic openings',
+          explanation: '2 to 3 direct sentences acknowledging what they are up against, why their current setup is bleeding cash or hours, and why standard agency advice fails here.'
         },
         making_media_matter: {
-          core_shift: 'Strategic guidance on delivering utility before asking for a sale. Focused on content delivery that provides value to the consumer',
+          core_shift: 'How to earn trust and give customers something tangible to care about before asking them to spend a dollar.',
           social_play: {
             format_tag: 'Format label',
             title: 'Title of the play',
-            execution: '2 to 3 sentences explaining how this builds trust without discounting margin.'
+            execution: '2 to 3 sentences explaining how to execute this play to earn trust without discounting margin.'
           }
         },
         three_pillars: {
-          acquisition_and_loyalty: 'Strategic direction focusing on retention and customer lifetime value over churn. Reject margin-killing discounts and new-customer churn. Shift strategy toward customer lifetime value, insider perks, and tangible retention mechanisms that turn existing regulars into a secondary acquisition engine.',
-          operational_reality_and_flow: 'Strategic direction addressing physical or digital flow bottlenecks. The actionable bridge between diagnosis and execution. 1. Consumer-first flow: Design every touchpoint (booking, counter flow, flyers, forms) for real human behavior, making it dead simple, frictionless, and effortless to navigate without being condescending to the customer. 2. Scrappy feasibility: Focus on what the business can realistically execute right now, rejecting expensive agency ideals (like $10k software or massive retainers) in favor of practical, accessible tools that actually move the needle in their business.',
-          platform_native_utility: 'Strategic direction on choosing the right channel for actual user habits. Use the right tool the right way for its intended purpose. Not every platform is an ad engine, and you dont need to be on every platform. Stop blasting the same promo everywhere. Focus on creative ways to expand reach by engaging in real communities both in and beyond major social media sites.'
+          acquisition_and_loyalty: 'How to stop chasing cold leads and start turning the customers already walking through the door into repeat revenue.',
+          operational_reality_and_flow: 'Removing friction in their real-world booking, buying, or visit process, calibrated to their team bandwidth and budget.',
+          platform_native_utility: 'Using digital channels for what they actually do best instead of posting generic noise across everything.'
         },
         deliverables: [
           {
-            title: 'Artifact #1',
-            medium_tag: 'Artifact type',
-            how_it_works: 'How this tool functions in practice.',
-            why_it_works: 'Why it moves the needle for their specific bottleneck.'
+            title: 'Deliverable #1',
+            medium_tag: 'Deliverable type',
+            how_it_works: 'How this concrete physical or digital deliverable works on the ground.',
+            why_it_works: 'Why it stops the cash/time bleed and fixes their specific bottleneck.'
           },
           {
-            title: 'Artifact #2',
-            medium_tag: 'Artifact type',
-            how_it_works: 'How this tool functions in practice.',
-            why_it_works: 'Why it moves the needle for their specific bottleneck.'
+            title: 'Deliverable #2',
+            medium_tag: 'Deliverable type',
+            how_it_works: 'How this concrete physical or digital deliverable works on the ground.',
+            why_it_works: 'Why it stops the cash/time bleed and fixes their specific bottleneck.'
           },
           {
-            title: 'Artifact #3',
-            medium_tag: 'Artifact type',
-            how_it_works: 'How this tool functions in practice.',
-            why_it_works: 'Why it moves the needle for their specific bottleneck.'
+            title: 'Deliverable #3',
+            medium_tag: 'Deliverable type',
+            how_it_works: 'How this concrete physical or digital deliverable works on the ground.',
+            why_it_works: 'Why it stops the cash/time bleed and fixes their specific bottleneck.'
           }
         ]
       })
@@ -500,7 +496,7 @@
       `Bandwidth: ${context.bandwidth}`,
       `Investment: ${context.investment}`,
       `Mindset: ${context.mindset}`,
-      'Generate the TV Media Strategy Blueprint JSON now. Be candid, grounded, and use zero em dashes.'
+      'Generate the TV Media Strategy Blueprint JSON now. Be straightforward, anti-corporate, and grounded in real operational friction, with zero em-dashes.'
     ].join('\n');
 
     return [
@@ -516,11 +512,11 @@
       return stripEmDashes({
         blueprint_title: 'Reclaiming Lift Hours & Shifting Drivers to High-Margin Bay Work',
         reality_check: {
-          headline: 'Look, almost every independent garage falls into this trap - but letting $35 state inspections and bargain oil changes eat your prime morning lift hours while expecting high-margin brake work to magically walk in makes zero sense.',
-          explanation: 'We are more than happy to help you fix this, and plenty of shop owners do the exact same thing, but right now you are running your bays like a quick-lube charity. Your customers only take their $1,200 suspension and diagnostic jobs back to the dealership because the dealer hands them a printed 60,000-mile maintenance roadmap while you hand them a paper receipt and send them on their way. You need to fence off your morning bay hours for real repair work and put a physical service roadmap on every passenger seat.'
+          headline: 'Your packed schedule proves local drivers already trust your shop with their keys: the bottleneck is bay allocation and post-visit follow-through, not customer demand.',
+          explanation: 'Running an independent garage leaves zero time for generic social media advice, and when drivers come to you for $35 state inspections and oil changes, they already believe you are honest. They only return to the dealership for brakes and diagnostics because the dealer hands them a structured 60,000-mile maintenance roadmap while independent shops hand them a paper receipt.'
         },
         making_media_matter: {
-          core_shift: 'Stop trying to advertise routine maintenance. Use visual behind-the-scenes storytelling and physical service records to demystify what happens on the lift so vehicle owners see your diagnostic expertise before a warning light ever comes on.',
+          core_shift: 'Use visual behind-the-scenes proof and physical service records to demystify what happens on the lift so vehicle owners see your diagnostic expertise before a warning light ever comes on.',
           social_play: {
             format_tag: 'BAY BENCHMARK PHOTO BREAKDOWN',
             title: 'What $35 State Inspections Actually Catch on New England Undercarriages',
@@ -529,8 +525,8 @@
         },
         three_pillars: {
           acquisition_and_loyalty: 'Replace generic couponing with a structured Commuter Priority Club where regulars who book their seasonal maintenance with you unlock priority morning drop-off slots and complimentary fluid top-offs.',
-          operational_reality_and_flow: `Calibrated for a ${context.bandwidth} on a ${context.investment} scope, cap low-margin inspection slots to specific mid-week windows so prime morning lift hours stay open for diagnostic and brake work.`,
-          platform_native_utility: 'Use Google Business Profile updates and direct SMS service reminders for utility-driven maintenance windows rather than trying to chase daily social media algorithms.'
+          operational_reality_and_flow: `Calibrated for a ${context.bandwidth} on a ${context.investment} scope, cap low-margin inspection slots to dedicated afternoon windows so prime morning lift hours stay open for diagnostic and brake work.`,
+          platform_native_utility: 'Use Google Business Profile updates and direct SMS service reminders for utility-driven maintenance windows rather than chasing daily social media algorithms.'
         },
         deliverables: [
           {
@@ -559,19 +555,19 @@
       return stripEmDashes({
         blueprint_title: 'Modernizing RFQ Trust for Next-Generation Procurement Engineers',
         reality_check: {
-          headline: 'Look, half the machine shops in Central Mass make this exact mistake - but expecting a 28-year-old procurement engineer to trust your tight tolerances when your website looks like a 2009 brochure is costing you six-figure RFQs.',
-          explanation: 'We are glad to help you fix this, and plenty of great shops coast on word-of-mouth for too long, but relying on three aging OEM accounts while your digital footprint collects dust is a massive capacity risk. Younger buyers do not cold-call to ask what spindles or CMM rigs you run - they vet five vendors silently online in 90 seconds and cross you off the list before your phone ever rings. You need your online spec sheet and RFQ intake to match the actual precision of your shop.'
+          headline: 'Retaining core OEM accounts for years proves your tolerances and shop execution are rock solid: the friction lives in how younger procurement teams vet vendors online before sending an RFQ.',
+          explanation: 'Managing a precision shop takes full operational focus, and traditional consumer marketing advice does not apply to B2B manufacturing. Younger procurement engineers rarely cold-call shops to ask what machines they run: they vet five vendors silently online in 90 seconds, and an outdated site makes a high-precision shop look like a capacity risk.'
         },
         making_media_matter: {
           core_shift: 'In B2B manufacturing, media matters when it removes engineering friction. Replace generic company descriptions with concrete proof of your tolerances, inspection rigs, and lead-time reliability.',
           social_play: {
             format_tag: 'TECHNICAL CAPABILITY SPOTLIGHT',
             title: 'Inside the Fixture: How We Hold Tight Tolerances on Complex Runs',
-            execution: 'Publish a clean close-up photo and 4-bullet technical breakdown of a challenging material or fixture setup on LinkedIn and your capabilities page, showing engineers how you prevent scrap and delays.'
+            execution: 'Publish a clean close-up photo and 4-point technical breakdown of a challenging material or fixture setup on LinkedIn and your capabilities page, showing engineers how you prevent scrap and delays.'
           }
         },
         three_pillars: {
-          acquisition_and_loyalty: 'Offer existing accounts and qualified new engineering teams a Priority Prototype Slot or pre-production DFM (Design for Manufacturability) review as an exclusive value-add rather than competing on race-to-the-bottom unit pricing.',
+          acquisition_and_loyalty: 'Offer existing accounts and qualified new engineering teams a Priority Prototype Slot or pre-production DFM (Design for Manufacturability) review as an exclusive value-add rather than competing on unit pricing.',
           operational_reality_and_flow: `Built for an ${context.bandwidth} operating within a ${context.investment} investment window, streamline RFQ intake so engineers can upload STEP files and tolerance requirements in under 60 seconds.`,
           platform_native_utility: 'Anchor your digital footprint on a scannable technical web landing page and targeted LinkedIn engineering dispatches rather than consumer social networks.'
         },
@@ -601,8 +597,8 @@
     return stripEmDashes({
       blueprint_title: 'Turning Peak-Hour Trust Into Steady, Margin-Protected Momentum',
       reality_check: {
-        headline: 'Look, almost every local owner around here falls into this trap - but hoping random social media posts will magically fill your dead hours while your peak-hour regulars walk out the door with zero reason to come back mid-week is burning your week.',
-        explanation: 'We are more than happy to help you straighten this out, and plenty of independent shops get stuck in this exact cycle, but right now you are treating your busiest rush like a one-off transaction instead of a retention engine. When you have packed windows alongside dead zones or margin squeeze, posting more online will not fix an operational flow problem. You have to restructure how customers move through your space and give your existing regulars a concrete, high-margin reason to anchor your slower windows.'
+        headline: 'You have already solved the hardest part of running an independent business: proving that customers genuinely value what you do when they walk through the door.',
+        explanation: 'Running daily operations leaves very little bandwidth for generic agency advice like posting five reels a day. When a business has strong pockets of demand alongside frustrating dead zones or margin squeeze, the real friction lives in customer flow and retention mechanics: giving your busiest regulars a structured reason to anchor your off-peak windows.'
       },
       making_media_matter: {
         core_shift: 'Stop treating media like a digital megaphone begging for visits. Combine purposeful content creation, local marketing, and in-person touchpoints so customers feel like insiders rather than targets of a discount promotion.',

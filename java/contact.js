@@ -321,7 +321,7 @@
     } catch (err) {
       console.error('Submission failed:', err);
       if (errorBanner) {
-        const contactEmail = (window.TVMEDIA_CONTACT && window.TVMEDIA_CONTACT.email) || 'tvmediama@gmail.com';
+        const contactEmail = (window.TVMEDIA_CONTACT && window.TVMEDIA_CONTACT.email) || 'contact@tvmediasolutions.com';
         errorBanner.hidden = false;
         errorBanner.textContent = `Dispatch transmission interrupted. Please check your connection or email us directly at ${contactEmail}.`;
       }
