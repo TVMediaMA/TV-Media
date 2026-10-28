@@ -23,30 +23,78 @@ IP_BLUEPRINT_RUNS = {}
 
 SCENARIO_SYSTEM_PROMPT = "\n".join(
     [
-        "Generate a realistic, specific operational bottleneck dilemma for an independent business along the Route 2 corridor or MetroWest Massachusetts (e.g. coffee shop, auto repair, bakery, gym, trades, craft brewery, dental, boutique retail, pet care).",
-        "Write strictly from the owner's perspective.",
-        "Return valid JSON with:",
+        "You generate authentic, spontaneous, highly varied business bottleneck scenarios for independent local businesses across MetroWest and the Route 2 corridor of Massachusetts.",
+        "SCOPE REQUIREMENT (COMMUNICATIONS, DIGITAL MEDIA & EVENTS MANAGEMENT):",
+        "Every scenario MUST focus strictly on a challenge that a Communications Agency, Digital Media Studio, or Events Management Firm would solve.",
+        "DO NOT generate internal mechanical, physical supply-chain, parts inventory, or manual craftsmanship problems (such as mud, broken tools, or shipping delays).",
+        "Focus strictly on core media, communications, and events friction:",
+        "1. Digital Media & Visual Content: Social channels look like an amateur ghost town or blurry phone shots that fail to showcase high-end work; video gap; outdated website leaking leads.",
+        "2. Communications, Positioning & Messaging: Competing on price against lowball competitors because messaging is unclear; burned by $4,000/mo Boston agency retainers with zero trackable calls; flooded with unqualified tire-kicker inquiries.",
+        "3. Events Management & Activations: Promoting upcoming community pop-ups, taproom releases, workshops, fundraisers, or seasonal festivals with weak ticket sales; dead mid-week slumps needing activations; private event venue calendar gaps.",
+        "4. Local Audience & Direct Retention: Buried on local search/maps compared to inferior competitors; flatlined word-of-mouth with zero email/newsletter list; event or seasonal customers vanishing without repeat visits.",
+        "Write strictly from the owner perspective in first person ('We run...', 'I own...'). State the exact business, the specific Massachusetts town, what is happening on the ground, and their communications, media, or event friction.",
+        "Return valid JSON with these keys:",
         "{",
-        '  "bottleneck": "2-3 sentences explaining their business, what is happening on the ground, and why they are stuck.",',
-        '  "bandwidth": "solo" | "small" | "dedicated",',
-        '  "investment": "hard" | "scrappy" | "growth",',
-        '  "mindset": "stretched" | "jargon" | "flatlined" | "agency"',
+        '  "bottleneck": "2-3 punchy sentences strictly in first person. State the business, town, ground reality, and specific communication, media, or event friction.",',
+        '  "bandwidth": "solo" or "small" or "dedicated",',
+        '  "investment": "hard" or "scrappy" or "growth",',
+        '  "mindset": "stretched" or "jargon" or "flatlined" or "agency"',
         "}",
-        "Rules: No em-dashes (-). No generic marketing fluff. Ground it in tangible operational friction (quiet Tuesdays, no repeat customers, ad money burning with no tracking, booking confusion).",
+        "Context Mapping Rules:",
+        "- bandwidth: choose 'solo' if owner works alone, 'small' for 2-5 crew members, 'dedicated' for larger established teams.",
+        "- investment: choose 'hard' for zero cash / bootstrap, 'scrappy' for small tool budget ($200-500/mo), 'growth' for aggressive investment.",
+        "- mindset: choose 'stretched' if time-starved, 'jargon' if burned by past tech/agencies, 'flatlined' if referrals plateaued, 'agency' if seeking no-BS guidance.",
+        "Rules: Output valid json only. Zero em-dashes (-). No generic corporate marketing fluff.",
     ]
 )
 
-ROUTE2_METROWEST_SEEDS = [
-    "an independent specialty coffee shop or scratch bakery in Maynard or Acton",
-    "an independent auto repair or tire & alignment garage in Boxborough or Littleton",
-    "a boutique strength gym, CrossFit box, or martial arts studio in Concord or Westford",
-    "a residential HVAC, electrical, or hardscape contractor in Marlborough or Stow",
-    "an independent craft brewery, taproom, or farm cidery in Hudson or Harvard",
-    "a family & cosmetic dental practice or specialty physical therapy clinic in Sudbury or Framingham",
-    "an independent pet grooming salon, dog daycare, or veterinary clinic in Acton or Wayland",
-    "a specialty retail shop (bicycle/ski repair, bridal boutique, or hardware store) in Concord or Littleton",
-    "a local pottery studio, music school, or community makerspace in Westford or Natick",
-    "a precision B2B machine shop or custom millwork & cabinetry studio in Ayer or Leominster",
+METROWEST_TOWNS = [
+    "Acton",
+    "Boxborough",
+    "Littleton",
+    "Maynard",
+    "Concord",
+    "Westford",
+    "Sudbury",
+    "Stow",
+    "Harvard",
+    "Ayer",
+    "Groton",
+    "Hudson",
+    "Marlborough",
+    "Framingham",
+    "Natick",
+    "Wayland",
+    "Carlisle",
+    "Bolton",
+    "Lincoln",
+    "Bedford",
+]
+
+COMM_SECTORS = [
+    "craft taproom, cidery, or microbrewery",
+    "high-end residential design-build or custom carpentry studio",
+    "independent farm-to-table restaurant or artisan scratch bakery",
+    "boutique fitness, pilates, or martial arts academy",
+    "private event venue, wedding barn, or historical gathering space",
+    "specialized physical therapy, chiropractic, or sports rehab clinic",
+    "independent bicycle & ski pro shop or outdoor outfitter",
+    "community theater, live music venue, or private arts center",
+    "local commercial landscape architecture and hardscaping outfit",
+    "specialty bridal boutique or bespoke jeweler",
+    "independent specialty pet care, boarding, or grooming facility",
+    "local craft distillery or artisan food market",
+]
+
+COMM_CHALLENGES = [
+    "social media looks amateur and phone-shot compared to their real-world quality, failing to convert viewers into paying foot traffic",
+    "hosting an upcoming community event, tasting, or seasonal launch but ticket sales and RSVPs are stalled because local reach is dead",
+    "website and intake forms are flooding the owner with low-margin tire-kickers while high-ticket clients slip away to slicker competitors",
+    "word-of-mouth has flatlined and they have zero customer email capture or direct retention engine after first visits",
+    "burned by a $4,000/mo Boston agency that handed them vanity impressions and jargon reports with zero trackable local bookings",
+    "dead mid-week slumps and off-season calendar gaps with no promotional activations or community event engine",
+    "buried on local Google Maps and search while inferior competitors get all the prime inquiries",
+    "unable to articulate premium craftsmanship, forcing the owner to constantly defend prices against bargain-basement competitors",
 ]
 
 STRATEGY_SYSTEM_PROMPT = "\n".join(
@@ -410,17 +458,19 @@ class TVMediaHandler(SimpleHTTPRequestHandler):
             )
             return
 
-        seed = random.choice(ROUTE2_METROWEST_SEEDS)
+        town = random.choice(METROWEST_TOWNS)
+        sector = random.choice(COMM_SECTORS)
+        challenge = random.choice(COMM_CHALLENGES)
         messages = [
             {"role": "system", "content": SCENARIO_SYSTEM_PROMPT},
             {
                 "role": "user",
-                "content": f"Generate a fresh, specific operational bottleneck scenario in json format for {seed}.",
+                "content": f"Invent a fresh, completely original local Massachusetts business scenario in valid json format. Spark inspiration: consider a {sector} in or near {town} where {challenge}. The dilemma must be squarely in communications, digital media, event promotion, or customer acquisition/retention. Vary the specific details and write realistically from the owner perspective.",
             },
         ]
 
         candidate_models = []
-        for m in ["openai/gpt-oss-20b", "qwen/qwen3.8-27b", "openai/gpt-oss-120b", model]:
+        for m in ["qwen/qwen3.8-27b", "openai/gpt-oss-120b", "openai/gpt-oss-20b", model]:
             if m and m not in candidate_models:
                 candidate_models.append(m)
 
@@ -432,7 +482,7 @@ class TVMediaHandler(SimpleHTTPRequestHandler):
                 "model": candidate_model,
                 "messages": messages,
                 "temperature": 0.85,
-                "max_tokens": 2048,
+                "max_tokens": 600,
                 "response_format": {"type": "json_object"},
             }
             req = urllib.request.Request(

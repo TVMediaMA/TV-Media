@@ -190,24 +190,55 @@
     });
   });
 
-  const SCENARIO_SEEDS = [
-    'an independent specialty coffee and scratch pastry shop in Acton near Route 2',
-    'a 3-bay family auto repair and tire garage in Littleton',
-    'a boutique strength and conditioning gym in Concord',
-    'a residential HVAC and heat-pump installer based in Boxborough',
-    'a craft taproom and kitchen in Maynard with slow weeknights',
-    'an independent family dental practice in Westford',
-    'a specialty pet grooming and daycare facility in Stow',
-    'a custom cabinet and millwork shop in Harvard',
-    'a farm-to-table bakery and market in Ayer',
-    'a local hardware and garden supply store in Sudbury',
-    'an independent physical therapy and sports rehab clinic in Acton',
-    'a commercial landscaping and hardscape contractor in Hudson',
-    'a local music and instrument lesson studio in Framingham',
-    'an independent bicycle sales and repair shop in Bedford',
-    'a specialty cheese, wine, and provisions shop in Concord'
+  const METROWEST_TOWNS = [
+    'Acton',
+    'Boxborough',
+    'Littleton',
+    'Maynard',
+    'Concord',
+    'Westford',
+    'Sudbury',
+    'Stow',
+    'Harvard',
+    'Ayer',
+    'Groton',
+    'Hudson',
+    'Marlborough',
+    'Framingham',
+    'Natick',
+    'Wayland',
+    'Carlisle',
+    'Bolton',
+    'Lincoln',
+    'Bedford'
   ];
-  let lastScenarioSeedIndex = -1;
+  let lastScenarioTown = '';
+
+  const COMM_SECTORS = [
+    'craft taproom, cidery, or microbrewery',
+    'high-end residential design-build or custom carpentry studio',
+    'independent farm-to-table restaurant or artisan scratch bakery',
+    'boutique fitness, pilates, or martial arts academy',
+    'private event venue, wedding barn, or historical gathering space',
+    'specialized physical therapy, chiropractic, or sports rehab clinic',
+    'independent bicycle & ski pro shop or outdoor outfitter',
+    'community theater, live music venue, or private arts center',
+    'local commercial landscape architecture and hardscaping outfit',
+    'specialty bridal boutique or bespoke jeweler',
+    'independent specialty pet care, boarding, or grooming facility',
+    'local craft distillery or artisan food market'
+  ];
+
+  const COMM_CHALLENGES = [
+    'social media looks amateur and phone-shot compared to their real-world quality, failing to convert viewers into paying foot traffic',
+    'hosting an upcoming community event, tasting, or seasonal launch but ticket sales and RSVPs are stalled because local reach is dead',
+    'website and intake forms are flooding the owner with low-margin tire-kickers while high-ticket clients slip away to slicker competitors',
+    'word-of-mouth has flatlined and they have zero customer email capture or direct retention engine after first visits',
+    'burned by a $4,000/mo Boston agency that handed them vanity impressions and jargon reports with zero trackable local bookings',
+    'dead mid-week slumps and off-season calendar gaps with no promotional activations or community event engine',
+    'buried on local Google Maps and search while inferior competitors get all the prime inquiries',
+    'unable to articulate premium craftsmanship, forcing the owner to constantly defend prices against bargain-basement competitors'
+  ];
 
   function parseGroqJson(rawContent) {
     const clean = String(rawContent || '')
@@ -362,34 +393,47 @@
   async function fetchDynamicScenario() {
     const config = window.TVMEDIA_CONFIG || {};
     const groqEndpoint = config.GROQ_ENDPOINT || 'https://api.groq.com/openai/v1/chat/completions';
-    const candidateModels = resolveCandidateModels(config.GROQ_MODEL, true);
+    const candidateModels = ['qwen/qwen3.8-27b', 'openai/gpt-oss-120b', 'openai/gpt-oss-20b'];
     const apiKey = resolveClientKey(config);
 
-    let seedIndex = Math.floor(Math.random() * SCENARIO_SEEDS.length);
-    if (seedIndex === lastScenarioSeedIndex && SCENARIO_SEEDS.length > 1) {
-      seedIndex = (seedIndex + 1) % SCENARIO_SEEDS.length;
-    }
-    lastScenarioSeedIndex = seedIndex;
-    const chosenSeed = SCENARIO_SEEDS[seedIndex];
+    let townPool = METROWEST_TOWNS.filter((t) => t !== lastScenarioTown);
+    if (!townPool.length) townPool = METROWEST_TOWNS;
+    const chosenTown = townPool[Math.floor(Math.random() * townPool.length)];
+    lastScenarioTown = chosenTown;
+
+    const chosenSector = COMM_SECTORS[Math.floor(Math.random() * COMM_SECTORS.length)];
+    const chosenChallenge = COMM_CHALLENGES[Math.floor(Math.random() * COMM_CHALLENGES.length)];
 
     const scenarioPrompt = [
-      'Generate a realistic, specific operational bottleneck dilemma for an independent business along the Route 2 corridor or MetroWest Massachusetts (e.g. coffee shop, auto repair, bakery, gym, trades, craft brewery, dental, boutique retail, pet care).',
-      "Write strictly from the owner's perspective in first person ('We run...', 'I own...').",
-      'Return valid json only matching this exact json structure:',
+      'You generate authentic, spontaneous, highly varied business bottleneck scenarios for independent local businesses across MetroWest and the Route 2 corridor of Massachusetts.',
+      'SCOPE REQUIREMENT (COMMUNICATIONS, DIGITAL MEDIA & EVENTS MANAGEMENT):',
+      'Every scenario MUST focus strictly on a challenge that a Communications Agency, Digital Media Studio, or Events Management Firm would solve.',
+      'DO NOT generate internal mechanical, physical supply-chain, parts inventory, or manual craftsmanship problems (such as mud, broken tools, or shipping delays).',
+      'Focus strictly on core media, communications, and events friction:',
+      '1. Digital Media & Visual Content: Social channels look like an amateur ghost town or blurry phone shots that fail to showcase high-end work; video gap; outdated website leaking leads.',
+      '2. Communications, Positioning & Messaging: Competing on price against lowball competitors because messaging is unclear; burned by $4,000/mo Boston agency retainers with zero trackable calls; flooded with unqualified tire-kicker inquiries.',
+      '3. Events Management & Activations: Promoting upcoming community pop-ups, taproom releases, workshops, fundraisers, or seasonal festivals with weak ticket sales; dead mid-week slumps needing activations; private event venue calendar gaps.',
+      '4. Local Audience & Direct Retention: Buried on local search/maps compared to inferior competitors; flatlined word-of-mouth with zero email/newsletter list; event or seasonal customers vanishing without repeat visits.',
+      "Write strictly from the owner perspective in first person ('We run...', 'I own...'). State the exact business, the specific Massachusetts town, what is happening on the ground, and their communications, media, or event friction.",
+      'Return valid json only with these keys:',
       '{',
-      '  "bottleneck": "2-3 sentences explaining their business, what is happening on the ground, and why they are stuck.",',
-      '  "bandwidth": "solo" | "small" | "dedicated",',
-      '  "investment": "hard" | "scrappy" | "growth",',
-      '  "mindset": "stretched" | "jargon" | "flatlined" | "agency"',
+      '  "bottleneck": "2-3 punchy sentences strictly in first person. State the business, town, ground reality, and specific communication, media, or event friction.",',
+      '  "bandwidth": "solo" or "small" or "dedicated",',
+      '  "investment": "hard" or "scrappy" or "growth",',
+      '  "mindset": "stretched" or "jargon" or "flatlined" or "agency"',
       '}',
-      'Rules: Output valid json only. No em-dashes (-). No generic marketing fluff. Ground it in tangible operational friction (quiet Tuesdays, no repeat customers, ad money burning with no tracking, booking confusion).'
+      'Context Mapping Rules:',
+      "- bandwidth: choose 'solo' if owner works alone, 'small' for 2-5 crew members, 'dedicated' for larger established teams.",
+      "- investment: choose 'hard' for zero cash / bootstrap, 'scrappy' for small tool budget ($200-500/mo), 'growth' for aggressive investment.",
+      "- mindset: choose 'stretched' if time-starved, 'jargon' if burned by past tech/agencies, 'flatlined' if referrals plateaued, 'agency' if seeking no-BS guidance.",
+      'Rules: Output valid json only. No em-dashes (-). No generic corporate marketing fluff.'
     ].join('\n');
 
     const messages = [
       { role: 'system', content: scenarioPrompt },
       {
         role: 'user',
-        content: `Generate a fresh operational bottleneck scenario in json format for ${chosenSeed}.`
+        content: `Invent a fresh, completely original local Massachusetts business scenario in valid json format. Spark inspiration: consider a ${chosenSector} in or near ${chosenTown} where ${chosenChallenge}. The dilemma must be squarely in communications, digital media, event promotion, or customer acquisition/retention. Vary the specific details and write realistically from the owner perspective.`
       }
     ];
 
@@ -403,7 +447,7 @@
             model: candidateModel,
             messages,
             temperature: 0.85,
-            max_tokens: 2048
+            max_tokens: 600
           };
           if (useJsonFormat) {
             payload.response_format = { type: 'json_object' };
@@ -420,7 +464,7 @@
 
           if (resp.ok) {
             const result = await resp.json();
-            const rawContent = result?.choices?.[0]?.message?.content;
+            const rawContent = result?.choices?.[0]?.message?.content || result?.choices?.[0]?.text;
             if (!rawContent) {
               continue;
             }
@@ -458,15 +502,12 @@
                   };
                 }
               }
-            } catch (_) {
-              // Retry without json_object or move to next model
-            }
-            continue;
+            } catch (_) {}
           }
-          break;
+          continue;
         } catch (err) {
           lastErrorText = err?.message || String(err);
-          break;
+          continue;
         }
       }
     }
@@ -490,11 +531,9 @@
           });
         }
       }
-    } catch (_) {
-      // Ignore proxy error
-    }
+    } catch (_) {}
 
-    throw new Error(`Groq scenario request failed (HTTP ${lastStatus}): ${lastErrorText}`);
+    throw new Error(`Groq scenario request failed (HTTP ${lastStatus || 'ERR'}): ${lastErrorText || 'API connection failed'}`);
   }
 
   function applyScenarioToForm(chosen, isLiveGenerated = false) {
@@ -526,23 +565,21 @@
       if (key === 'random') {
         pill.disabled = true;
         pill.textContent = 'TUNING...';
-        scenarioStatus.textContent = 'Tuning into a fresh Route 2 / MetroWest business scenario...';
+        scenarioStatus.textContent = 'Connecting to Groq API for a fresh Route 2 / MetroWest scenario...';
+        formError.hidden = true;
         try {
           const liveScenario = await fetchDynamicScenario();
           if (liveScenario && (liveScenario.text || liveScenario.bottleneck)) {
             applyScenarioToForm(liveScenario, true);
             return;
           }
+          throw new Error('Groq returned empty scenario data');
         } catch (err) {
           console.error('Groq Scenario Error:', err);
-          // Fallback to one of the 5 quick starters only if offline/server fails
-          const keys = Object.keys(SCENARIOS);
-          let fallbackKey = keys[Math.floor(Math.random() * keys.length)];
-          if (fallbackKey === lastFallbackKey && keys.length > 1) {
-            fallbackKey = keys[(keys.indexOf(fallbackKey) + 1) % keys.length];
-          }
-          lastFallbackKey = fallbackKey;
-          applyScenarioToForm(SCENARIOS[fallbackKey], false);
+          const errMsg = err?.message || 'Failed to connect to Groq API';
+          scenarioStatus.textContent = `[ ERROR ] Scenario Generation Failed: ${errMsg}`;
+          formError.textContent = `Scenario Generation Error: ${errMsg}. Check console or network tab.`;
+          formError.hidden = false;
         } finally {
           pill.disabled = false;
           pill.textContent = 'Random Scenario';
@@ -895,11 +932,8 @@
       return await callGroqJson(messages, 4096, 0.65);
     } catch (err) {
       console.error('Groq Blueprint Error:', err);
-      if (err && err.status === 429) {
-        throw err;
-      }
-      // Smoothly fall back to our tailored practitioner blueprint if live API cannot be reached
-      return buildOfflineFallbackBlueprint(bottleneck, context);
+      // Graceful fallback removed per user instruction - display actual API error code instead
+      throw err;
     }
   }
 
